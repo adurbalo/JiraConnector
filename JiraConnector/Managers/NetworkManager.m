@@ -119,7 +119,8 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                                    responseBlock:(void (^)(id, NSError *))responseBlock
 {
     void(^successBlock)(AFHTTPRequestOperation*, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"\n\nSuccess Response: <--- \n%@", operation.response);
+        NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"\n\nSuccess Response: <--- \n%@\n%@", operation.response, responseString);
         [self handleResponse:responseObject outputObjectSample:(id)outputObjectSample forURLRequest:operation.request callBlock:responseBlock];
     };
     void(^failureBlock)(AFHTTPRequestOperation*, NSError*) = ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -215,6 +216,17 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                          useCredential:YES
                   HTTPHeaderParameters:nil
                     outputObjectSample:[IssueTypeList new]
+                         responseBlock:completionBlock];
+}
+
+-(NSOperation*)issuePrioritiesCompletionBlock:(void (^)(PriorityList *responseObject, NSError* error))completionBlock
+{
+    return [self makeRequestWithMethod:RequestMethodGET
+                               URLPath:@"/rest/api/2/priority"
+                       inputParameters:nil
+                         useCredential:YES
+                  HTTPHeaderParameters:nil
+                    outputObjectSample:[PriorityList new]
                          responseBlock:completionBlock];
 }
 

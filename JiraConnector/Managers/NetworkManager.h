@@ -10,6 +10,7 @@
 #import "CWLSynthesizeSingleton.h"
 #import "IssueTypeList.h"
 #import "ProjectList.h"
+#import "PriorityList.h"
 
 @interface NetworkManager : NSObject
 
@@ -25,5 +26,6 @@ CWL_DECLARE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 
 //Issue Prepearing
 -(NSOperation*)issueTypesCompletionBlock:(void (^)(IssueTypeList *responseObject, NSError* error))completionBlock;
+-(NSOperation*)issuePrioritiesCompletionBlock:(void (^)(PriorityList *responseObject, NSError* error))completionBlock;
 
 @end

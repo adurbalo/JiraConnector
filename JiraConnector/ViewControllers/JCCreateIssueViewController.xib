@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JCCreateIssueViewController">
             <connections>
                 <outlet property="itemTypeDropDownControl" destination="AhI-zb-HgS" id="gHs-gg-6MX"/>
+                <outlet property="priorityDropDownControl" destination="ZUh-jR-Iaa" id="i1d-sV-ZTi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,18 +22,31 @@
                         <constraint firstAttribute="height" constant="40" id="5h4-sO-7zO"/>
                         <constraint firstAttribute="width" constant="150" id="m9L-VG-Y2t"/>
                     </constraints>
-                    <state key="normal" title="Button">
+                    <state key="normal" title="Issue Type">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Issue Type"/>
                     </userDefinedRuntimeAttributes>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUh-jR-Iaa" customClass="JCDropDownControl">
+                    <rect key="frame" x="85" y="185" width="150" height="40"/>
+                    <state key="normal" title="Priority">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Priority"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="ZUh-jR-Iaa" firstAttribute="leading" secondItem="AhI-zb-HgS" secondAttribute="leading" id="aE1-Zv-yJw"/>
                 <constraint firstAttribute="centerX" secondItem="AhI-zb-HgS" secondAttribute="centerX" id="aaX-gH-wJ0"/>
+                <constraint firstItem="ZUh-jR-Iaa" firstAttribute="trailing" secondItem="AhI-zb-HgS" secondAttribute="trailing" id="cbE-VZ-ncd"/>
+                <constraint firstItem="ZUh-jR-Iaa" firstAttribute="top" secondItem="AhI-zb-HgS" secondAttribute="bottom" constant="20" id="fGG-fd-PR6"/>
                 <constraint firstItem="AhI-zb-HgS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="125" id="gWd-dX-7OL"/>
+                <constraint firstItem="ZUh-jR-Iaa" firstAttribute="height" secondItem="AhI-zb-HgS" secondAttribute="height" id="wkF-fr-fTo"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="249" y="160"/>

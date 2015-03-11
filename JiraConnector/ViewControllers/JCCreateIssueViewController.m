@@ -13,6 +13,7 @@
 @interface JCCreateIssueViewController ()
 
 @property (weak, nonatomic) IBOutlet JCDropDownControl *itemTypeDropDownControl;
+@property (weak, nonatomic) IBOutlet JCDropDownControl *priorityDropDownControl;
 
 @end
 
@@ -37,6 +38,14 @@
             self.itemTypeDropDownControl.titles = [responseObject.items valueForKeyPath:@"name"];
         }
         
+    }];
+    
+    self.priorityDropDownControl.enableLoadingMode = YES;
+    [[NetworkManager sharedManager] issuePrioritiesCompletionBlock:^(PriorityList *responseObject, NSError *error) {
+        self.priorityDropDownControl.enableLoadingMode = NO;
+        if (!error) {
+            self.priorityDropDownControl.titles = [responseObject.items valueForKey:@"name"];
+        }
     }];
 }
 
