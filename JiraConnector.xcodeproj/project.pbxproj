@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A07CD011AAF80980051A98F /* IssueType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD001AAF80980051A98F /* IssueType.m */; };
+		1A07CD041AAF91CA0051A98F /* IssueTypeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD031AAF91CA0051A98F /* IssueTypeList.m */; };
+		1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD061AAF9C8F0051A98F /* BaseModel.m */; };
+		1A07CD0A1AAFAD5E0051A98F /* BaseModelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD091AAFAD5E0051A98F /* BaseModelList.m */; };
+		1A07CD0D1AAFC0AE0051A98F /* ProjectList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD0C1AAFC0AE0051A98F /* ProjectList.m */; };
+		1A07CD101AAFC0D10051A98F /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD0F1AAFC0D10051A98F /* Project.m */; };
+		1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD121AAFC4A80051A98F /* AvatarUrls.m */; };
 		1A260FE81AA4F2B900FEBFDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FE71AA4F2B900FEBFDE /* main.m */; };
 		1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FEA1AA4F2B900FEBFDE /* AppDelegate.m */; };
 		1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FED1AA4F2B900FEBFDE /* ViewController.m */; };
@@ -14,6 +21,13 @@
 		1A260FF31AA4F2B900FEBFDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A260FF21AA4F2B900FEBFDE /* Images.xcassets */; };
 		1A260FF61AA4F2B900FEBFDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A260FF41AA4F2B900FEBFDE /* LaunchScreen.xib */; };
 		1A2610021AA4F2B900FEBFDE /* JiraConnectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610011AA4F2B900FEBFDE /* JiraConnectorTests.m */; };
+		1A2610111AA6493B00FEBFDE /* JCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610101AA6493B00FEBFDE /* JCLoginViewController.m */; };
+		1A2610131AA6496000FEBFDE /* JCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A2610121AA6496000FEBFDE /* JCLoginViewController.xib */; };
+		1A2610191AA64BF100FEBFDE /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610181AA64BF100FEBFDE /* NetworkManager.m */; };
+		1A26101D1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A26101B1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m */; };
+		1A26101E1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A26101C1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib */; };
+		1A2610221AA8F74B00FEBFDE /* JCDropDownControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610211AA8F74B00FEBFDE /* JCDropDownControl.m */; };
+		B163058410470B8EA72CFB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43298A5880ACC97D75A8C049 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +41,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A07CCFF1AAF80980051A98F /* IssueType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IssueType.h; path = Model/IssueType.h; sourceTree = "<group>"; };
+		1A07CD001AAF80980051A98F /* IssueType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IssueType.m; path = Model/IssueType.m; sourceTree = "<group>"; };
+		1A07CD021AAF91CA0051A98F /* IssueTypeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IssueTypeList.h; path = Model/IssueTypeList.h; sourceTree = "<group>"; };
+		1A07CD031AAF91CA0051A98F /* IssueTypeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IssueTypeList.m; path = Model/IssueTypeList.m; sourceTree = "<group>"; };
+		1A07CD051AAF9C8F0051A98F /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseModel.h; path = Model/BaseModel.h; sourceTree = "<group>"; };
+		1A07CD061AAF9C8F0051A98F /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseModel.m; path = Model/BaseModel.m; sourceTree = "<group>"; };
+		1A07CD081AAFAD5E0051A98F /* BaseModelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseModelList.h; path = Model/BaseModelList.h; sourceTree = "<group>"; };
+		1A07CD091AAFAD5E0051A98F /* BaseModelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseModelList.m; path = Model/BaseModelList.m; sourceTree = "<group>"; };
+		1A07CD0B1AAFC0AE0051A98F /* ProjectList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectList.h; path = Model/ProjectList.h; sourceTree = "<group>"; };
+		1A07CD0C1AAFC0AE0051A98F /* ProjectList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectList.m; path = Model/ProjectList.m; sourceTree = "<group>"; };
+		1A07CD0E1AAFC0D10051A98F /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = Model/Project.h; sourceTree = "<group>"; };
+		1A07CD0F1AAFC0D10051A98F /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = Model/Project.m; sourceTree = "<group>"; };
+		1A07CD111AAFC4A80051A98F /* AvatarUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarUrls.h; path = Model/AvatarUrls.h; sourceTree = "<group>"; };
+		1A07CD121AAFC4A80051A98F /* AvatarUrls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarUrls.m; path = Model/AvatarUrls.m; sourceTree = "<group>"; };
 		1A260FE21AA4F2B900FEBFDE /* JiraConnector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JiraConnector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A260FE61AA4F2B900FEBFDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A260FE71AA4F2B900FEBFDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +68,20 @@
 		1A260FFB1AA4F2B900FEBFDE /* JiraConnectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JiraConnectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A2610001AA4F2B900FEBFDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A2610011AA4F2B900FEBFDE /* JiraConnectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiraConnectorTests.m; sourceTree = "<group>"; };
+		1A26100F1AA6493B00FEBFDE /* JCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLoginViewController.h; sourceTree = "<group>"; };
+		1A2610101AA6493B00FEBFDE /* JCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLoginViewController.m; sourceTree = "<group>"; };
+		1A2610121AA6496000FEBFDE /* JCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCLoginViewController.xib; sourceTree = "<group>"; };
+		1A2610161AA64BDE00FEBFDE /* CWLSynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CWLSynthesizeSingleton.h; sourceTree = "<group>"; };
+		1A2610171AA64BF100FEBFDE /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		1A2610181AA64BF100FEBFDE /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		1A26101A1AA8EBDA00FEBFDE /* JCCreateIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCCreateIssueViewController.h; sourceTree = "<group>"; };
+		1A26101B1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCCreateIssueViewController.m; sourceTree = "<group>"; };
+		1A26101C1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCCreateIssueViewController.xib; sourceTree = "<group>"; };
+		1A2610201AA8F74B00FEBFDE /* JCDropDownControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDropDownControl.h; sourceTree = "<group>"; };
+		1A2610211AA8F74B00FEBFDE /* JCDropDownControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownControl.m; sourceTree = "<group>"; };
+		43298A5880ACC97D75A8C049 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B163058410470B8EA72CFB19 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +103,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A07CCFB1AAF7DB90051A98F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A07CD051AAF9C8F0051A98F /* BaseModel.h */,
+				1A07CD061AAF9C8F0051A98F /* BaseModel.m */,
+				1A07CD081AAFAD5E0051A98F /* BaseModelList.h */,
+				1A07CD091AAFAD5E0051A98F /* BaseModelList.m */,
+				1A07CD021AAF91CA0051A98F /* IssueTypeList.h */,
+				1A07CD031AAF91CA0051A98F /* IssueTypeList.m */,
+				1A07CCFF1AAF80980051A98F /* IssueType.h */,
+				1A07CD001AAF80980051A98F /* IssueType.m */,
+				1A07CD0B1AAFC0AE0051A98F /* ProjectList.h */,
+				1A07CD0C1AAFC0AE0051A98F /* ProjectList.m */,
+				1A07CD0E1AAFC0D10051A98F /* Project.h */,
+				1A07CD0F1AAFC0D10051A98F /* Project.m */,
+				1A07CD111AAFC4A80051A98F /* AvatarUrls.h */,
+				1A07CD121AAFC4A80051A98F /* AvatarUrls.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		1A260FD91AA4F2B900FEBFDE = {
 			isa = PBXGroup;
 			children = (
 				1A260FE41AA4F2B900FEBFDE /* JiraConnector */,
 				1A260FFE1AA4F2B900FEBFDE /* JiraConnectorTests */,
 				1A260FE31AA4F2B900FEBFDE /* Products */,
+				A4BF44288AF54F20C947EDD2 /* Pods */,
+				343DE364EDFA66E802916AF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +147,10 @@
 		1A260FE41AA4F2B900FEBFDE /* JiraConnector */ = {
 			isa = PBXGroup;
 			children = (
+				1A07CCFB1AAF7DB90051A98F /* Model */,
+				1A26101F1AA8F70900FEBFDE /* Controls */,
+				1A2610151AA64BA600FEBFDE /* Managers */,
+				1A26100E1AA648F700FEBFDE /* ViewControllers */,
 				1A260FE91AA4F2B900FEBFDE /* AppDelegate.h */,
 				1A260FEA1AA4F2B900FEBFDE /* AppDelegate.m */,
 				1A260FEC1AA4F2B900FEBFDE /* ViewController.h */,
@@ -119,6 +189,55 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1A26100E1AA648F700FEBFDE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1A26100F1AA6493B00FEBFDE /* JCLoginViewController.h */,
+				1A2610101AA6493B00FEBFDE /* JCLoginViewController.m */,
+				1A2610121AA6496000FEBFDE /* JCLoginViewController.xib */,
+				1A26101A1AA8EBDA00FEBFDE /* JCCreateIssueViewController.h */,
+				1A26101B1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m */,
+				1A26101C1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1A2610151AA64BA600FEBFDE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1A2610161AA64BDE00FEBFDE /* CWLSynthesizeSingleton.h */,
+				1A2610171AA64BF100FEBFDE /* NetworkManager.h */,
+				1A2610181AA64BF100FEBFDE /* NetworkManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		1A26101F1AA8F70900FEBFDE /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				1A2610201AA8F74B00FEBFDE /* JCDropDownControl.h */,
+				1A2610211AA8F74B00FEBFDE /* JCDropDownControl.m */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		343DE364EDFA66E802916AF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43298A5880ACC97D75A8C049 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A4BF44288AF54F20C947EDD2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */,
+				EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +245,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A2610051AA4F2B900FEBFDE /* Build configuration list for PBXNativeTarget "JiraConnector" */;
 			buildPhases = (
+				E3329DD44F4EF018896D00C6 /* Check Pods Manifest.lock */,
 				1A260FDE1AA4F2B900FEBFDE /* Sources */,
 				1A260FDF1AA4F2B900FEBFDE /* Frameworks */,
 				1A260FE01AA4F2B900FEBFDE /* Resources */,
+				2A2919783AB9923A5921C0B3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,7 +322,9 @@
 			files = (
 				1A260FF11AA4F2B900FEBFDE /* Main.storyboard in Resources */,
 				1A260FF61AA4F2B900FEBFDE /* LaunchScreen.xib in Resources */,
+				1A26101E1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib in Resources */,
 				1A260FF31AA4F2B900FEBFDE /* Images.xcassets in Resources */,
+				1A2610131AA6496000FEBFDE /* JCLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,14 +337,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A2919783AB9923A5921C0B3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3329DD44F4EF018896D00C6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1A260FDE1AA4F2B900FEBFDE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A07CD0A1AAFAD5E0051A98F /* BaseModelList.m in Sources */,
 				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
+				1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */,
+				1A07CD041AAF91CA0051A98F /* IssueTypeList.m in Sources */,
+				1A07CD011AAF80980051A98F /* IssueType.m in Sources */,
 				1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */,
 				1A260FE81AA4F2B900FEBFDE /* main.m in Sources */,
+				1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */,
+				1A2610221AA8F74B00FEBFDE /* JCDropDownControl.m in Sources */,
+				1A26101D1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m in Sources */,
+				1A2610191AA64BF100FEBFDE /* NetworkManager.m in Sources */,
+				1A07CD101AAFC0D10051A98F /* Project.m in Sources */,
+				1A2610111AA6493B00FEBFDE /* JCLoginViewController.m in Sources */,
+				1A07CD0D1AAFC0AE0051A98F /* ProjectList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +510,7 @@
 		};
 		1A2610061AA4F2B900FEBFDE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JiraConnector/Info.plist;
@@ -353,6 +521,7 @@
 		};
 		1A2610071AA4F2B900FEBFDE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JiraConnector/Info.plist;
@@ -414,6 +583,7 @@
 				1A2610071AA4F2B900FEBFDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A2610081AA4F2B900FEBFDE /* Build configuration list for PBXNativeTarget "JiraConnectorTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +592,7 @@
 				1A26100A1AA4F2B900FEBFDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,5 @@
+#include "Pods-KZPropertyMapper.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/KZPropertyMapper" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/KZPropertyMapper"
+OTHER_LDFLAGS = ${PODS_KZPROPERTYMAPPER_OTHER_LDFLAGS} -ObjC
+PODS_ROOT = ${SRCROOT}
