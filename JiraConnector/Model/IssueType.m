@@ -10,15 +10,27 @@
 
 @implementation IssueType
 
-- (NSDictionary*)mappingDictionary
-{
-    return @{@"self" : KZProperty(selfLink),
-             @"id" : KZProperty(idValue),
-             @"description" : KZProperty(descriptionValue),
-             @"iconUrl" : KZProperty(iconUrl),
-             @"name" : KZProperty(name),
-             @"subtask" : KZProperty(subtask)
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"selfLink": @"self",
+             @"idValue": @"id",
+             @"descriptionValue": @"description",
+             @"iconUrl": @"iconUrl",
+             @"name" : @"name",
+             @"subtask" : @"subtask"
              };
+}
+
++ (NSValueTransformer *)selfLinkJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)iconUrlJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)subtaskJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLBooleanValueTransformerName];
 }
 
 @end

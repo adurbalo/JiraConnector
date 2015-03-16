@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-KZPropertyMapper.xcscheme</key>
+		<key>Pods-Mantle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6C362AB08CE909C5ADD83940</key>
+		<key>2BCC26FAF91B6AA78290AA41</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B671F11A134E100AF75C1510</key>
+		<key>4C2562A67DE0D1B064C3C8F2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D0CED49D1B14918A8A1C6B54</key>
+		<key>9FE2D8562EA6D7F92F61A65F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

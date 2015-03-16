@@ -8,13 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1A07CD011AAF80980051A98F /* IssueType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD001AAF80980051A98F /* IssueType.m */; };
-		1A07CD041AAF91CA0051A98F /* IssueTypeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD031AAF91CA0051A98F /* IssueTypeList.m */; };
 		1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD061AAF9C8F0051A98F /* BaseModel.m */; };
-		1A07CD0A1AAFAD5E0051A98F /* BaseModelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD091AAFAD5E0051A98F /* BaseModelList.m */; };
-		1A07CD0D1AAFC0AE0051A98F /* ProjectList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD0C1AAFC0AE0051A98F /* ProjectList.m */; };
 		1A07CD101AAFC0D10051A98F /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD0F1AAFC0D10051A98F /* Project.m */; };
 		1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD121AAFC4A80051A98F /* AvatarUrls.m */; };
-		1A1FB31B1AB0FF5B00ED46B0 /* PriorityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FB31A1AB0FF5B00ED46B0 /* PriorityList.m */; };
 		1A1FB31E1AB0FF7A00ED46B0 /* Priority.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FB31D1AB0FF7A00ED46B0 /* Priority.m */; };
 		1A260FE81AA4F2B900FEBFDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FE71AA4F2B900FEBFDE /* main.m */; };
 		1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FEA1AA4F2B900FEBFDE /* AppDelegate.m */; };
@@ -45,20 +41,12 @@
 /* Begin PBXFileReference section */
 		1A07CCFF1AAF80980051A98F /* IssueType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IssueType.h; path = Model/IssueType.h; sourceTree = "<group>"; };
 		1A07CD001AAF80980051A98F /* IssueType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IssueType.m; path = Model/IssueType.m; sourceTree = "<group>"; };
-		1A07CD021AAF91CA0051A98F /* IssueTypeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IssueTypeList.h; path = Model/IssueTypeList.h; sourceTree = "<group>"; };
-		1A07CD031AAF91CA0051A98F /* IssueTypeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IssueTypeList.m; path = Model/IssueTypeList.m; sourceTree = "<group>"; };
 		1A07CD051AAF9C8F0051A98F /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseModel.h; path = Model/BaseModel.h; sourceTree = "<group>"; };
 		1A07CD061AAF9C8F0051A98F /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseModel.m; path = Model/BaseModel.m; sourceTree = "<group>"; };
-		1A07CD081AAFAD5E0051A98F /* BaseModelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseModelList.h; path = Model/BaseModelList.h; sourceTree = "<group>"; };
-		1A07CD091AAFAD5E0051A98F /* BaseModelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseModelList.m; path = Model/BaseModelList.m; sourceTree = "<group>"; };
-		1A07CD0B1AAFC0AE0051A98F /* ProjectList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectList.h; path = Model/ProjectList.h; sourceTree = "<group>"; };
-		1A07CD0C1AAFC0AE0051A98F /* ProjectList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectList.m; path = Model/ProjectList.m; sourceTree = "<group>"; };
 		1A07CD0E1AAFC0D10051A98F /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = Model/Project.h; sourceTree = "<group>"; };
 		1A07CD0F1AAFC0D10051A98F /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = Model/Project.m; sourceTree = "<group>"; };
 		1A07CD111AAFC4A80051A98F /* AvatarUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarUrls.h; path = Model/AvatarUrls.h; sourceTree = "<group>"; };
 		1A07CD121AAFC4A80051A98F /* AvatarUrls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarUrls.m; path = Model/AvatarUrls.m; sourceTree = "<group>"; };
-		1A1FB3191AB0FF5B00ED46B0 /* PriorityList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriorityList.h; path = Model/PriorityList.h; sourceTree = "<group>"; };
-		1A1FB31A1AB0FF5B00ED46B0 /* PriorityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriorityList.m; path = Model/PriorityList.m; sourceTree = "<group>"; };
 		1A1FB31C1AB0FF7900ED46B0 /* Priority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Priority.h; path = Model/Priority.h; sourceTree = "<group>"; };
 		1A1FB31D1AB0FF7A00ED46B0 /* Priority.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Priority.m; path = Model/Priority.m; sourceTree = "<group>"; };
 		1A260FE21AA4F2B900FEBFDE /* JiraConnector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JiraConnector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +73,7 @@
 		1A26101C1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCCreateIssueViewController.xib; sourceTree = "<group>"; };
 		1A2610201AA8F74B00FEBFDE /* JCDropDownControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDropDownControl.h; sourceTree = "<group>"; };
 		1A2610211AA8F74B00FEBFDE /* JCDropDownControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownControl.m; sourceTree = "<group>"; };
+		1A88E31F1AB79347008E7B76 /* Models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Models.h; path = Model/Models.h; sourceTree = "<group>"; };
 		43298A5880ACC97D75A8C049 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,22 +101,15 @@
 		1A07CCFB1AAF7DB90051A98F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1A88E31F1AB79347008E7B76 /* Models.h */,
 				1A07CD051AAF9C8F0051A98F /* BaseModel.h */,
 				1A07CD061AAF9C8F0051A98F /* BaseModel.m */,
-				1A07CD081AAFAD5E0051A98F /* BaseModelList.h */,
-				1A07CD091AAFAD5E0051A98F /* BaseModelList.m */,
-				1A07CD021AAF91CA0051A98F /* IssueTypeList.h */,
-				1A07CD031AAF91CA0051A98F /* IssueTypeList.m */,
 				1A07CCFF1AAF80980051A98F /* IssueType.h */,
 				1A07CD001AAF80980051A98F /* IssueType.m */,
-				1A07CD0B1AAFC0AE0051A98F /* ProjectList.h */,
-				1A07CD0C1AAFC0AE0051A98F /* ProjectList.m */,
 				1A07CD0E1AAFC0D10051A98F /* Project.h */,
 				1A07CD0F1AAFC0D10051A98F /* Project.m */,
 				1A07CD111AAFC4A80051A98F /* AvatarUrls.h */,
 				1A07CD121AAFC4A80051A98F /* AvatarUrls.m */,
-				1A1FB3191AB0FF5B00ED46B0 /* PriorityList.h */,
-				1A1FB31A1AB0FF5B00ED46B0 /* PriorityList.m */,
 				1A1FB31C1AB0FF7900ED46B0 /* Priority.h */,
 				1A1FB31D1AB0FF7A00ED46B0 /* Priority.m */,
 			);
@@ -385,22 +367,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A07CD0A1AAFAD5E0051A98F /* BaseModelList.m in Sources */,
 				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
 				1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */,
-				1A07CD041AAF91CA0051A98F /* IssueTypeList.m in Sources */,
 				1A07CD011AAF80980051A98F /* IssueType.m in Sources */,
 				1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */,
 				1A260FE81AA4F2B900FEBFDE /* main.m in Sources */,
 				1A1FB31E1AB0FF7A00ED46B0 /* Priority.m in Sources */,
 				1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */,
-				1A1FB31B1AB0FF5B00ED46B0 /* PriorityList.m in Sources */,
 				1A2610221AA8F74B00FEBFDE /* JCDropDownControl.m in Sources */,
 				1A26101D1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m in Sources */,
 				1A2610191AA64BF100FEBFDE /* NetworkManager.m in Sources */,
 				1A07CD101AAFC0D10051A98F /* Project.m in Sources */,
 				1A2610111AA6493B00FEBFDE /* JCLoginViewController.m in Sources */,
-				1A07CD0D1AAFC0AE0051A98F /* ProjectList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

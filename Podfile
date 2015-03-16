@@ -1,4 +1,4 @@
 platform :ios, '7.0'
 
 pod 'AFNetworking'
-pod 'KZPropertyMapper', '~> 2.5.1'
+pod 'Mantle', '~> 1.5.4'

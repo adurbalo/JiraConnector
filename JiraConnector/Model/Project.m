@@ -7,26 +7,28 @@
 //
 
 #import "Project.h"
+#import "MTLValueTransformer.h"
 
 @implementation Project
 
-
-
-- (NSDictionary*)mappingDictionary
-{
-    return @{@"self" : KZProperty(selfLink),
-             @"id" : KZProperty(idValue),
-             @"key" : KZProperty(key),
-             @"name" : KZProperty(name),
-             @"avatarUrls" : @"@Selector(avatarsFromDict:, avatarUrls)"
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"selfLink": @"self",
+             @"idValue": @"id",
+             @"name": @"name",
+             @"key": @"key",
+             @"avatarUrls" : @"avatarUrls"
              };
 }
 
-- (AvatarUrls*)avatarsFromDict:(NSDictionary*)avatarsDict
-{
-    AvatarUrls *avatarsUrls = [AvatarUrls new];
-    [avatarsUrls mapValuesFromObject:avatarsDict];
-    return avatarsUrls;
++ (NSValueTransformer *)selfLinkJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
+
++ (NSValueTransformer *)avatarUrlsJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:AvatarUrls.class];
+}
+
+
 
 @end

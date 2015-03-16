@@ -10,15 +10,25 @@
 
 @implementation Priority
 
-- (NSDictionary*)mappingDictionary
-{
-    return @{@"self" : KZProperty(selfLink),
-             @"id" : KZProperty(idValue),
-             @"statusColor" : KZProperty(statusColor),
-             @"description" : KZProperty(descriptionValue),
-             @"iconUrl" : KZProperty(iconUrl),
-             @"name" : KZProperty(name)
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"selfLink": @"self",
+             @"idValue": @"id",
+             @"statusColor": @"statusColor",
+             @"descriptionValue": @"description",
+             @"iconUrl": @"iconUrl",
+             @"name" : @"name"
              };
 }
+
++ (NSValueTransformer *)selfLinkJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)iconUrlJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
 
 @end

@@ -10,11 +10,11 @@
 
 @interface Priority : BaseModel
 
-@property(nonatomic, strong) NSString *selfLink;
+@property(nonatomic, strong) NSURL *selfLink;
 @property(nonatomic, strong) NSString *idValue;
 @property(nonatomic, strong) NSString *statusColor;
 @property(nonatomic, strong) NSString *descriptionValue;
-@property(nonatomic, strong) NSString *iconUrl;
+@property(nonatomic, strong) NSURL *iconUrl;
 @property(nonatomic, strong) NSString *name;
 
 @end

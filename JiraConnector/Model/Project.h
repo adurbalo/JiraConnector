@@ -11,7 +11,7 @@
 
 @interface Project : BaseModel
 
-@property(nonatomic, strong) NSString *selfLink;
+@property(nonatomic, strong) NSURL *selfLink;
 @property(nonatomic, strong) NSString *idValue;
 @property(nonatomic, strong) NSString *key;
 @property(nonatomic, strong) NSString *name;

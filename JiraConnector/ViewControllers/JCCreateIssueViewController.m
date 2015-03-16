@@ -9,6 +9,7 @@
 #import "JCCreateIssueViewController.h"
 #import "NetworkManager.h"
 #import "JCDropDownControl.h"
+#import "EXTKeyPathCoding.h"
 
 @interface JCCreateIssueViewController ()
 
@@ -30,21 +31,22 @@
     
     self.itemTypeDropDownControl.enableLoadingMode = YES;
     
-    [[NetworkManager sharedManager] issueTypesCompletionBlock:^(BaseModelList *responseObject, NSError *error) {
-        
+    [[NetworkManager sharedManager] issueTypesCompletionBlock:^(NSArray *responseArray, NSError *error) {
         self.itemTypeDropDownControl.enableLoadingMode = NO;
         
         if (!error) {
-            self.itemTypeDropDownControl.titles = [responseObject.items valueForKeyPath:@"name"];
+            self.itemTypeDropDownControl.titles = [responseArray valueForKeyPath:@keypath( IssueType.new, name )];
         }
-        
     }];
     
+    
     self.priorityDropDownControl.enableLoadingMode = YES;
-    [[NetworkManager sharedManager] issuePrioritiesCompletionBlock:^(PriorityList *responseObject, NSError *error) {
+    
+    [[NetworkManager sharedManager] issuePrioritiesCompletionBlock:^(NSArray *responseArray, NSError *error) {
         self.priorityDropDownControl.enableLoadingMode = NO;
+        
         if (!error) {
-            self.priorityDropDownControl.titles = [responseObject.items valueForKey:@"name"];
+            self.priorityDropDownControl.titles = [responseArray valueForKeyPath:@keypath( Priority.new, name )];
         }
     }];
 }

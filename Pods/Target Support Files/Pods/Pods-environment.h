@@ -48,9 +48,15 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
-// KZPropertyMapper
-#define COCOAPODS_POD_AVAILABLE_KZPropertyMapper
-#define COCOAPODS_VERSION_MAJOR_KZPropertyMapper 2
-#define COCOAPODS_VERSION_MINOR_KZPropertyMapper 5
-#define COCOAPODS_VERSION_PATCH_KZPropertyMapper 1
+// Mantle
+#define COCOAPODS_POD_AVAILABLE_Mantle
+#define COCOAPODS_VERSION_MAJOR_Mantle 1
+#define COCOAPODS_VERSION_MINOR_Mantle 5
+#define COCOAPODS_VERSION_PATCH_Mantle 4
+
+// Mantle/extobjc
+#define COCOAPODS_POD_AVAILABLE_Mantle_extobjc
+#define COCOAPODS_VERSION_MAJOR_Mantle_extobjc 1
+#define COCOAPODS_VERSION_MINOR_Mantle_extobjc 5
+#define COCOAPODS_VERSION_PATCH_Mantle_extobjc 4
 

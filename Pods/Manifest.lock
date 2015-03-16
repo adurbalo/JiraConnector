@@ -20,14 +20,16 @@ PODS:
   - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - KZPropertyMapper (2.5.1)
+  - Mantle (1.5.4):
+    - Mantle/extobjc (= 1.5.4)
+  - Mantle/extobjc (1.5.4)
 
 DEPENDENCIES:
   - AFNetworking
-  - KZPropertyMapper (~> 2.5.1)
+  - Mantle (~> 1.5.4)
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  KZPropertyMapper: f06b00ff0c114bf8db45754a694b57278a628b5b
+  Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
 
 COCOAPODS: 0.36.0.beta.2

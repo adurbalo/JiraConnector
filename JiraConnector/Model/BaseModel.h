@@ -7,15 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KZPropertyMapper.h"
+#import "Mantle.h"
 
-@protocol BaseModalProtocol <NSObject>
-@required
-- (NSDictionary*)mappingDictionary;
-@end
-
-@interface BaseModel : NSObject <BaseModalProtocol>
-
--(BOOL)mapValuesFromObject:(id)object;
+@interface BaseModel : MTLModel <MTLJSONSerializing>
 
 @end

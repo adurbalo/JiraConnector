@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
-@property (nonatomic, strong) ProjectList *projectsList;
+@property (nonatomic, strong) NSArray *projects;
 
 @end
 
@@ -44,9 +44,9 @@
 
 - (void)loadProjects
 {
-    [[NetworkManager sharedManager] receiveProjectsCompletionBlock:^(ProjectList *responseObject, NSError *error) {
+    [[NetworkManager sharedManager] receiveProjectsCompletionBlock:^(NSArray *responseArray, NSError *error) {
         if (!error) {
-            self.projectsList = responseObject;
+            self.projects = responseArray;
             [self.theTableView reloadData];
         }
     }];
@@ -76,18 +76,18 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.projectsList.items.count;
+    return self.projects.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
-    
-    Project *project = self.projectsList.items[indexPath.row];
-
+    Project *project = self.projects[indexPath.row];
     cell.textLabel.text = project.name;
     cell.detailTextLabel.text = project.key;
-    [cell.imageView setImageWithURL:[NSURL URLWithString:project.avatarUrls.x32]];
+    
+#warning !!!! Implement project avatars UI
+    
     return cell;
 }
 

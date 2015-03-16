@@ -10,9 +10,9 @@
 
 @interface AvatarUrls : BaseModel
 
-@property(nonatomic, strong) NSString *x16;
-@property(nonatomic, strong) NSString *x24;
-@property(nonatomic, strong) NSString *x32;
-@property(nonatomic, strong) NSString *x48;
+@property(nonatomic, strong) NSURL *x16;
+@property(nonatomic, strong) NSURL *x24;
+@property(nonatomic, strong) NSURL *x32;
+@property(nonatomic, strong) NSURL *x48;
 
 @end

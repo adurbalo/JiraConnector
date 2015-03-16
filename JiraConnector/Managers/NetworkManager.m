@@ -16,8 +16,6 @@ typedef NS_ENUM(NSInteger, RequestMethod) {
     RequestMethodDELETE
 };
 
-typedef void(^ResponseBlock)(id responseObject, NSError *error);
-
 @interface NetworkManager ()
 {
     AFHTTPRequestOperationManager *_manager;
@@ -79,31 +77,28 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 
 #pragma mark - Private methods
 
-- (void)handleResponse:(id)responseObject outputObjectSample:(id)outputObjectSample forURLRequest:(NSURLRequest *)request callBlock:(ResponseBlock)responseBlock
+- (void)handleResponse:(id)responseObject outputObjectClass:(Class)outputObjectClass forURLRequest:(NSURLRequest *)request callBlock:(void(^)(id response, NSError *error))responseBlock
 {
     if ( responseBlock ){
         dispatch_async(_mappingQueue, ^{
             
             id resultObject = nil;
+            NSError *error = nil;
             
-            if (outputObjectSample) {
-                if ([[outputObjectSample class] isSubclassOfClass:[BaseModel class]]) {
-                    [outputObjectSample mapValuesFromObject:responseObject];
-                    resultObject = outputObjectSample;
-                } else if ([[outputObjectSample class] isSubclassOfClass:[BaseModelList class]] || [outputObjectSample isKindOfClass:[BaseModelList class]] ) {
-                    [outputObjectSample mapValuesFromArray:responseObject];
-                    resultObject = outputObjectSample;
-                }
+            if ([responseObject isKindOfClass:[NSArray class]]) {
+                resultObject = [MTLJSONAdapter modelsOfClass:outputObjectClass fromJSONArray:responseObject error:&error];
+            } else {
+                resultObject = [MTLJSONAdapter modelOfClass:outputObjectClass fromJSONDictionary:responseObject error:&error];
             }
-
+            
             dispatch_async(dispatch_get_main_queue(), ^{
-                responseBlock(resultObject, nil);
+                responseBlock(resultObject, error);
             });
         });
     }
 }
 
-- (void)handleError:(NSError*)error forRequestOperation:(AFHTTPRequestOperation *)operation callBlock:(ResponseBlock)responseBlock
+- (void)handleError:(NSError*)error forRequestOperation:(AFHTTPRequestOperation *)operation callBlock:(ResponseWithObjectBlock)responseBlock
 {
     if (responseBlock) {
         responseBlock(nil, error);
@@ -115,13 +110,13 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                                  inputParameters:(NSDictionary*)parameters
                                    useCredential:(BOOL)useCredential
                             HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
-                              outputObjectSample:(id)outputObjectSample
+                               outputObjectClass:(Class)outputObjectClass
                                    responseBlock:(void (^)(id, NSError *))responseBlock
 {
     void(^successBlock)(AFHTTPRequestOperation*, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
         NSLog(@"\n\nSuccess Response: <--- \n%@\n%@", operation.response, responseString);
-        [self handleResponse:responseObject outputObjectSample:(id)outputObjectSample forURLRequest:operation.request callBlock:responseBlock];
+        [self handleResponse:responseObject outputObjectClass:(Class)outputObjectClass forURLRequest:operation.request callBlock:responseBlock];
     };
     void(^failureBlock)(AFHTTPRequestOperation*, NSError*) = ^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"\n\nFailure Response: <--- \n%@", operation.response);
@@ -194,39 +189,39 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     }];
 }
 
--(NSOperation*)receiveProjectsCompletionBlock:(void (^)(ProjectList *responseObject, NSError* error))completionBlock
+-(NSOperation*)receiveProjectsCompletionBlock:(ResponseWithArrayBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET
                                URLPath:@"/rest/api/2/project"
                        inputParameters:nil
                          useCredential:YES
                   HTTPHeaderParameters:nil
-                    outputObjectSample:[ProjectList new]
+                    outputObjectClass:[Project class]
                          responseBlock:completionBlock];
 }
 
 
 #pragma mark - Issue Prepearing
 
--(NSOperation*)issueTypesCompletionBlock:(void (^)(IssueTypeList *responseObject, NSError* error))completionBlock
+-(NSOperation*)issueTypesCompletionBlock:(ResponseWithArrayBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET
                                URLPath:@"/rest/api/2/issuetype"
                        inputParameters:nil
                          useCredential:YES
                   HTTPHeaderParameters:nil
-                    outputObjectSample:[IssueTypeList new]
+                    outputObjectClass:[IssueType class]
                          responseBlock:completionBlock];
 }
 
--(NSOperation*)issuePrioritiesCompletionBlock:(void (^)(PriorityList *responseObject, NSError* error))completionBlock
+-(NSOperation*)issuePrioritiesCompletionBlock:(ResponseWithArrayBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET
                                URLPath:@"/rest/api/2/priority"
                        inputParameters:nil
                          useCredential:YES
                   HTTPHeaderParameters:nil
-                    outputObjectSample:[PriorityList new]
+                    outputObjectClass:[Priority class]
                          responseBlock:completionBlock];
 }
 

@@ -10,13 +10,29 @@
 
 @implementation AvatarUrls
 
-- (NSDictionary*)mappingDictionary
-{
-    return @{@"16x16" : KZProperty(x16),
-             @"24x24" : KZProperty(x24),
-             @"32x32" : KZProperty(x32),
-             @"48x48" : KZProperty(x48)
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"x16": @"16x16",
+             @"x24": @"24x24",
+             @"x32": @"32x32",
+             @"x48": @"48x48"
              };
+}
+
++ (NSValueTransformer *)x16JSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)x24JSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)x32JSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)x48JSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 @end
