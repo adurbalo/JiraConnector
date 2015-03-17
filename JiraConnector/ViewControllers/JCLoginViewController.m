@@ -38,8 +38,7 @@
 
 - (void)createIssue:(id)sender
 {
-    JCCreateIssueViewController *createIssueVC = [JCCreateIssueViewController new];
-    [self.navigationController pushViewController:createIssueVC animated:YES];
+    
 }
 
 - (void)loadProjects
@@ -89,6 +88,17 @@
 #warning !!!! Implement project avatars UI
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Project *project = self.projects[indexPath.row];
+    
+    JCCreateIssueViewController *createIssueVC = [JCCreateIssueViewController new];
+    createIssueVC.projectKey = project.key;
+    [self.navigationController pushViewController:createIssueVC animated:YES];
 }
 
 @end

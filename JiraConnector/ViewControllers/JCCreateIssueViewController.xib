@@ -6,50 +6,126 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JCCreateIssueViewController">
             <connections>
-                <outlet property="itemTypeDropDownControl" destination="AhI-zb-HgS" id="gHs-gg-6MX"/>
-                <outlet property="priorityDropDownControl" destination="ZUh-jR-Iaa" id="i1d-sV-ZTi"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="assigneeDropDownTextField" destination="FB6-Lk-hKs" id="8SA-0Z-P0u"/>
+                <outlet property="issueTypeDropDownTextField" destination="TvT-2j-5Fo" id="Acv-Q7-Smf"/>
+                <outlet property="priorityDropDownTextField" destination="5pC-dX-e3C" id="qsN-M9-4Dg"/>
+                <outlet property="summaryTextField" destination="XaL-XZ-fwJ" id="rKm-XS-z9t"/>
+                <outlet property="view" destination="b2B-7j-aCD" id="8X6-cf-dG5"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+        <view contentMode="scaleToFill" id="b2B-7j-aCD">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhI-zb-HgS" customClass="JCDropDownControl">
-                    <rect key="frame" x="85" y="125" width="150" height="40"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMk-6J-Gl3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-Pr-FkT">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="697"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issue Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ai-Lu-NPV">
+                                    <rect key="frame" x="20" y="10" width="55" height="14"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TvT-2j-5Fo" customClass="JCDropDownTextField">
+                                    <rect key="frame" x="20" y="24" width="280" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="pqL-tX-7fk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9VS-9S-Ayz">
+                                    <rect key="frame" x="130" y="516" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDb-F9-OWf">
+                                    <rect key="frame" x="20" y="69" width="49" height="14"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XaL-XZ-fwJ" customClass="JCDropDownTextField">
+                                    <rect key="frame" x="20" y="83" width="280" height="40"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assignee" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSq-UL-S3h">
+                                    <rect key="frame" x="20" y="128" width="47" height="14"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FB6-Lk-hKs" customClass="JCDropDownTextField">
+                                    <rect key="frame" x="20" y="142" width="280" height="40"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2m-Bi-28O">
+                                    <rect key="frame" x="20" y="187" width="37" height="14"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pC-dX-e3C" customClass="JCDropDownTextField">
+                                    <rect key="frame" x="20" y="201" width="280" height="40"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="9VS-9S-Ayz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="516" id="1b4-mb-dDu"/>
+                                <constraint firstItem="5pC-dX-e3C" firstAttribute="height" secondItem="FB6-Lk-hKs" secondAttribute="height" id="2ua-3o-jJh"/>
+                                <constraint firstItem="TvT-2j-5Fo" firstAttribute="leading" secondItem="1ai-Lu-NPV" secondAttribute="leading" id="6ao-hJ-hQY"/>
+                                <constraint firstItem="5pC-dX-e3C" firstAttribute="top" secondItem="c2m-Bi-28O" secondAttribute="bottom" id="DQG-m5-FLp"/>
+                                <constraint firstItem="TvT-2j-5Fo" firstAttribute="leading" secondItem="sDb-F9-OWf" secondAttribute="leading" id="EJg-SV-8DW"/>
+                                <constraint firstItem="TvT-2j-5Fo" firstAttribute="top" secondItem="1ai-Lu-NPV" secondAttribute="bottom" id="KG1-O8-GHX"/>
+                                <constraint firstItem="5pC-dX-e3C" firstAttribute="leading" secondItem="c2m-Bi-28O" secondAttribute="leading" id="N5F-K3-VFU"/>
+                                <constraint firstItem="5pC-dX-e3C" firstAttribute="width" secondItem="FB6-Lk-hKs" secondAttribute="width" id="NDw-yS-YIl"/>
+                                <constraint firstItem="1ai-Lu-NPV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="O8C-Ac-Mdl"/>
+                                <constraint firstItem="c2m-Bi-28O" firstAttribute="top" secondItem="FB6-Lk-hKs" secondAttribute="bottom" constant="5" id="R4A-e5-muF"/>
+                                <constraint firstAttribute="trailing" secondItem="9VS-9S-Ayz" secondAttribute="trailing" constant="148" id="R97-xf-1SU"/>
+                                <constraint firstItem="XaL-XZ-fwJ" firstAttribute="leading" secondItem="sDb-F9-OWf" secondAttribute="leading" id="UOw-9O-WnT"/>
+                                <constraint firstItem="9VS-9S-Ayz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="130" id="XG6-si-xt8"/>
+                                <constraint firstItem="XaL-XZ-fwJ" firstAttribute="height" secondItem="TvT-2j-5Fo" secondAttribute="height" id="XwT-ES-mF3"/>
+                                <constraint firstItem="XaL-XZ-fwJ" firstAttribute="leading" secondItem="vSq-UL-S3h" secondAttribute="leading" id="ZKO-Bb-DSZ"/>
+                                <constraint firstItem="c2m-Bi-28O" firstAttribute="leading" secondItem="FB6-Lk-hKs" secondAttribute="leading" id="bDz-YK-YP8"/>
+                                <constraint firstItem="FB6-Lk-hKs" firstAttribute="leading" secondItem="vSq-UL-S3h" secondAttribute="leading" id="e20-oe-Wb1"/>
+                                <constraint firstAttribute="bottom" secondItem="9VS-9S-Ayz" secondAttribute="bottom" constant="160" id="eM7-XE-iKX"/>
+                                <constraint firstItem="XaL-XZ-fwJ" firstAttribute="width" secondItem="TvT-2j-5Fo" secondAttribute="width" id="f4r-dU-JCz"/>
+                                <constraint firstItem="FB6-Lk-hKs" firstAttribute="top" secondItem="vSq-UL-S3h" secondAttribute="bottom" id="kDR-PM-fqz"/>
+                                <constraint firstItem="XaL-XZ-fwJ" firstAttribute="top" secondItem="sDb-F9-OWf" secondAttribute="bottom" id="moh-6L-eoL"/>
+                                <constraint firstItem="XaL-XZ-fwJ" firstAttribute="height" secondItem="FB6-Lk-hKs" secondAttribute="height" id="mq2-OJ-iQ7"/>
+                                <constraint firstItem="1ai-Lu-NPV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="qdo-dO-wGt"/>
+                                <constraint firstItem="XaL-XZ-fwJ" firstAttribute="width" secondItem="FB6-Lk-hKs" secondAttribute="width" id="sev-9b-ScT"/>
+                                <constraint firstItem="vSq-UL-S3h" firstAttribute="top" secondItem="XaL-XZ-fwJ" secondAttribute="bottom" constant="5" id="sfk-xq-oBM"/>
+                                <constraint firstAttribute="trailing" secondItem="TvT-2j-5Fo" secondAttribute="trailing" constant="20" id="u0C-HB-zIi"/>
+                                <constraint firstItem="sDb-F9-OWf" firstAttribute="top" secondItem="TvT-2j-5Fo" secondAttribute="bottom" constant="5" id="xY0-Ah-Rn7"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="5h4-sO-7zO"/>
-                        <constraint firstAttribute="width" constant="150" id="m9L-VG-Y2t"/>
+                        <constraint firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D60-zy-iW3"/>
+                        <constraint firstItem="i5M-Pr-FkT" firstAttribute="leading" secondItem="vMk-6J-Gl3" secondAttribute="leading" id="NR5-MT-igU"/>
+                        <constraint firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="SRd-zn-dYX"/>
+                        <constraint firstItem="i5M-Pr-FkT" firstAttribute="top" secondItem="vMk-6J-Gl3" secondAttribute="top" id="x5o-at-PKV"/>
+                        <constraint firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="xaX-gA-TyY"/>
                     </constraints>
-                    <state key="normal" title="Issue Type">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Issue Type"/>
-                    </userDefinedRuntimeAttributes>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUh-jR-Iaa" customClass="JCDropDownControl">
-                    <rect key="frame" x="85" y="185" width="150" height="40"/>
-                    <state key="normal" title="Priority">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Priority"/>
-                    </userDefinedRuntimeAttributes>
-                </button>
+                </scrollView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="ZUh-jR-Iaa" firstAttribute="leading" secondItem="AhI-zb-HgS" secondAttribute="leading" id="aE1-Zv-yJw"/>
-                <constraint firstAttribute="centerX" secondItem="AhI-zb-HgS" secondAttribute="centerX" id="aaX-gH-wJ0"/>
-                <constraint firstItem="ZUh-jR-Iaa" firstAttribute="trailing" secondItem="AhI-zb-HgS" secondAttribute="trailing" id="cbE-VZ-ncd"/>
-                <constraint firstItem="ZUh-jR-Iaa" firstAttribute="top" secondItem="AhI-zb-HgS" secondAttribute="bottom" constant="20" id="fGG-fd-PR6"/>
-                <constraint firstItem="AhI-zb-HgS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="125" id="gWd-dX-7OL"/>
-                <constraint firstItem="ZUh-jR-Iaa" firstAttribute="height" secondItem="AhI-zb-HgS" secondAttribute="height" id="wkF-fr-fTo"/>
+                <constraint firstAttribute="bottom" secondItem="vMk-6J-Gl3" secondAttribute="bottom" id="Bcf-vw-NR8"/>
+                <constraint firstAttribute="trailing" secondItem="vMk-6J-Gl3" secondAttribute="trailing" id="She-Aq-NT7"/>
+                <constraint firstItem="vMk-6J-Gl3" firstAttribute="leading" secondItem="b2B-7j-aCD" secondAttribute="leading" id="VqT-NO-huR"/>
+                <constraint firstItem="vMk-6J-Gl3" firstAttribute="top" secondItem="b2B-7j-aCD" secondAttribute="top" id="vMO-bR-gho"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="249" y="160"/>
+            <point key="canvasLocation" x="276" y="37"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

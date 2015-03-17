@@ -225,5 +225,22 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                          responseBlock:completionBlock];
 }
 
+-(NSOperation *)issueAssignableSearchForProject:(NSString*)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock
+{
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    if (projectKey) {
+        [params setObject:projectKey forKey:@"project"];
+        [params setObject:@"10000" forKey:@"maxResults"];
+    }
+    
+    return [self makeRequestWithMethod:RequestMethodGET
+                               URLPath:@"/rest/api/2/user/assignable/search"
+                       inputParameters:params
+                         useCredential:YES
+                  HTTPHeaderParameters:nil
+                     outputObjectClass:[User class]
+                         responseBlock:completionBlock];
+}
+
 
 @end

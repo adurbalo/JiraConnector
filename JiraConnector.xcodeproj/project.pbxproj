@@ -24,7 +24,9 @@
 		1A2610191AA64BF100FEBFDE /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610181AA64BF100FEBFDE /* NetworkManager.m */; };
 		1A26101D1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A26101B1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m */; };
 		1A26101E1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A26101C1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib */; };
-		1A2610221AA8F74B00FEBFDE /* JCDropDownControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610211AA8F74B00FEBFDE /* JCDropDownControl.m */; };
+		1A88E3221AB8A998008E7B76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3211AB8A998008E7B76 /* User.m */; };
+		1A88E32A1AB8B3CB008E7B76 /* JCDropDownControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3271AB8B3CB008E7B76 /* JCDropDownControl.m */; };
+		1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */; };
 		B163058410470B8EA72CFB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43298A5880ACC97D75A8C049 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,9 +73,13 @@
 		1A26101A1AA8EBDA00FEBFDE /* JCCreateIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCCreateIssueViewController.h; sourceTree = "<group>"; };
 		1A26101B1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCCreateIssueViewController.m; sourceTree = "<group>"; };
 		1A26101C1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCCreateIssueViewController.xib; sourceTree = "<group>"; };
-		1A2610201AA8F74B00FEBFDE /* JCDropDownControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDropDownControl.h; sourceTree = "<group>"; };
-		1A2610211AA8F74B00FEBFDE /* JCDropDownControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownControl.m; sourceTree = "<group>"; };
 		1A88E31F1AB79347008E7B76 /* Models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Models.h; path = Model/Models.h; sourceTree = "<group>"; };
+		1A88E3201AB8A998008E7B76 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
+		1A88E3211AB8A998008E7B76 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
+		1A88E3261AB8B3CB008E7B76 /* JCDropDownControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDropDownControl.h; sourceTree = "<group>"; };
+		1A88E3271AB8B3CB008E7B76 /* JCDropDownControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownControl.m; sourceTree = "<group>"; };
+		1A88E3281AB8B3CB008E7B76 /* JCDropDownTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDropDownTextField.h; sourceTree = "<group>"; };
+		1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownTextField.m; sourceTree = "<group>"; };
 		43298A5880ACC97D75A8C049 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 				1A07CD121AAFC4A80051A98F /* AvatarUrls.m */,
 				1A1FB31C1AB0FF7900ED46B0 /* Priority.h */,
 				1A1FB31D1AB0FF7A00ED46B0 /* Priority.m */,
+				1A88E3201AB8A998008E7B76 /* User.h */,
+				1A88E3211AB8A998008E7B76 /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -207,10 +215,12 @@
 		1A26101F1AA8F70900FEBFDE /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				1A2610201AA8F74B00FEBFDE /* JCDropDownControl.h */,
-				1A2610211AA8F74B00FEBFDE /* JCDropDownControl.m */,
+				1A88E3261AB8B3CB008E7B76 /* JCDropDownControl.h */,
+				1A88E3271AB8B3CB008E7B76 /* JCDropDownControl.m */,
+				1A88E3281AB8B3CB008E7B76 /* JCDropDownTextField.h */,
+				1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */,
 			);
-			name = Controls;
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		343DE364EDFA66E802916AF2 /* Frameworks */ = {
@@ -281,6 +291,7 @@
 				TargetAttributes = {
 					1A260FE11AA4F2B900FEBFDE = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = JRKY2H8NHP;
 					};
 					1A260FFA1AA4F2B900FEBFDE = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -367,14 +378,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A88E3221AB8A998008E7B76 /* User.m in Sources */,
+				1A88E32A1AB8B3CB008E7B76 /* JCDropDownControl.m in Sources */,
 				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
+				1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */,
 				1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */,
 				1A07CD011AAF80980051A98F /* IssueType.m in Sources */,
 				1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */,
 				1A260FE81AA4F2B900FEBFDE /* main.m in Sources */,
 				1A1FB31E1AB0FF7A00ED46B0 /* Priority.m in Sources */,
 				1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */,
-				1A2610221AA8F74B00FEBFDE /* JCDropDownControl.m in Sources */,
 				1A26101D1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m in Sources */,
 				1A2610191AA64BF100FEBFDE /* NetworkManager.m in Sources */,
 				1A07CD101AAFC0D10051A98F /* Project.m in Sources */,
@@ -503,9 +516,11 @@
 			baseConfigurationReference = B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = JiraConnector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8b4d988f-8582-4d98-8ab8-dae47220e86f";
 			};
 			name = Debug;
 		};
@@ -517,6 +532,7 @@
 				INFOPLIST_FILE = JiraConnector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8b4d988f-8582-4d98-8ab8-dae47220e86f";
 			};
 			name = Release;
 		};

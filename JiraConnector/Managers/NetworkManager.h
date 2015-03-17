@@ -25,9 +25,11 @@ CWL_DECLARE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 
 /*[Project]*/
 -(NSOperation*)receiveProjectsCompletionBlock:(ResponseWithArrayBlock)completionBlock;
-
-//Issue Prepearing
+/*[IssueType]*/
 -(NSOperation*)issueTypesCompletionBlock:(ResponseWithArrayBlock)completionBlock;
+/*[Priority]*/
 -(NSOperation*)issuePrioritiesCompletionBlock:(ResponseWithArrayBlock)completionBlock;
+/*[User]*/
+-(NSOperation*)issueAssignableSearchForProject:(NSString*)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock;
 
 @end

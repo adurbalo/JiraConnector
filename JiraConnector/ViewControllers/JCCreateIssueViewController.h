@@ -10,4 +10,6 @@
 
 @interface JCCreateIssueViewController : UIViewController
 
+@property(nonatomic, strong) NSString *projectKey;
+
 @end

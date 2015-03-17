@@ -14,5 +14,6 @@
 #import "Project.h"
 #import "AvatarUrls.h"
 #import "Priority.h"
+#import "User.h"
 
 #endif
