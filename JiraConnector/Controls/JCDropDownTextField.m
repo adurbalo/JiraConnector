@@ -8,7 +8,7 @@
 
 #import "JCDropDownTextField.h"
 
-@interface JCDropDownTextField () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface JCDropDownTextField () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *theTableView;
 @property (nonatomic, strong) NSArray *filteredArray;
@@ -50,19 +50,11 @@
 
 -(void)initialization
 {
-    self.returnKeyType = UIReturnKeyDone;
-    self.delegate = self;
-    
-    self.leftViewMode = UITextFieldViewModeWhileEditing;
-    
     self.theTableView = [[UITableView alloc] init];
     self.theTableView.delegate = self;
     self.theTableView.dataSource = self;
-    self.theTableView.layer.borderWidth = 1.f;
+    self.theTableView.layer.borderWidth = 0.5f;
     self.theTableView.layer.borderColor = self.tintColor.CGColor;
-    
-    self.layer.borderWidth = 1.f;
-    self.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     
     [self addTarget:self action:@selector(show) forControlEvents:UIControlEventTouchDown];
     [self addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -77,27 +69,10 @@
 
 #pragma mark - Override
 
--(BOOL)becomeFirstResponder
-{
-    self.layer.borderColor = [self.tintColor CGColor];
-    return [super becomeFirstResponder];
-}
-
 -(BOOL)resignFirstResponder
 {
     [self dismissControl];
-    self.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     return [super resignFirstResponder];
-}
-
-- (CGRect)textRectForBounds:(CGRect)bounds
-{
-    return CGRectInset(bounds, 5, 5);
-}
-
-- (CGRect)editingRectForBounds:(CGRect)bounds
-{
-    return CGRectInset(bounds, 5, 5);
 }
 
 #pragma mark - Table Configuration
@@ -155,6 +130,7 @@
     CGFloat numberOfVisibleRows = (self.filteredArray.count <= MAX_VISIBLE_ROWS_COUNT)?self.filteredArray.count:(MAX_VISIBLE_ROWS_COUNT+0.5f);
     targetRect.size.height = self.theTableView.rowHeight*numberOfVisibleRows;
     self.theTableView.frame = targetRect;
+    
     [self.theTableView reloadData];
 }
 
@@ -182,12 +158,6 @@
 
 #pragma mark - UITextFieldDelegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self resignFirstResponder];
-    return YES;
-}
-
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
     self.selectedItem = nil;
@@ -197,15 +167,6 @@
         self.editingBlock(weakSelf, NSNotFound);
     }
     return YES;
-}
-
-#pragma mark - Public
-
--(void)setError:(NSError *)error
-{
-    self.text = error.localizedDescription;
-    self.textColor = [UIColor redColor];
-    self.enabled = NO;
 }
 
 @end

@@ -24,8 +24,10 @@
 		1A2610191AA64BF100FEBFDE /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610181AA64BF100FEBFDE /* NetworkManager.m */; };
 		1A26101D1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A26101B1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m */; };
 		1A26101E1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A26101C1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib */; };
+		1A2732C91AC21A9B0077238B /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2732C81AC21A9B0077238B /* Issue.m */; };
+		1A2732CC1AC21DC90077238B /* Fields.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2732CB1AC21DC90077238B /* Fields.m */; };
+		1A2794DA1AC0B33D0032633C /* JCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2794D91AC0B33D0032633C /* JCTextField.m */; };
 		1A88E3221AB8A998008E7B76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3211AB8A998008E7B76 /* User.m */; };
-		1A88E32A1AB8B3CB008E7B76 /* JCDropDownControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3271AB8B3CB008E7B76 /* JCDropDownControl.m */; };
 		1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */; };
 		B163058410470B8EA72CFB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43298A5880ACC97D75A8C049 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -73,11 +75,15 @@
 		1A26101A1AA8EBDA00FEBFDE /* JCCreateIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCCreateIssueViewController.h; sourceTree = "<group>"; };
 		1A26101B1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCCreateIssueViewController.m; sourceTree = "<group>"; };
 		1A26101C1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCCreateIssueViewController.xib; sourceTree = "<group>"; };
+		1A2732C71AC21A9B0077238B /* Issue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Issue.h; path = Model/Issue.h; sourceTree = "<group>"; };
+		1A2732C81AC21A9B0077238B /* Issue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Issue.m; path = Model/Issue.m; sourceTree = "<group>"; };
+		1A2732CA1AC21DC90077238B /* Fields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fields.h; path = Model/Fields.h; sourceTree = "<group>"; };
+		1A2732CB1AC21DC90077238B /* Fields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Fields.m; path = Model/Fields.m; sourceTree = "<group>"; };
+		1A2794D81AC0B33D0032633C /* JCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTextField.h; sourceTree = "<group>"; };
+		1A2794D91AC0B33D0032633C /* JCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTextField.m; sourceTree = "<group>"; };
 		1A88E31F1AB79347008E7B76 /* Models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Models.h; path = Model/Models.h; sourceTree = "<group>"; };
 		1A88E3201AB8A998008E7B76 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
 		1A88E3211AB8A998008E7B76 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
-		1A88E3261AB8B3CB008E7B76 /* JCDropDownControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDropDownControl.h; sourceTree = "<group>"; };
-		1A88E3271AB8B3CB008E7B76 /* JCDropDownControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownControl.m; sourceTree = "<group>"; };
 		1A88E3281AB8B3CB008E7B76 /* JCDropDownTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDropDownTextField.h; sourceTree = "<group>"; };
 		1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownTextField.m; sourceTree = "<group>"; };
 		43298A5880ACC97D75A8C049 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +126,10 @@
 				1A1FB31D1AB0FF7A00ED46B0 /* Priority.m */,
 				1A88E3201AB8A998008E7B76 /* User.h */,
 				1A88E3211AB8A998008E7B76 /* User.m */,
+				1A2732C71AC21A9B0077238B /* Issue.h */,
+				1A2732C81AC21A9B0077238B /* Issue.m */,
+				1A2732CA1AC21DC90077238B /* Fields.h */,
+				1A2732CB1AC21DC90077238B /* Fields.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -215,8 +225,8 @@
 		1A26101F1AA8F70900FEBFDE /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				1A88E3261AB8B3CB008E7B76 /* JCDropDownControl.h */,
-				1A88E3271AB8B3CB008E7B76 /* JCDropDownControl.m */,
+				1A2794D81AC0B33D0032633C /* JCTextField.h */,
+				1A2794D91AC0B33D0032633C /* JCTextField.m */,
 				1A88E3281AB8B3CB008E7B76 /* JCDropDownTextField.h */,
 				1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */,
 			);
@@ -379,17 +389,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A88E3221AB8A998008E7B76 /* User.m in Sources */,
-				1A88E32A1AB8B3CB008E7B76 /* JCDropDownControl.m in Sources */,
 				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
 				1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */,
 				1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */,
 				1A07CD011AAF80980051A98F /* IssueType.m in Sources */,
 				1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */,
+				1A2794DA1AC0B33D0032633C /* JCTextField.m in Sources */,
 				1A260FE81AA4F2B900FEBFDE /* main.m in Sources */,
 				1A1FB31E1AB0FF7A00ED46B0 /* Priority.m in Sources */,
 				1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */,
+				1A2732CC1AC21DC90077238B /* Fields.m in Sources */,
 				1A26101D1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m in Sources */,
 				1A2610191AA64BF100FEBFDE /* NetworkManager.m in Sources */,
+				1A2732C91AC21A9B0077238B /* Issue.m in Sources */,
 				1A07CD101AAFC0D10051A98F /* Project.m in Sources */,
 				1A2610111AA6493B00FEBFDE /* JCLoginViewController.m in Sources */,
 			);

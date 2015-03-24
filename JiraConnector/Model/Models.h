@@ -15,5 +15,6 @@
 #import "AvatarUrls.h"
 #import "Priority.h"
 #import "User.h"
+#import "Issue.h"
 
 #endif

@@ -242,5 +242,15 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                          responseBlock:completionBlock];
 }
 
+-(NSOperation*)issueByKey:(NSString*)issueKey completionBlock:(ResponseWithObjectBlock)completionBlock
+{
+    return [self makeRequestWithMethod:RequestMethodGET
+                               URLPath:[NSString stringWithFormat:@"/rest/api/2/issue/%@", issueKey]
+                       inputParameters:nil
+                         useCredential:YES
+                  HTTPHeaderParameters:nil
+                     outputObjectClass:[Issue class]
+                         responseBlock:completionBlock];
+}
 
 @end
