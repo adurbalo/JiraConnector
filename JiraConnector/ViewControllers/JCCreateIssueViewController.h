@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Project.h"
 
 @interface JCCreateIssueViewController : UIViewController
 
-@property(nonatomic, strong) NSString *projectKey;
+@property(nonatomic, strong) Project *project;
 
 @end

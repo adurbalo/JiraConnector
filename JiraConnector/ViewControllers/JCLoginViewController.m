@@ -97,7 +97,7 @@
     Project *project = self.projects[indexPath.row];
     
     JCCreateIssueViewController *createIssueVC = [JCCreateIssueViewController new];
-    createIssueVC.projectKey = project.key;
+    createIssueVC.project = project;
     [self.navigationController pushViewController:createIssueVC animated:YES];
 }
 

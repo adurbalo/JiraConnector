@@ -60,11 +60,10 @@
     [self addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
 }
 
--(void)setTitles:(NSArray *)titles
+-(void)setItems:(NSArray *)items
 {
-    _titles = titles;
-    
-    self.filteredArray = [_titles copy];
+    _items = items;
+    self.filteredArray = [_items copy];
 }
 
 #pragma mark - Override
@@ -89,8 +88,11 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = self.filteredArray[indexPath.row];
-    cell.accessoryType = [self.filteredArray[indexPath.row] isEqualToString:self.selectedItem]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
+    
+    id itemObject = self.filteredArray[indexPath.row];
+    
+    cell.textLabel.text = [itemObject valueForKeyPath:self.keypathForDisplay];
+    cell.accessoryType = [self.filteredArray[indexPath.row] isEqual:self.selectedItem]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
     return cell;
 }
 
@@ -99,7 +101,7 @@
     self.selectedItem = self.filteredArray[indexPath.row];
     [tableView reloadData];
     
-    NSUInteger indexOfObject = [self.titles indexOfObject:self.selectedItem];
+    NSUInteger indexOfObject = [self.items indexOfObject:self.selectedItem];
     
     __weak __typeof(self)weakSelf = self;
     if (self.editingBlock) {
@@ -118,7 +120,7 @@
     if (self.theTableView.superview && (self.theTableView.superview==superview) ) {
         return;
     }
-    [self filteredWithString:self.selectedItem];
+    [self filteredWithString:[self.selectedItem valueForKeyPath:self.keypathForDisplay]];
     [self setupTableViewFrame];
     [superview addSubview:self.theTableView];
 }
@@ -142,17 +144,20 @@
 -(void)filteredWithString:(NSString*)string
 {
     if (string.length == 0) {
-        self.filteredArray = [self.titles copy];
+        self.filteredArray = [self.items copy];
     } else {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@", string];
-        self.filteredArray = [self.titles filteredArrayUsingPredicate:predicate];
+        NSPredicate *pred = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            NSRange range = [[evaluatedObject valueForKeyPath:self.keypathForDisplay] rangeOfString:string];
+            return range.location != NSNotFound;
+        }];
+        self.filteredArray = [self.items filteredArrayUsingPredicate:pred];
     }
     [self setupTableViewFrame];
 }
 
 -(void)dismissControl
 {
-    self.text = self.selectedItem;
+    self.text = [self.selectedItem valueForKeyPath:self.keypathForDisplay];
     [self.theTableView removeFromSuperview];
 }
 

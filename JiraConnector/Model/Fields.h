@@ -10,6 +10,7 @@
 #import "IssueType.h"
 #import "Project.h"
 #import "User.h"
+#import "Priority.h"
 
 @interface Fields : BaseModel
 
@@ -17,6 +18,10 @@
 @property(nonatomic, strong) NSString *descriptionValue;
 @property(nonatomic, strong) Project *project;
 @property(nonatomic, strong) NSString *summary;
+
+@property(nonatomic, strong) Priority *priority;
+@property(nonatomic, strong) User *assignee;
+
 @property(nonatomic, strong) User *creator;
 @property(nonatomic, strong) User *reporter;
 

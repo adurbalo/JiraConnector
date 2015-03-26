@@ -20,32 +20,16 @@
     return @{};
 }
 
-#pragma mark -
-
-+(NSDictionary *)dictionaryWithPropertiesOfObject:(id)obj
-{
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+- (NSDictionary *)dictionaryValue {
+    NSMutableDictionary *modifiedDictionaryValue = [[super dictionaryValue] mutableCopy];
     
-    unsigned count;
-    objc_property_t *properties = class_copyPropertyList([obj class], &count);
-    
-    for (int i = 0; i < count; i++) {
-        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
-        Class classObject = NSClassFromString([key capitalizedString]);
-        if (classObject) {
-            id subObj = [self dictionaryWithPropertiesOfObject:[obj valueForKey:key]];
-            [dict setObject:subObj forKey:key];
-        }
-        else
-        {
-            id value = [obj valueForKey:key];
-            if(value) [dict setObject:value forKey:key];
+    for (NSString *originalKey in [super dictionaryValue]) {
+        if ([self valueForKey:originalKey] == nil) {
+            [modifiedDictionaryValue removeObjectForKey:originalKey];
         }
     }
     
-    free(properties);
-    
-    return [NSDictionary dictionaryWithDictionary:dict];
+    return [modifiedDictionaryValue copy];
 }
 
 

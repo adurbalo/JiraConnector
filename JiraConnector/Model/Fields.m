@@ -15,6 +15,11 @@
              @"descriptionValue": @"description",
              @"project": @"project",
              @"summary": @"summary",
+             
+             @"priority" : @"priority",
+             @"assignee" : @"assignee",
+             
+             
              @"creator" : @"creator",
              @"reporter" : @"reporter"
              };
@@ -26,6 +31,14 @@
 
 + (NSValueTransformer *)projectJSONTransformer {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Project.class];
+}
+
++ (NSValueTransformer *)priorityJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Priority.class];
+}
+
++ (NSValueTransformer *)assigneeJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
 }
 
 + (NSValueTransformer *)creatorJSONTransformer {

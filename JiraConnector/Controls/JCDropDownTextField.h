@@ -15,8 +15,9 @@ typedef void(^JCDropDownTextFieldEditingBlock)(JCDropDownTextField *dropDownText
 
 @interface JCDropDownTextField : JCTextField
 
-@property(nonatomic, strong) NSArray *titles;
-@property(nonatomic, strong) NSString *selectedItem;
+@property(nonatomic, strong) NSString *keypathForDisplay;
+@property(nonatomic, strong) id selectedItem;
 @property(nonatomic, copy) JCDropDownTextFieldEditingBlock editingBlock;
+@property(nonatomic, strong) NSArray *items;
 
 @end
