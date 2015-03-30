@@ -15,13 +15,14 @@
              @"descriptionValue": @"description",
              @"project": @"project",
              @"summary": @"summary",
-             
              @"priority" : @"priority",
              @"assignee" : @"assignee",
-             
-             
              @"creator" : @"creator",
-             @"reporter" : @"reporter"
+             @"reporter" : @"reporter",
+             @"environment" : @"environment",
+             @"fixVersions" : @"fixVersions",
+             @"affectsVersions" : @"versions",
+             @"components" : @"components"
              };
 }
 
@@ -47,6 +48,21 @@
 
 + (NSValueTransformer *)reporterJSONTransformer {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
+}
+
++ (NSValueTransformer *)fixVersionsJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Version.class];
+}
+
++ (NSValueTransformer *)affectsVersionsJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Version.class];
+}
+
++ (NSValueTransformer *)componentsJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Component.class];
 }
 
 @end

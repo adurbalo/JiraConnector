@@ -48,16 +48,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JiraConnector/Managers/NetworkManager.m"
-            timestampString = "449097326.573179"
+            filePath = "JiraConnector/ViewControllers/JCCreateIssueViewController.m"
+            timestampString = "449446817.463574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-makeRequestWithMethod:URLPath:inputParameters:useCredential:HTTPHeaderParameters:outputObjectClass:responseBlock:"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "-loadCreatedIssueByKey:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

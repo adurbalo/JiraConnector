@@ -11,6 +11,8 @@
 		1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD061AAF9C8F0051A98F /* BaseModel.m */; };
 		1A07CD101AAFC0D10051A98F /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD0F1AAFC0D10051A98F /* Project.m */; };
 		1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A07CD121AAFC4A80051A98F /* AvatarUrls.m */; };
+		1A16600D1AC9DD5900DB7C3F /* Component.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16600C1AC9DD5900DB7C3F /* Component.m */; };
+		1A1660101AC9E65D00DB7C3F /* Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16600F1AC9E65D00DB7C3F /* Version.m */; };
 		1A1FB31E1AB0FF7A00ED46B0 /* Priority.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FB31D1AB0FF7A00ED46B0 /* Priority.m */; };
 		1A260FE81AA4F2B900FEBFDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FE71AA4F2B900FEBFDE /* main.m */; };
 		1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FEA1AA4F2B900FEBFDE /* AppDelegate.m */; };
@@ -29,6 +31,7 @@
 		1A2794DA1AC0B33D0032633C /* JCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2794D91AC0B33D0032633C /* JCTextField.m */; };
 		1A88E3221AB8A998008E7B76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3211AB8A998008E7B76 /* User.m */; };
 		1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */; };
+		1AA4E5421AC5DBC400F48CAD /* JCContentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA4E5411AC5DBC400F48CAD /* JCContentContainer.m */; };
 		B163058410470B8EA72CFB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43298A5880ACC97D75A8C049 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +54,10 @@
 		1A07CD0F1AAFC0D10051A98F /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = Model/Project.m; sourceTree = "<group>"; };
 		1A07CD111AAFC4A80051A98F /* AvatarUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarUrls.h; path = Model/AvatarUrls.h; sourceTree = "<group>"; };
 		1A07CD121AAFC4A80051A98F /* AvatarUrls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarUrls.m; path = Model/AvatarUrls.m; sourceTree = "<group>"; };
+		1A16600B1AC9DD5900DB7C3F /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Component.h; path = Model/Component.h; sourceTree = "<group>"; };
+		1A16600C1AC9DD5900DB7C3F /* Component.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Component.m; path = Model/Component.m; sourceTree = "<group>"; };
+		1A16600E1AC9E65D00DB7C3F /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Version.h; path = Model/Version.h; sourceTree = "<group>"; };
+		1A16600F1AC9E65D00DB7C3F /* Version.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Version.m; path = Model/Version.m; sourceTree = "<group>"; };
 		1A1FB31C1AB0FF7900ED46B0 /* Priority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Priority.h; path = Model/Priority.h; sourceTree = "<group>"; };
 		1A1FB31D1AB0FF7A00ED46B0 /* Priority.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Priority.m; path = Model/Priority.m; sourceTree = "<group>"; };
 		1A260FE21AA4F2B900FEBFDE /* JiraConnector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JiraConnector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +93,8 @@
 		1A88E3211AB8A998008E7B76 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
 		1A88E3281AB8B3CB008E7B76 /* JCDropDownTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDropDownTextField.h; sourceTree = "<group>"; };
 		1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownTextField.m; sourceTree = "<group>"; };
+		1AA4E5401AC5DBC400F48CAD /* JCContentContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JCContentContainer.h; path = Model/JCContentContainer.h; sourceTree = "<group>"; };
+		1AA4E5411AC5DBC400F48CAD /* JCContentContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCContentContainer.m; path = Model/JCContentContainer.m; sourceTree = "<group>"; };
 		43298A5880ACC97D75A8C049 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +139,12 @@
 				1A2732C81AC21A9B0077238B /* Issue.m */,
 				1A2732CA1AC21DC90077238B /* Fields.h */,
 				1A2732CB1AC21DC90077238B /* Fields.m */,
+				1AA4E5401AC5DBC400F48CAD /* JCContentContainer.h */,
+				1AA4E5411AC5DBC400F48CAD /* JCContentContainer.m */,
+				1A16600B1AC9DD5900DB7C3F /* Component.h */,
+				1A16600C1AC9DD5900DB7C3F /* Component.m */,
+				1A16600E1AC9E65D00DB7C3F /* Version.h */,
+				1A16600F1AC9E65D00DB7C3F /* Version.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -393,11 +408,14 @@
 				1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */,
 				1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */,
 				1A07CD011AAF80980051A98F /* IssueType.m in Sources */,
+				1A1660101AC9E65D00DB7C3F /* Version.m in Sources */,
 				1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */,
 				1A2794DA1AC0B33D0032633C /* JCTextField.m in Sources */,
 				1A260FE81AA4F2B900FEBFDE /* main.m in Sources */,
 				1A1FB31E1AB0FF7A00ED46B0 /* Priority.m in Sources */,
+				1A16600D1AC9DD5900DB7C3F /* Component.m in Sources */,
 				1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */,
+				1AA4E5421AC5DBC400F48CAD /* JCContentContainer.m in Sources */,
 				1A2732CC1AC21DC90077238B /* Fields.m in Sources */,
 				1A26101D1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m in Sources */,
 				1A2610191AA64BF100FEBFDE /* NetworkManager.m in Sources */,

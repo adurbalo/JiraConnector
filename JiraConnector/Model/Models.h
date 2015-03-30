@@ -16,5 +16,9 @@
 #import "Priority.h"
 #import "User.h"
 #import "Issue.h"
+#import "Component.h"
+#import "Version.h"
+
+#import "JCContentContainer.h"
 
 #endif

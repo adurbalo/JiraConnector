@@ -11,6 +11,8 @@
 #import "Project.h"
 #import "User.h"
 #import "Priority.h"
+#import "Component.h"
+#import "Version.h"
 
 @interface Fields : BaseModel
 
@@ -24,5 +26,10 @@
 
 @property(nonatomic, strong) User *creator;
 @property(nonatomic, strong) User *reporter;
+
+@property(nonatomic, strong) NSString *environment;
+@property(nonatomic, strong) NSArray *components;
+@property(nonatomic, strong) NSArray *fixVersions;
+@property(nonatomic, strong) NSArray *affectsVersions;
 
 @end

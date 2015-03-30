@@ -100,9 +100,26 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 
 - (void)handleError:(NSError*)error forRequestOperation:(AFHTTPRequestOperation *)operation callBlock:(ResponseWithObjectBlock)responseBlock
 {
+    NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+    if (responseString) {
+        error = [[NSError alloc] initWithDomain:@"JiraConnector" code:-1 userInfo:@{NSLocalizedDescriptionKey : responseString}];
+    }
+    
+    NSLog(@" <<<<<<<<<<< Failure Response: \n%@\n%@", error, operation.request);
+    
     if (responseBlock) {
         responseBlock(nil, error);
     }
+}
+
+- (AFHTTPRequestOperation*)makeRequestWithMethod:(RequestMethod)method
+                                         URLPath:(NSString *)urlPath
+                                 inputParameters:(NSDictionary*)parameters
+                            HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
+                               outputObjectClass:(Class)outputObjectClass
+                                   responseBlock:(void (^)(id, NSError *))responseBlock
+{
+    return [self makeRequestWithMethod:method URLPath:urlPath inputParameters:parameters useCredential:YES HTTPHeaderParameters:HTTPHeaderParameters outputObjectClass:outputObjectClass responseBlock:responseBlock];
 }
 
 - (AFHTTPRequestOperation*)makeRequestWithMethod:(RequestMethod)method
@@ -113,14 +130,26 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                                outputObjectClass:(Class)outputObjectClass
                                    responseBlock:(void (^)(id, NSError *))responseBlock
 {
+    return [self makeRequestWithMethod:method URLPath:urlPath inputParameters:parameters useCredential:useCredential HTTPHeaderParameters:HTTPHeaderParameters outputObjectClass:outputObjectClass contentContainer:nil responseBlock:responseBlock];
+}
+
+- (AFHTTPRequestOperation*)makeRequestWithMethod:(RequestMethod)method
+                                         URLPath:(NSString *)urlPath
+                                 inputParameters:(NSDictionary*)parameters
+                                   useCredential:(BOOL)useCredential
+                            HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
+                               outputObjectClass:(Class)outputObjectClass
+                                contentContainer:(NSArray*)content
+                                   responseBlock:(void (^)(id, NSError *))responseBlock
+
+{
     void(^successBlock)(AFHTTPRequestOperation*, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-        NSLog(@"\n\nSuccess Response: <--- \n%@\n%@", operation.response, responseString);
+        NSLog(@"\n\n <<<<<<<<<<< Success Response: \n%@\n%@\n\n", operation.response, responseString);
         [self handleResponse:responseObject outputObjectClass:(Class)outputObjectClass forURLRequest:operation.request callBlock:responseBlock];
     };
     void(^failureBlock)(AFHTTPRequestOperation*, NSError*) = ^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"\n\nFailure Response: <--- \n%@", operation.response);
-        [self handleError:error forRequestOperation:operation callBlock:responseBlock];
+       [self handleError:error forRequestOperation:operation callBlock:responseBlock];
     };
     
     NSString *requestMethodString = nil;
@@ -161,7 +190,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     
     [_manager.operationQueue addOperation:operation];
     
-    NSLog(@"\n\nRequest: ---> \n%@", operation);
+    NSLog(@"\n\n >>>>>>>>>>>>>> Request: \n%@ %@\n\n", operation.request, [[NSString alloc] initWithData:operation.request.HTTPBody encoding:NSUTF8StringEncoding]);
     
     return operation;
 }
@@ -194,7 +223,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     return [self makeRequestWithMethod:RequestMethodGET
                                URLPath:@"/rest/api/2/project"
                        inputParameters:nil
-                         useCredential:YES
                   HTTPHeaderParameters:nil
                     outputObjectClass:[Project class]
                          responseBlock:completionBlock];
@@ -208,7 +236,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     return [self makeRequestWithMethod:RequestMethodGET
                                URLPath:@"/rest/api/2/issuetype"
                        inputParameters:nil
-                         useCredential:YES
                   HTTPHeaderParameters:nil
                     outputObjectClass:[IssueType class]
                          responseBlock:completionBlock];
@@ -219,7 +246,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     return [self makeRequestWithMethod:RequestMethodGET
                                URLPath:@"/rest/api/2/priority"
                        inputParameters:nil
-                         useCredential:YES
                   HTTPHeaderParameters:nil
                     outputObjectClass:[Priority class]
                          responseBlock:completionBlock];
@@ -236,7 +262,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     return [self makeRequestWithMethod:RequestMethodGET
                                URLPath:@"/rest/api/2/user/assignable/search"
                        inputParameters:params
-                         useCredential:YES
                   HTTPHeaderParameters:nil
                      outputObjectClass:[User class]
                          responseBlock:completionBlock];
@@ -247,7 +272,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     return [self makeRequestWithMethod:RequestMethodGET
                                URLPath:[NSString stringWithFormat:@"/rest/api/2/issue/%@", issueKey]
                        inputParameters:nil
-                         useCredential:YES
                   HTTPHeaderParameters:nil
                      outputObjectClass:[Issue class]
                          responseBlock:completionBlock];
@@ -258,9 +282,28 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     return [self makeRequestWithMethod:RequestMethodPOST
                                URLPath:@"/rest/api/2/issue"
                        inputParameters:[MTLJSONAdapter JSONDictionaryFromModel:issue]
-                         useCredential:YES
                   HTTPHeaderParameters:nil
                      outputObjectClass:[Issue class]
+                         responseBlock:completionBlock];
+}
+
+-(NSOperation *)versionsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock
+{
+    return [self makeRequestWithMethod:RequestMethodGET
+                               URLPath:[NSString stringWithFormat:@"/rest/api/2/project/%@/versions?expand", projectKey]
+                       inputParameters:nil
+                  HTTPHeaderParameters:nil
+                     outputObjectClass:[Version class]
+                         responseBlock:completionBlock];
+}
+
+-(NSOperation *)componentsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock
+{
+    return [self makeRequestWithMethod:RequestMethodGET
+                               URLPath:[NSString stringWithFormat:@"/rest/api/2/project/%@/components", projectKey]
+                       inputParameters:nil
+                  HTTPHeaderParameters:nil
+                     outputObjectClass:[Component class]
                          responseBlock:completionBlock];
 }
 
