@@ -8,8 +8,6 @@
 
 #import "JCTextField.h"
 
-static NSUInteger const jcDropDownTextFieldTag = 101010;
-
 @class JCDropDownTextField;
 typedef void(^JCDropDownTextFieldEditingBlock)(JCDropDownTextField *dropDownTextField, NSUInteger selectedItemIndex);
 
