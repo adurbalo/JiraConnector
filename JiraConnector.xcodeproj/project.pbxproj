@@ -16,6 +16,8 @@
 		1A1FB31E1AB0FF7A00ED46B0 /* Priority.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FB31D1AB0FF7A00ED46B0 /* Priority.m */; };
 		1A260FE81AA4F2B900FEBFDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FE71AA4F2B900FEBFDE /* main.m */; };
 		1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FEA1AA4F2B900FEBFDE /* AppDelegate.m */; };
+		1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A260FED1AA4F2B900FEBFDE /* ViewController.m */; };
+		1A260FF11AA4F2B900FEBFDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A260FEF1AA4F2B900FEBFDE /* Main.storyboard */; };
 		1A260FF31AA4F2B900FEBFDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A260FF21AA4F2B900FEBFDE /* Images.xcassets */; };
 		1A260FF61AA4F2B900FEBFDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A260FF41AA4F2B900FEBFDE /* LaunchScreen.xib */; };
 		1A2610021AA4F2B900FEBFDE /* JiraConnectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610011AA4F2B900FEBFDE /* JiraConnectorTests.m */; };
@@ -63,6 +65,9 @@
 		1A260FE71AA4F2B900FEBFDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1A260FE91AA4F2B900FEBFDE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A260FEA1AA4F2B900FEBFDE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1A260FEC1AA4F2B900FEBFDE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1A260FED1AA4F2B900FEBFDE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1A260FF01AA4F2B900FEBFDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A260FF21AA4F2B900FEBFDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1A260FF51AA4F2B900FEBFDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1A260FFB1AA4F2B900FEBFDE /* JiraConnectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JiraConnectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +178,9 @@
 				1A26100E1AA648F700FEBFDE /* ViewControllers */,
 				1A260FE91AA4F2B900FEBFDE /* AppDelegate.h */,
 				1A260FEA1AA4F2B900FEBFDE /* AppDelegate.m */,
+				1A260FEC1AA4F2B900FEBFDE /* ViewController.h */,
+				1A260FED1AA4F2B900FEBFDE /* ViewController.m */,
+				1A260FEF1AA4F2B900FEBFDE /* Main.storyboard */,
 				1A260FF21AA4F2B900FEBFDE /* Images.xcassets */,
 				1A260FF41AA4F2B900FEBFDE /* LaunchScreen.xib */,
 				1A260FE51AA4F2B900FEBFDE /* Supporting Files */,
@@ -340,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A260FF11AA4F2B900FEBFDE /* Main.storyboard in Resources */,
 				1A260FF61AA4F2B900FEBFDE /* LaunchScreen.xib in Resources */,
 				1A26101E1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib in Resources */,
 				1A260FF31AA4F2B900FEBFDE /* Images.xcassets in Resources */,
@@ -395,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A88E3221AB8A998008E7B76 /* User.m in Sources */,
+				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
 				1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */,
 				1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */,
 				1A07CD011AAF80980051A98F /* IssueType.m in Sources */,
@@ -434,6 +444,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1A260FEF1AA4F2B900FEBFDE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A260FF01AA4F2B900FEBFDE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		1A260FF41AA4F2B900FEBFDE /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
