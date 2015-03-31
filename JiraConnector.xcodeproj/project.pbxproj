@@ -32,6 +32,9 @@
 		1A88E3221AB8A998008E7B76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3211AB8A998008E7B76 /* User.m */; };
 		1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */; };
 		1AA4E5421AC5DBC400F48CAD /* JCContentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA4E5411AC5DBC400F48CAD /* JCContentContainer.m */; };
+		1AE227831ACB4B3C00BF72B5 /* JCProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE227811ACB4B3C00BF72B5 /* JCProjectsViewController.m */; };
+		1AE227841ACB4B3C00BF72B5 /* JCProjectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AE227821ACB4B3C00BF72B5 /* JCProjectsViewController.xib */; };
+		1AE227871ACB4FB700BF72B5 /* JCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE227861ACB4FB700BF72B5 /* JCBaseViewController.m */; };
 		B163058410470B8EA72CFB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43298A5880ACC97D75A8C049 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +98,11 @@
 		1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownTextField.m; sourceTree = "<group>"; };
 		1AA4E5401AC5DBC400F48CAD /* JCContentContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JCContentContainer.h; path = Model/JCContentContainer.h; sourceTree = "<group>"; };
 		1AA4E5411AC5DBC400F48CAD /* JCContentContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCContentContainer.m; path = Model/JCContentContainer.m; sourceTree = "<group>"; };
+		1AE227801ACB4B3C00BF72B5 /* JCProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCProjectsViewController.h; sourceTree = "<group>"; };
+		1AE227811ACB4B3C00BF72B5 /* JCProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCProjectsViewController.m; sourceTree = "<group>"; };
+		1AE227821ACB4B3C00BF72B5 /* JCProjectsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCProjectsViewController.xib; sourceTree = "<group>"; };
+		1AE227851ACB4FB700BF72B5 /* JCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBaseViewController.h; sourceTree = "<group>"; };
+		1AE227861ACB4FB700BF72B5 /* JCBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBaseViewController.m; sourceTree = "<group>"; };
 		43298A5880ACC97D75A8C049 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -217,12 +225,17 @@
 		1A26100E1AA648F700FEBFDE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1AE227851ACB4FB700BF72B5 /* JCBaseViewController.h */,
+				1AE227861ACB4FB700BF72B5 /* JCBaseViewController.m */,
 				1A26100F1AA6493B00FEBFDE /* JCLoginViewController.h */,
 				1A2610101AA6493B00FEBFDE /* JCLoginViewController.m */,
 				1A2610121AA6496000FEBFDE /* JCLoginViewController.xib */,
 				1A26101A1AA8EBDA00FEBFDE /* JCCreateIssueViewController.h */,
 				1A26101B1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m */,
 				1A26101C1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib */,
+				1AE227801ACB4B3C00BF72B5 /* JCProjectsViewController.h */,
+				1AE227811ACB4B3C00BF72B5 /* JCProjectsViewController.m */,
+				1AE227821ACB4B3C00BF72B5 /* JCProjectsViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -351,6 +364,7 @@
 				1A260FF11AA4F2B900FEBFDE /* Main.storyboard in Resources */,
 				1A260FF61AA4F2B900FEBFDE /* LaunchScreen.xib in Resources */,
 				1A26101E1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib in Resources */,
+				1AE227841ACB4B3C00BF72B5 /* JCProjectsViewController.xib in Resources */,
 				1A260FF31AA4F2B900FEBFDE /* Images.xcassets in Resources */,
 				1A2610131AA6496000FEBFDE /* JCLoginViewController.xib in Resources */,
 			);
@@ -411,9 +425,11 @@
 				1A1660101AC9E65D00DB7C3F /* Version.m in Sources */,
 				1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */,
 				1A2794DA1AC0B33D0032633C /* JCTextField.m in Sources */,
+				1AE227871ACB4FB700BF72B5 /* JCBaseViewController.m in Sources */,
 				1A260FE81AA4F2B900FEBFDE /* main.m in Sources */,
 				1A1FB31E1AB0FF7A00ED46B0 /* Priority.m in Sources */,
 				1A16600D1AC9DD5900DB7C3F /* Component.m in Sources */,
+				1AE227831ACB4B3C00BF72B5 /* JCProjectsViewController.m in Sources */,
 				1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */,
 				1AA4E5421AC5DBC400F48CAD /* JCContentContainer.m in Sources */,
 				1A2732CC1AC21DC90077238B /* Fields.m in Sources */,
@@ -547,10 +563,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = JiraConnector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b4d988f-8582-4d98-8ab8-dae47220e86f";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -559,10 +576,12 @@
 			baseConfigurationReference = EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = JiraConnector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b4d988f-8582-4d98-8ab8-dae47220e86f";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

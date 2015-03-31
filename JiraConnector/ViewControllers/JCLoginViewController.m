@@ -8,18 +8,13 @@
 
 #import "JCLoginViewController.h"
 #import "NetworkManager.h"
-#import "JCCreateIssueViewController.h"
-#import "UIImageView+AFNetworking.h"
+#import "JCProjectsViewController.h"
 
-@interface JCLoginViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface JCLoginViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *theTableView;
 @property (weak, nonatomic) IBOutlet UITextField *loginTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
-@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
-
-@property (nonatomic, strong) NSArray *projects;
 
 @end
 
@@ -28,77 +23,38 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Login";
     
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    [self loadProjects];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createIssue:)];
-}
-
-- (void)createIssue:(id)sender
-{
-    
-}
-
-- (void)loadProjects
-{
-    [[NetworkManager sharedManager] receiveProjectsCompletionBlock:^(NSArray *responseArray, NSError *error) {
-        if (!error) {
-            self.projects = responseArray;
-            [self.theTableView reloadData];
-        }
-    }];
+#warning HARDCORE
+    self.loginTextField.text = @"admin";
+    self.passwordTextField.text = @"200589";
 }
 
 #pragma mark - IBActions
 
 - (IBAction)signInButtonPressed:(id)sender
 {
-    self.errorLabel.text = nil;
+    [self pushActivityIndicator];
     
     [[NetworkManager sharedManager] loginToJiraWithLogin:self.loginTextField.text
                                              andPassword:self.passwordTextField.text
                                          completionBlock:^(id responseObject, NSError *error) {
                                              
+                                             [self popActivityIndicator];
+                                             
                                                  if (error) {
-                                                     self.errorLabel.text = error.localizedDescription;
+                                                     [self showError:error];
                                                  } else {
-                                                     [self loadProjects];
+                                                     [self showProjects];
                                                  }
                                                  
                                              }];
 }
 
-
-#pragma mark - Table Configuration
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(void)showProjects
 {
-    return self.projects.count;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
-    Project *project = self.projects[indexPath.row];
-    cell.textLabel.text = project.name;
-    cell.detailTextLabel.text = project.key;
-    
-#warning !!!! Implement project avatars UI
-    
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    Project *project = self.projects[indexPath.row];
-    
-    JCCreateIssueViewController *createIssueVC = [JCCreateIssueViewController new];
-    createIssueVC.project = project;
-    [self.navigationController pushViewController:createIssueVC animated:YES];
+    JCProjectsViewController *projectVC = [JCProjectsViewController new];
+    [self.navigationController pushViewController:projectVC animated:YES];
 }
 
 @end

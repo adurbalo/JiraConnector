@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Andrey Durbalo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "JCBaseViewController.h"
 #import "Project.h"
 
-@interface JCCreateIssueViewController : UIViewController
+@interface JCCreateIssueViewController : JCBaseViewController
 
 @property(nonatomic, strong) Project *project;
 

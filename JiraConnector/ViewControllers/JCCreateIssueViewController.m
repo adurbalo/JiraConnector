@@ -76,7 +76,11 @@
 {
     [super viewDidAppear:animated];
     
+    [self pushActivityIndicator];
     [[NetworkManager sharedManager] issueTypesCompletionBlock:^(NSArray *responseArray, NSError *error) {
+        
+        [self popActivityIndicator];
+        
         if (error) {
             [self.issueTypeDropDownTextField setError:error];
         } else {
@@ -84,7 +88,11 @@
         }
     }];
     
+    [self pushActivityIndicator];
     [[NetworkManager sharedManager] issuePrioritiesCompletionBlock:^(NSArray *responseArray, NSError *error) {
+        
+        [self popActivityIndicator];
+        
         if (error) {
             [self.priorityDropDownTextField setError:error];
         } else {
@@ -92,7 +100,11 @@
         }
     }];
     
+    [self pushActivityIndicator];
     [[NetworkManager sharedManager] issueAssignableSearchForProject:self.project.key completionBlock:^(NSArray *responseArray, NSError *error) {
+        
+        [self popActivityIndicator];
+        
         if (error) {
             [self.assigneeDropDownTextField setError:error];
         } else {
@@ -100,7 +112,11 @@
         }
     }];
     
+    [self pushActivityIndicator];
     [[NetworkManager sharedManager] versionsForProject:self.project.key completionBlock:^(NSArray *responseArray, NSError *error) {
+        
+        [self popActivityIndicator];
+        
         if (error) {
             [self.versionDropDownTextField setError:error];
         } else {
@@ -108,7 +124,11 @@
         }
     }];
     
+    [self pushActivityIndicator];
     [[NetworkManager sharedManager] componentsForProject:self.project.key completionBlock:^(NSArray *responseArray, NSError *error) {
+        
+        [self popActivityIndicator];
+        
         if (error) {
             [self.componentDropDownTextField setError:error];
         } else {
@@ -129,7 +149,12 @@
 //    container.mimeType = @"image/png";
 //    container.data = UIImagePNGRepresentation([self screenshot]);
     
+    [self pushActivityIndicator];
+    
     [[NetworkManager sharedManager] createIssue:self.issue completionBlock:^(Issue *responseObject, NSError *error) {
+        
+        [self popActivityIndicator];
+        
         if (error) {
             return;
         }
@@ -139,11 +164,20 @@
 
 -(void)loadCreatedIssueByKey:(NSString*)issueKey
 {
+    [self popActivityIndicator];
+    
     [[NetworkManager sharedManager] issueByKey:issueKey completionBlock:^(Issue *responseObject, NSError *error) {
+        
+        [self popActivityIndicator];
+        
         if (error) {
             NSLog(@"error: %@", error);
         } else {
             NSLog(@"issue: %@", responseObject);
+            
+            
+            
+            
         }
     }];
 }

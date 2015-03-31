@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JCLoginViewController">
             <connections>
-                <outlet property="errorLabel" destination="wZL-AF-9Ts" id="46f-NU-SXl"/>
                 <outlet property="loginTextField" destination="OL2-Ug-9oD" id="rzY-RL-5fE"/>
                 <outlet property="passwordTextField" destination="gTv-kG-qnk" id="7tN-wT-W1S"/>
                 <outlet property="signInButton" destination="smQ-LL-yJj" id="RS8-Ot-UzJ"/>
-                <outlet property="theTableView" destination="NxU-Cl-gec" id="phr-hP-y4B"/>
                 <outlet property="view" destination="iN0-l3-epB" id="aWp-X0-HR8"/>
             </connections>
         </placeholder>
@@ -20,27 +18,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEM-NU-r6s">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                    <rect key="frame" x="0.0" y="20" width="320" height="135"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OL2-Ug-9oD">
-                            <rect key="frame" x="118" y="16" width="85" height="30"/>
+                            <rect key="frame" x="118" y="5" width="85" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gTv-kG-qnk">
-                            <rect key="frame" x="118" y="54" width="85" height="30"/>
+                            <rect key="frame" x="118" y="45" width="85" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZL-AF-9Ts">
-                            <rect key="frame" x="5" y="122" width="310" height="14"/>
-                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                            <color key="textColor" red="1" green="0.1086758702" blue="0.1461469735" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smQ-LL-yJj">
-                            <rect key="frame" x="137" y="92" width="48" height="30"/>
-                            <state key="normal" title="Sign In">
+                            <rect key="frame" x="139" y="95" width="43" height="30"/>
+                            <state key="normal" title="Log In">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -50,36 +42,21 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="wZL-AF-9Ts" firstAttribute="leading" secondItem="nEM-NU-r6s" secondAttribute="leading" constant="5" id="1jH-vf-ZRG"/>
-                        <constraint firstItem="OL2-Ug-9oD" firstAttribute="top" secondItem="nEM-NU-r6s" secondAttribute="top" constant="16" id="7wY-cs-6Ey"/>
-                        <constraint firstAttribute="height" constant="140" id="OlQ-sp-aU0"/>
-                        <constraint firstItem="wZL-AF-9Ts" firstAttribute="top" secondItem="smQ-LL-yJj" secondAttribute="bottom" id="Oln-Ms-DJT"/>
+                        <constraint firstItem="OL2-Ug-9oD" firstAttribute="top" secondItem="nEM-NU-r6s" secondAttribute="top" constant="5" id="7wY-cs-6Ey"/>
+                        <constraint firstAttribute="bottom" secondItem="smQ-LL-yJj" secondAttribute="bottom" constant="10" id="E6c-z9-ScW"/>
                         <constraint firstItem="gTv-kG-qnk" firstAttribute="width" secondItem="OL2-Ug-9oD" secondAttribute="width" id="Y8x-mI-ePc"/>
-                        <constraint firstItem="gTv-kG-qnk" firstAttribute="top" secondItem="OL2-Ug-9oD" secondAttribute="bottom" constant="8" id="YUo-1d-knM"/>
+                        <constraint firstItem="gTv-kG-qnk" firstAttribute="top" secondItem="OL2-Ug-9oD" secondAttribute="bottom" constant="10" id="YUo-1d-knM"/>
                         <constraint firstItem="gTv-kG-qnk" firstAttribute="leading" secondItem="OL2-Ug-9oD" secondAttribute="leading" id="fzQ-d6-itm"/>
-                        <constraint firstAttribute="trailing" secondItem="wZL-AF-9Ts" secondAttribute="trailing" constant="5" id="iIm-Kq-uWY"/>
-                        <constraint firstItem="smQ-LL-yJj" firstAttribute="top" secondItem="gTv-kG-qnk" secondAttribute="bottom" constant="8" id="jGg-eM-RyG"/>
+                        <constraint firstItem="smQ-LL-yJj" firstAttribute="top" secondItem="gTv-kG-qnk" secondAttribute="bottom" constant="20" id="jGg-eM-RyG"/>
                         <constraint firstAttribute="centerX" secondItem="OL2-Ug-9oD" secondAttribute="centerX" id="jxi-gS-XcX"/>
                         <constraint firstItem="gTv-kG-qnk" firstAttribute="centerX" secondItem="smQ-LL-yJj" secondAttribute="centerX" id="yzs-H4-sIZ"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NxU-Cl-gec">
-                    <rect key="frame" x="0.0" y="140" width="320" height="340"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="zAT-3h-XJz"/>
-                        <outlet property="delegate" destination="-1" id="cW8-v7-xfh"/>
-                    </connections>
-                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="NxU-Cl-gec" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6SS-R9-g5c"/>
+                <constraint firstItem="nEM-NU-r6s" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="3HG-2f-6gf"/>
                 <constraint firstAttribute="trailing" secondItem="nEM-NU-r6s" secondAttribute="trailing" id="8Dn-e2-k75"/>
-                <constraint firstAttribute="bottom" secondItem="NxU-Cl-gec" secondAttribute="bottom" id="Hrd-8t-khF"/>
-                <constraint firstItem="NxU-Cl-gec" firstAttribute="top" secondItem="nEM-NU-r6s" secondAttribute="bottom" id="RTM-f7-xm7"/>
-                <constraint firstItem="nEM-NU-r6s" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YXx-aD-3z9"/>
-                <constraint firstAttribute="trailing" secondItem="NxU-Cl-gec" secondAttribute="trailing" id="gpD-LI-fRl"/>
                 <constraint firstItem="nEM-NU-r6s" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rPf-XV-4jP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

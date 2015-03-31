@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Andrey Durbalo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "JCBaseViewController.h"
 
-@interface JCLoginViewController : UIViewController
+@interface JCLoginViewController : JCBaseViewController
 
 @end

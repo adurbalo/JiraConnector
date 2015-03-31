@@ -43,10 +43,13 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 - (void)setupRequestOperationManager
 {
     NSString *serverUrlString = self.jiraServerBaseUrlString;
+#warning HARDCODE HERE!!!
     
-    if (!serverUrlString) {
-        serverUrlString = @"http://localhost:8080";
-    }
+#if TARGET_IPHONE_SIMULATOR
+    serverUrlString = @"http://localhost:8080";
+#else
+    serverUrlString = @"http://192.168.10.13:8080";
+#endif
     
     NSURL *baseURL = [NSURL URLWithString:serverUrlString];
     
