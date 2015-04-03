@@ -27,5 +27,15 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Fields.class];
 }
 
+#pragma mark - Init
+
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.fields = [Fields new];
+    }
+    return self;
+}
 
 @end

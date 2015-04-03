@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *separatorViw;
 
 @property (nonatomic, strong) NSArray *filteredItems;
+@property (nonatomic, strong) NSMutableArray *currentItemsArray;
 
 @end
 
@@ -28,6 +29,8 @@
 
     self.titleLabel.backgroundColor = JIRA_DEFAULT_COLOR;
     self.separatorViw.backgroundColor = JIRA_DEFAULT_COLOR;
+    
+    self.currentItemsArray = [NSMutableArray new];
     
     UISwipeGestureRecognizer *swipeToRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
     swipeToRight.direction = UISwipeGestureRecognizerDirectionRight;
@@ -63,10 +66,17 @@
     self.itemImageUrlKeyPath = nil;
     self.targetValueKeyPath = nil;
     self.isArray = NO;
+    
+    [self.currentItemsArray removeAllObjects];
 }
 
 -(void)updateContent
 {
+    if (self.isArray) {
+        [self.currentItemsArray removeAllObjects];
+        [self.currentItemsArray addObjectsFromArray:self.currentItem];
+    }
+    
     [self.theTableView reloadData];
 }
 
@@ -89,9 +99,12 @@
     
     cell.textLabel.text = indexPath.description;
     cell.textLabel.text = [itemObject valueForKeyPath:self.itemTitleKeyPath];
- //   cell.accessoryType = [self.filteredArray[indexPath.row] isEqual:self.currentItem]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
     
-#warning Current selected 
+    if (self.isArray) {
+        cell.accessoryType = [self.currentItemsArray containsObject:itemObject]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
+    } else {
+        cell.accessoryType = (self.currentItem == itemObject)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
+    }
     
     if (self.itemImageUrlKeyPath) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[itemObject valueForKeyPath:self.itemImageUrlKeyPath]];
@@ -110,8 +123,21 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if ([self.delegate respondsToSelector:@selector(selectItemViewControllerSelectValue:forKeyPath:)]) {
-        [self.delegate selectItemViewControllerSelectValue:self.filteredItems[indexPath.row] forKeyPath:self.targetValueKeyPath];
+    if (self.isArray) {
+        
+        id targetObject = self.filteredItems[indexPath.row];
+        if ([self.currentItemsArray containsObject:targetObject]) {
+            [self.currentItemsArray removeObject:targetObject];
+        } else {
+            [self.currentItemsArray addObject:targetObject];
+        }
+        
+        [tableView reloadData];
+        
+    } else {
+        if ([self.delegate respondsToSelector:@selector(selectItemViewControllerSelectValue:forKeyPath:)]) {
+            [self.delegate selectItemViewControllerSelectValue:self.filteredItems[indexPath.row] forKeyPath:self.targetValueKeyPath];
+        }
     }
 }
 
@@ -122,10 +148,16 @@
     [self hide];
 }
 
-- (IBAction)deleteButtonPressed:(id)sender
+- (IBAction)rightButtonPressed:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(selectItemViewControllerDeleteValueForKeyPath:)]) {
-        [self.delegate selectItemViewControllerDeleteValueForKeyPath:self.targetValueKeyPath];
+    if (self.isArray) {
+        if ([self.delegate respondsToSelector:@selector(selectItemViewControllerSelectValue:forKeyPath:)]) {
+            [self.delegate selectItemViewControllerSelectValue:self.currentItemsArray forKeyPath:self.targetValueKeyPath];
+        }
+    } else {
+        if ([self.delegate respondsToSelector:@selector(selectItemViewControllerDeleteValueForKeyPath:)]) {
+            [self.delegate selectItemViewControllerDeleteValueForKeyPath:self.targetValueKeyPath];
+        }
     }
 }
 

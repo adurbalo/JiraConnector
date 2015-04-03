@@ -55,19 +55,13 @@
 {
     [super viewDidLoad];
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.title = @"Create Issue";
     
     self.issue = [[Issue alloc] init];
-    self.issue.fields = [[Fields alloc] init];
-    
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Create" style:UIBarButtonItemStylePlain target:self action:@selector(createIssue:)];
-    
+   
     [self configurateSelectItemVC];
-    
     [self updateUIContent];
-    
 }
 
 -(void)updateUIContent
@@ -75,9 +69,10 @@
     self.issueTypeButton.titleText = self.issue.fields.issueType.name;
     self.assigneeButton.titleText = self.issue.fields.assignee.displayName;
     self.priorityButton.titleText = self.issue.fields.priority.name;
-//    self.fixVersionButton.titleText = self.issue.fields.issueType.name;
-//    self.affectsVersionButton.titleText = self.issue.fields.issueType.name;
-//    self.componentButton.titleText = self.issue.fields.issueType.name;
+    
+    self.fixVersionButton.titleText = [[self.issue.fields.fixVersions valueForKeyPath:@keypath(Version.new, name)] componentsJoinedByString:@", "];
+    self.affectsVersionButton.titleText = [[self.issue.fields.affectsVersions valueForKeyPath:@keypath(Version.new, name)] componentsJoinedByString:@", "];
+    self.componentButton.titleText = [[self.issue.fields.components valueForKeyPath:@keypath(Component.new, name)] componentsJoinedByString:@", "];
 }
 
 -(void)createIssue:(id)sender
@@ -134,6 +129,7 @@
         [weakSelf.selectItemVC reset];
         
         weakSelf.selectItemVC.items = arrayWithData;
+        weakSelf.selectItemVC.currentItem = weakSelf.issue.fields.issueType;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(IssueType.new, name);
         weakSelf.selectItemVC.itemImageUrlKeyPath = @keypath(IssueType.new, iconUrl);
         weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.issueType);
@@ -174,6 +170,7 @@
         [weakSelf.selectItemVC reset];
         
         weakSelf.selectItemVC.items = arrayWithData;
+        weakSelf.selectItemVC.currentItem = weakSelf.issue.fields.assignee;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(User.new, displayName);
         weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.assignee);
         weakSelf.selectItemVC.itemImageUrlKeyPath = @keypath(User.new, avatarUrls.x48);
@@ -215,6 +212,7 @@
         [weakSelf.selectItemVC reset];
         
         weakSelf.selectItemVC.items = arrayWithData;
+        weakSelf.selectItemVC.currentItem = weakSelf.issue.fields.priority;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(Priority.new, name);
         weakSelf.selectItemVC.itemImageUrlKeyPath = @keypath(Priority.new, iconUrl);
         weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.priority);
@@ -255,8 +253,10 @@
         [weakSelf.selectItemVC reset];
         
         weakSelf.selectItemVC.items = arrayWithData;
+        weakSelf.selectItemVC.currentItem = weakSelf.issue.fields.fixVersions;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(Version.new, name);
-//        weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.fixVersions);
+        weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.fixVersions);
+        weakSelf.selectItemVC.isArray = YES;
         weakSelf.selectItemVC.title = @"Select Fix Version";
         [weakSelf.selectItemVC updateContent];
         
@@ -295,8 +295,10 @@
         [weakSelf.selectItemVC reset];
         
         weakSelf.selectItemVC.items = arrayWithData;
+        weakSelf.selectItemVC.currentItem = weakSelf.issue.fields.affectsVersions;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(Version.new, name);
-        //        weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.fixVersions);
+        weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.affectsVersions);
+        weakSelf.selectItemVC.isArray = YES;
         weakSelf.selectItemVC.title = @"Select Affects Version";
         [weakSelf.selectItemVC updateContent];
         
@@ -339,8 +341,10 @@
         [weakSelf.selectItemVC reset];
         
         weakSelf.selectItemVC.items = arrayWithData;
+        weakSelf.selectItemVC.currentItem = weakSelf.issue.fields.components;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(Component.new, name);
-//        weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.components);
+        weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.components);
+        weakSelf.selectItemVC.isArray = YES;
         weakSelf.selectItemVC.title = @"Select Issue Type";
         [weakSelf.selectItemVC updateContent];
         

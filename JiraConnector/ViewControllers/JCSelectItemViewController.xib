@@ -59,7 +59,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="x2a-bM-IFh"/>
                         <barButtonItem title="Delete" id="TMR-MD-1do">
                             <connections>
-                                <action selector="deleteButtonPressed:" destination="-1" id="esr-gm-UDl"/>
+                                <action selector="rightButtonPressed:" destination="-1" id="ni0-vf-CHn"/>
                             </connections>
                         </barButtonItem>
                     </items>
