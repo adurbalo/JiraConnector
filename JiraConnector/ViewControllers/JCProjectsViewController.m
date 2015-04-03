@@ -9,6 +9,7 @@
 #import "JCProjectsViewController.h"
 #import "NetworkManager.h"
 #import "JCCreateIssueViewController.h"
+#import "UIKit+AFNetworking.h"
 
 @interface JCProjectsViewController ()
 
@@ -30,7 +31,12 @@
 
 - (void)loadProjects
 {
+    [self pushActivityIndicator];
+    
     [[NetworkManager sharedManager] receiveProjectsCompletionBlock:^(NSArray *responseArray, NSError *error) {
+        
+        [self popActivityIndicator];
+        
         if (error) {
             [self showError:error];
         } else {
@@ -49,12 +55,24 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+    static NSString *cellIdentifier = @"cellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    
     Project *project = self.projects[indexPath.row];
     cell.textLabel.text = project.name;
     cell.detailTextLabel.text = project.key;
-    
-#warning !!!! Implement project avatars UI
+   
+    NSURLRequest *request = [NSURLRequest requestWithURL:project.avatarUrls.x48];
+    __weak UITableViewCell *weakCell = cell;
+    [cell.imageView setImageWithURLRequest:request
+                          placeholderImage:nil
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                       weakCell.imageView.image = image;
+                                       [weakCell setNeedsLayout];
+                                   } failure:nil];
     
     return cell;
 }

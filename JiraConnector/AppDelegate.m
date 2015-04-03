@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "JCLoginViewController.h"
+#import "JCNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[JCLoginViewController new]];
+    JCNavigationController *navController = [[JCNavigationController alloc] initWithRootViewController:[JCLoginViewController new]];
+    self.window.rootViewController = navController;
+//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[JCLoginViewController new]];
     [self.window makeKeyAndVisible];
     
     return YES;

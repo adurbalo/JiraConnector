@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JCSelectItemViewController">
+            <connections>
+                <outlet property="separatorViw" destination="uBB-4c-eE5" id="CZo-cN-tQ7"/>
+                <outlet property="theSearchBar" destination="Bm8-jx-aHf" id="5Y4-h4-Iyn"/>
+                <outlet property="theTableView" destination="eNC-jw-Uch" id="86n-0H-t5o"/>
+                <outlet property="titleLabel" destination="xZS-jS-KXP" id="Qr7-PH-DsO"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Issue Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZS-jS-KXP">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <searchBar contentMode="redraw" placeholder="Filter..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bm8-jx-aHf">
+                    <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                        <string>Title</string>
+                    </scopeButtonTitles>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="xgo-4w-zpx"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eNC-jw-Uch">
+                    <rect key="frame" x="0.0" y="66" width="320" height="458"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="geE-C8-NIB">
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="sM8-7c-Uan"/>
+                        <outlet property="delegate" destination="-1" id="8mZ-ij-y8A"/>
+                    </connections>
+                </tableView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0u-Mz-z43">
+                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                    <items>
+                        <barButtonItem title="Hide" id="8HG-ju-Cye">
+                            <connections>
+                                <action selector="hideButtonPressed:" destination="-1" id="n3w-L2-YBz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="x2a-bM-IFh"/>
+                        <barButtonItem title="Delete" id="TMR-MD-1do">
+                            <connections>
+                                <action selector="deleteButtonPressed:" destination="-1" id="esr-gm-UDl"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBB-4c-eE5">
+                    <rect key="frame" x="0.0" y="0.0" width="1" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="PD8-V6-yBW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="xZS-jS-KXP" secondAttribute="trailing" id="5bI-iF-RoF"/>
+                <constraint firstAttribute="bottom" secondItem="k0u-Mz-z43" secondAttribute="bottom" id="9Gf-w5-Jny"/>
+                <constraint firstItem="k0u-Mz-z43" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CQN-dg-Zyb"/>
+                <constraint firstItem="xZS-jS-KXP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JtK-2i-4NJ"/>
+                <constraint firstAttribute="bottom" secondItem="uBB-4c-eE5" secondAttribute="bottom" id="Mcx-s5-f4J"/>
+                <constraint firstItem="uBB-4c-eE5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OBi-zt-LQF"/>
+                <constraint firstAttribute="trailing" secondItem="eNC-jw-Uch" secondAttribute="trailing" id="byk-ra-FZH"/>
+                <constraint firstAttribute="trailing" secondItem="k0u-Mz-z43" secondAttribute="trailing" id="cnf-8g-cRg"/>
+                <constraint firstItem="k0u-Mz-z43" firstAttribute="top" secondItem="eNC-jw-Uch" secondAttribute="bottom" id="d9v-ZI-22V"/>
+                <constraint firstItem="eNC-jw-Uch" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fq1-xh-Fr5"/>
+                <constraint firstItem="Bm8-jx-aHf" firstAttribute="top" secondItem="xZS-jS-KXP" secondAttribute="bottom" id="gwM-kD-qWS"/>
+                <constraint firstItem="xZS-jS-KXP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kon-KX-eNx"/>
+                <constraint firstItem="uBB-4c-eE5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="n5i-Qd-Khx"/>
+                <constraint firstItem="eNC-jw-Uch" firstAttribute="top" secondItem="Bm8-jx-aHf" secondAttribute="bottom" id="o3g-b9-hHT"/>
+                <constraint firstItem="Bm8-jx-aHf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rwW-fV-YmQ"/>
+                <constraint firstAttribute="trailing" secondItem="Bm8-jx-aHf" secondAttribute="trailing" id="yUR-Yu-7lf"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="329" y="127"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

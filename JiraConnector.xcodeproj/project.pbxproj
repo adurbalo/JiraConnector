@@ -29,6 +29,10 @@
 		1A2732C91AC21A9B0077238B /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2732C81AC21A9B0077238B /* Issue.m */; };
 		1A2732CC1AC21DC90077238B /* Fields.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2732CB1AC21DC90077238B /* Fields.m */; };
 		1A2794DA1AC0B33D0032633C /* JCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2794D91AC0B33D0032633C /* JCTextField.m */; };
+		1A3E8BFE1ACDC78F001EC83E /* JCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E8BFD1ACDC78F001EC83E /* JCNavigationController.m */; };
+		1A3E8C021ACDCB98001EC83E /* JCSelectItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E8C001ACDCB98001EC83E /* JCSelectItemViewController.m */; };
+		1A3E8C031ACDCB98001EC83E /* JCSelectItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E8C011ACDCB98001EC83E /* JCSelectItemViewController.xib */; };
+		1A3E8C061ACDEC52001EC83E /* JCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E8C051ACDEC52001EC83E /* JCButton.m */; };
 		1A88E3221AB8A998008E7B76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3211AB8A998008E7B76 /* User.m */; };
 		1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */; };
 		1AA4E5421AC5DBC400F48CAD /* JCContentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA4E5411AC5DBC400F48CAD /* JCContentContainer.m */; };
@@ -91,6 +95,14 @@
 		1A2732CB1AC21DC90077238B /* Fields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Fields.m; path = Model/Fields.m; sourceTree = "<group>"; };
 		1A2794D81AC0B33D0032633C /* JCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTextField.h; sourceTree = "<group>"; };
 		1A2794D91AC0B33D0032633C /* JCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTextField.m; sourceTree = "<group>"; };
+		1A3E8BFC1ACDC78F001EC83E /* JCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCNavigationController.h; sourceTree = "<group>"; };
+		1A3E8BFD1ACDC78F001EC83E /* JCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCNavigationController.m; sourceTree = "<group>"; };
+		1A3E8BFF1ACDCB98001EC83E /* JCSelectItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCSelectItemViewController.h; sourceTree = "<group>"; };
+		1A3E8C001ACDCB98001EC83E /* JCSelectItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCSelectItemViewController.m; sourceTree = "<group>"; };
+		1A3E8C011ACDCB98001EC83E /* JCSelectItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCSelectItemViewController.xib; sourceTree = "<group>"; };
+		1A3E8C041ACDEC52001EC83E /* JCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCButton.h; sourceTree = "<group>"; };
+		1A3E8C051ACDEC52001EC83E /* JCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCButton.m; sourceTree = "<group>"; };
+		1A3E8C071ACDF1DD001EC83E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		1A88E31F1AB79347008E7B76 /* Models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Models.h; path = Model/Models.h; sourceTree = "<group>"; };
 		1A88E3201AB8A998008E7B76 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
 		1A88E3211AB8A998008E7B76 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
@@ -225,6 +237,9 @@
 		1A26100E1AA648F700FEBFDE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1A3E8C071ACDF1DD001EC83E /* Constants.h */,
+				1A3E8BFC1ACDC78F001EC83E /* JCNavigationController.h */,
+				1A3E8BFD1ACDC78F001EC83E /* JCNavigationController.m */,
 				1AE227851ACB4FB700BF72B5 /* JCBaseViewController.h */,
 				1AE227861ACB4FB700BF72B5 /* JCBaseViewController.m */,
 				1A26100F1AA6493B00FEBFDE /* JCLoginViewController.h */,
@@ -236,6 +251,9 @@
 				1AE227801ACB4B3C00BF72B5 /* JCProjectsViewController.h */,
 				1AE227811ACB4B3C00BF72B5 /* JCProjectsViewController.m */,
 				1AE227821ACB4B3C00BF72B5 /* JCProjectsViewController.xib */,
+				1A3E8BFF1ACDCB98001EC83E /* JCSelectItemViewController.h */,
+				1A3E8C001ACDCB98001EC83E /* JCSelectItemViewController.m */,
+				1A3E8C011ACDCB98001EC83E /* JCSelectItemViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -257,6 +275,8 @@
 				1A2794D91AC0B33D0032633C /* JCTextField.m */,
 				1A88E3281AB8B3CB008E7B76 /* JCDropDownTextField.h */,
 				1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */,
+				1A3E8C041ACDEC52001EC83E /* JCButton.h */,
+				1A3E8C051ACDEC52001EC83E /* JCButton.m */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -366,6 +386,7 @@
 				1A26101E1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib in Resources */,
 				1AE227841ACB4B3C00BF72B5 /* JCProjectsViewController.xib in Resources */,
 				1A260FF31AA4F2B900FEBFDE /* Images.xcassets in Resources */,
+				1A3E8C031ACDCB98001EC83E /* JCSelectItemViewController.xib in Resources */,
 				1A2610131AA6496000FEBFDE /* JCLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,8 +440,11 @@
 			files = (
 				1A88E3221AB8A998008E7B76 /* User.m in Sources */,
 				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
+				1A3E8C021ACDCB98001EC83E /* JCSelectItemViewController.m in Sources */,
 				1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */,
 				1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */,
+				1A3E8BFE1ACDC78F001EC83E /* JCNavigationController.m in Sources */,
+				1A3E8C061ACDEC52001EC83E /* JCButton.m in Sources */,
 				1A07CD011AAF80980051A98F /* IssueType.m in Sources */,
 				1A1660101AC9E65D00DB7C3F /* Version.m in Sources */,
 				1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */,

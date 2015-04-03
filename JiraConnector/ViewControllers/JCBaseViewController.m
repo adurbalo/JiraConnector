@@ -39,6 +39,7 @@
 
 -(void)configurateNavigationBar
 {
+    return;
     self.navigationController.navigationBar.barTintColor = JIRA_BLUE_COLOR;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
