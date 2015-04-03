@@ -99,6 +99,12 @@
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    if (searchBar.text.length == 0) {
+        self.filtereProjects = [self.allProjects copy];
+        [self.theTableView reloadData];
+        return;
+    }
+    
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(Project *evaluatedObject, NSDictionary *bindings) {
         NSRange rangeOfName = [evaluatedObject.name rangeOfString:searchText options:NSCaseInsensitiveSearch];
         NSRange rangeOfKey = [evaluatedObject.key rangeOfString:searchText options:NSCaseInsensitiveSearch];

@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *separatorViw;
 
+@property (nonatomic, strong) NSArray *filteredItems;
+
 @end
 
 @implementation JCSelectItemViewController
@@ -36,6 +38,12 @@
 {
     [super setTitle:title];
     self.titleLabel.text = title;
+}
+
+-(void)setItems:(NSArray *)items
+{
+    _items = items;
+    self.filteredItems = [_items copy];
 }
 
 -(void)hide
@@ -66,7 +74,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.items.count;
+    return self.filteredItems.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,7 +85,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    id itemObject = self.items[indexPath.row];
+    id itemObject = self.filteredItems[indexPath.row];
     
     cell.textLabel.text = indexPath.description;
     cell.textLabel.text = [itemObject valueForKeyPath:self.itemTitleKeyPath];
@@ -103,7 +111,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if ([self.delegate respondsToSelector:@selector(selectItemViewControllerSelectValue:forKeyPath:)]) {
-        [self.delegate selectItemViewControllerSelectValue:self.items[indexPath.row] forKeyPath:self.targetValueKeyPath];
+        [self.delegate selectItemViewControllerSelectValue:self.filteredItems[indexPath.row] forKeyPath:self.targetValueKeyPath];
     }
 }
 
@@ -119,6 +127,24 @@
     if ([self.delegate respondsToSelector:@selector(selectItemViewControllerDeleteValueForKeyPath:)]) {
         [self.delegate selectItemViewControllerDeleteValueForKeyPath:self.targetValueKeyPath];
     }
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (searchBar.text.length == 0) {
+        self.filteredItems = [self.items copy];
+        [self.theTableView reloadData];
+        return;
+    }
+    
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        NSRange rangeOfText = [[evaluatedObject valueForKeyPath:self.itemTitleKeyPath] rangeOfString:searchBar.text options:NSCaseInsensitiveSearch];
+        return (rangeOfText.location != NSNotFound);
+    }];
+    self.filteredItems = [self.items filteredArrayUsingPredicate:predicate];
+    [self.theTableView reloadData];
 }
 
 
