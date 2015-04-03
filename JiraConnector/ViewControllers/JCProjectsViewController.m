@@ -11,10 +11,11 @@
 #import "JCCreateIssueViewController.h"
 #import "UIKit+AFNetworking.h"
 
-@interface JCProjectsViewController ()
+@interface JCProjectsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *theTableView;
-@property (nonatomic, strong) NSArray *projects;
+@property (nonatomic, strong) NSArray *allProjects;
+@property (nonatomic, strong) NSArray *filtereProjects;
 
 @end
 
@@ -40,17 +41,23 @@
         if (error) {
             [self showError:error];
         } else {
-            self.projects = responseArray;
+            self.allProjects = responseArray;
             [self.theTableView reloadData];
         }
     }];
+}
+
+-(void)setAllProjects:(NSArray *)allProjects
+{
+    _allProjects = allProjects;
+    self.filtereProjects = [_allProjects copy];
 }
 
 #pragma mark - Table Configuration
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.projects.count;
+    return self.filtereProjects.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,7 +68,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
-    Project *project = self.projects[indexPath.row];
+    Project *project = self.filtereProjects[indexPath.row];
     cell.textLabel.text = project.name;
     cell.detailTextLabel.text = project.key;
    
@@ -81,11 +88,24 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Project *project = self.projects[indexPath.row];
+    Project *project = self.filtereProjects[indexPath.row];
     
     JCCreateIssueViewController *createIssueVC = [JCCreateIssueViewController new];
     createIssueVC.project = project;
     [self.navigationController pushViewController:createIssueVC animated:YES];
+}
+
+#pragma mark - UISearchBarDelegate
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(Project *evaluatedObject, NSDictionary *bindings) {
+        NSRange rangeOfName = [evaluatedObject.name rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        NSRange rangeOfKey = [evaluatedObject.key rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        return (rangeOfName.location != NSNotFound) || (rangeOfKey.location != NSNotFound);
+    }];
+    self.filtereProjects = [self.allProjects filteredArrayUsingPredicate:predicate];
+    [self.theTableView reloadData];
 }
 
 @end

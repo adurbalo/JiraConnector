@@ -25,7 +25,9 @@
 @property(nonatomic, strong) NSString *itemTitleKeyPath;
 @property(nonatomic, strong) NSString *itemImageUrlKeyPath;
 @property(nonatomic, strong) NSString *targetValueKeyPath;
+@property(nonatomic) BOOL isArray;
 
+-(void)reset;
 -(void)updateContent;
 
 @end

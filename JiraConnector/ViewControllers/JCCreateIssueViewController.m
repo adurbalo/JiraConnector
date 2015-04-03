@@ -131,6 +131,8 @@
     __weak __typeof(self)weakSelf = self;
     void(^completionBlock)(NSArray *arrayWithData) = ^(NSArray *arrayWithData) {
 
+        [weakSelf.selectItemVC reset];
+        
         weakSelf.selectItemVC.items = arrayWithData;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(IssueType.new, name);
         weakSelf.selectItemVC.itemImageUrlKeyPath = @keypath(IssueType.new, iconUrl);
@@ -168,6 +170,8 @@
 {
     __weak __typeof(self)weakSelf = self;
     void(^completionBlock)(NSArray *arrayWithData) = ^(NSArray *arrayWithData) {
+        
+        [weakSelf.selectItemVC reset];
         
         weakSelf.selectItemVC.items = arrayWithData;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(User.new, displayName);
@@ -208,6 +212,8 @@
     __weak __typeof(self)weakSelf = self;
     void(^completionBlock)(NSArray *arrayWithData) = ^(NSArray *arrayWithData) {
         
+        [weakSelf.selectItemVC reset];
+        
         weakSelf.selectItemVC.items = arrayWithData;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(Priority.new, name);
         weakSelf.selectItemVC.itemImageUrlKeyPath = @keypath(Priority.new, iconUrl);
@@ -246,6 +252,8 @@
     __weak __typeof(self)weakSelf = self;
     void(^completionBlock)(NSArray *arrayWithData) = ^(NSArray *arrayWithData) {
         
+        [weakSelf.selectItemVC reset];
+        
         weakSelf.selectItemVC.items = arrayWithData;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(Version.new, name);
 //        weakSelf.selectItemVC.targetValueKeyPath = @keypath(Issue.new, fields.fixVersions);
@@ -283,6 +291,8 @@
 {
     __weak __typeof(self)weakSelf = self;
     void(^completionBlock)(NSArray *arrayWithData) = ^(NSArray *arrayWithData) {
+        
+        [weakSelf.selectItemVC reset];
         
         weakSelf.selectItemVC.items = arrayWithData;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(Version.new, name);
@@ -325,6 +335,8 @@
 {
     __weak __typeof(self)weakSelf = self;
     void(^completionBlock)(NSArray *arrayWithData) = ^(NSArray *arrayWithData) {
+        
+        [weakSelf.selectItemVC reset];
         
         weakSelf.selectItemVC.items = arrayWithData;
         weakSelf.selectItemVC.itemTitleKeyPath = @keypath(Component.new, name);

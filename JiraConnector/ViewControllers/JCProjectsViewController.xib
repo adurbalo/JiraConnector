@@ -15,8 +15,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MFT-Vr-I4K">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <searchBar contentMode="redraw" placeholder="Filter..." translatesAutoresizingMaskIntoConstraints="NO" id="9Gn-2R-nYe">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="KrF-Ma-ant"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MFT-Vr-I4K">
+                    <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="LPm-LH-lZk"/>
@@ -26,10 +33,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="MFT-Vr-I4K" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9Pf-L7-vS0"/>
+                <constraint firstItem="MFT-Vr-I4K" firstAttribute="top" secondItem="9Gn-2R-nYe" secondAttribute="bottom" id="10D-yH-HUf"/>
                 <constraint firstItem="MFT-Vr-I4K" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Hu0-N5-Qoh"/>
                 <constraint firstAttribute="bottom" secondItem="MFT-Vr-I4K" secondAttribute="bottom" id="NFG-EJ-CSa"/>
+                <constraint firstItem="9Gn-2R-nYe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="R6H-Mr-dB8"/>
+                <constraint firstAttribute="trailing" secondItem="9Gn-2R-nYe" secondAttribute="trailing" id="VCW-EP-edi"/>
                 <constraint firstAttribute="trailing" secondItem="MFT-Vr-I4K" secondAttribute="trailing" id="d0d-eN-EOH"/>
+                <constraint firstItem="9Gn-2R-nYe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="miq-ak-YGk"/>
             </constraints>
             <point key="canvasLocation" x="315" y="177"/>
         </view>

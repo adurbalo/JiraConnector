@@ -47,6 +47,16 @@
 
 #pragma mark - Public
 
+-(void)reset
+{
+    self.currentItem = nil;
+    self.items = nil;
+    self.itemTitleKeyPath = nil;
+    self.itemImageUrlKeyPath = nil;
+    self.targetValueKeyPath = nil;
+    self.isArray = NO;
+}
+
 -(void)updateContent
 {
     [self.theTableView reloadData];
