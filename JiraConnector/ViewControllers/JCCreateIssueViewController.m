@@ -8,20 +8,18 @@
 
 #import "JCCreateIssueViewController.h"
 #import "NetworkManager.h"
-#import "JCDropDownTextField.h"
 #import "EXTKeyPathCoding.h"
-
 #import "JCButton.h"
-
 #import "JCSelectItemViewController.h"
+#import "JCTextContainerViewController.h"
+#import "JCFinalViewController.h"
 
-@interface JCCreateIssueViewController () <JCSelectItemViewControllerDelgate>
+@interface JCCreateIssueViewController () <JCRightSideControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *theScrollView;
 
-@property (weak, nonatomic) IBOutlet JCTextField *summaryTextField;
-
 @property (weak, nonatomic) IBOutlet JCButton *issueTypeButton;
+@property (weak, nonatomic) IBOutlet JCButton *summaryButton;
 @property (weak, nonatomic) IBOutlet JCButton *assigneeButton;
 @property (weak, nonatomic) IBOutlet JCButton *priorityButton;
 @property (weak, nonatomic) IBOutlet JCButton *fixVersionButton;
@@ -37,6 +35,7 @@
 
 
 @property (nonatomic, strong) JCSelectItemViewController *selectItemVC;
+@property (nonatomic, strong) JCTextContainerViewController *textContainerVC;
 
 @property (nonatomic, strong) Issue *issue;
 @property (nonatomic, strong) NSArray *issueTypeResponseData;
@@ -46,8 +45,6 @@
 @property (nonatomic, strong) NSArray *componentResponseData;
 
 @end
-
-
 
 @implementation JCCreateIssueViewController
 
@@ -59,47 +56,25 @@
     self.title = @"Create Issue";
     
     self.issue = [[Issue alloc] init];
-   
+    self.issue.fields.project = self.project;
+    
     [self configurateSelectItemVC];
+    [self configurateTextContainerVC];
+    
     [self updateUIContent];
 }
 
 -(void)updateUIContent
 {
     self.issueTypeButton.titleText = self.issue.fields.issueType.name;
+    self.summaryButton.titleText = self.issue.fields.summary;
     self.assigneeButton.titleText = self.issue.fields.assignee.displayName;
     self.priorityButton.titleText = self.issue.fields.priority.name;
-    
     self.fixVersionButton.titleText = [[self.issue.fields.fixVersions valueForKeyPath:@keypath(Version.new, name)] componentsJoinedByString:@", "];
     self.affectsVersionButton.titleText = [[self.issue.fields.affectsVersions valueForKeyPath:@keypath(Version.new, name)] componentsJoinedByString:@", "];
+    self.descriptionButton.titleText = self.issue.fields.descriptionValue;
     self.componentButton.titleText = [[self.issue.fields.components valueForKeyPath:@keypath(Component.new, name)] componentsJoinedByString:@", "];
-}
-
--(void)createIssue:(id)sender
-{
-    return;
-    
-    self.issue.fields.summary = self.summaryTextField.text;
-    self.issue.fields.project = self.project;
-//    self.issue.fields.environment = self.environmentTextField.text;
-    
-//    JCContentContainer *container = [JCContentContainer new];
-//    container.name = @"att1";
-//    container.fileName = @"filename";
-//    container.mimeType = @"image/png";
-//    container.data = UIImagePNGRepresentation([self screenshot]);
-    
-    [self pushActivityIndicator];
-    
-    [[NetworkManager sharedManager] createIssue:self.issue completionBlock:^(Issue *responseObject, NSError *error) {
-        
-        [self popActivityIndicator];
-        
-        if (error) {
-            return;
-        }
-        [self loadCreatedIssueByKey:responseObject.key];
-    }];
+    self.environmentButton.titleText = self.issue.fields.environment;
 }
 
 -(void)loadCreatedIssueByKey:(NSString*)issueKey
@@ -112,11 +87,18 @@
         [self popActivityIndicator];
         
         if (error) {
-            NSLog(@"error: %@", error);
+            [self showError:error];
         } else {
             NSLog(@"issue: %@", responseObject);
         }
     }];
+}
+
+-(void)showFinalVCWithIssue:(Issue*)issue
+{
+    JCFinalViewController *finalVC = [JCFinalViewController new];
+    finalVC.issue = issue;
+    [self.navigationController pushViewController:finalVC animated:YES];
 }
 
 #pragma mark - IBActions
@@ -136,7 +118,7 @@
         weakSelf.selectItemVC.title = @"Select Issue Type";
         [weakSelf.selectItemVC updateContent];
         
-        [weakSelf showMenu];
+        [weakSelf showMenuWithController:weakSelf.selectItemVC];
     };
     
     if (self.issueTypeResponseData.count == 0) {
@@ -162,6 +144,15 @@
     }
 }
 
+- (IBAction)summaryButtonPressed:(id)sender
+{
+    [self.textContainerVC reset];
+    self.textContainerVC.currentItem = self.issue.fields.summary;
+    self.textContainerVC.targetValueKeyPath = @keypath(Issue.new, fields.summary);
+    [self.textContainerVC updateContent];
+    [self showMenuWithController:self.textContainerVC];
+}
+
 - (IBAction)assigneeButtonPressed:(id)sender
 {
     __weak __typeof(self)weakSelf = self;
@@ -177,7 +168,7 @@
         weakSelf.selectItemVC.title = @"Select Assignee";
         [weakSelf.selectItemVC updateContent];
         
-        [weakSelf showMenu];
+        [weakSelf showMenuWithController:weakSelf.selectItemVC];
     };
     
     if (self.assigneeResponseData.count == 0) {
@@ -219,7 +210,7 @@
         weakSelf.selectItemVC.title = @"Select Priority";
         [weakSelf.selectItemVC updateContent];
         
-        [weakSelf showMenu];
+        [weakSelf showMenuWithController:weakSelf.selectItemVC];
     };
     
     if (self.priorityResponseData.count == 0) {
@@ -260,7 +251,7 @@
         weakSelf.selectItemVC.title = @"Select Fix Version";
         [weakSelf.selectItemVC updateContent];
         
-        [weakSelf showMenu];
+        [weakSelf showMenuWithController:weakSelf.selectItemVC];
     };
     
     if (self.versionResponseData.count == 0) {
@@ -302,7 +293,7 @@
         weakSelf.selectItemVC.title = @"Select Affects Version";
         [weakSelf.selectItemVC updateContent];
         
-        [weakSelf showMenu];
+        [weakSelf showMenuWithController:weakSelf.selectItemVC];
     };
     
     if (self.versionResponseData.count == 0) {
@@ -330,7 +321,11 @@
 
 - (IBAction)descriptionButtonPressed:(id)sender
 {
-    
+    [self.textContainerVC reset];
+    self.textContainerVC.currentItem = self.issue.fields.descriptionValue;
+    self.textContainerVC.targetValueKeyPath = @keypath(Issue.new, fields.descriptionValue);
+    [self.textContainerVC updateContent];
+    [self showMenuWithController:self.textContainerVC];
 }
 
 - (IBAction)componentButtonPressed:(id)sender
@@ -348,7 +343,7 @@
         weakSelf.selectItemVC.title = @"Select Issue Type";
         [weakSelf.selectItemVC updateContent];
         
-        [weakSelf showMenu];
+        [weakSelf showMenuWithController:weakSelf.selectItemVC];
     };
     
     if (self.componentResponseData.count == 0) {
@@ -376,8 +371,43 @@
 
 - (IBAction)environmentButtonPressed:(id)sender
 {
-    
+    [self.textContainerVC reset];
+    self.textContainerVC.currentItem = self.issue.fields.environment;
+    self.textContainerVC.targetValueKeyPath = @keypath(Issue.new, fields.environment);
+    [self.textContainerVC updateContent];
+    [self showMenuWithController:self.textContainerVC];
+
 }
+
+- (IBAction)createIssue:(id)sender
+{
+    //    self.issue.fields.environment = self.environmentTextField.text;
+    
+    //    JCContentContainer *container = [JCContentContainer new];
+    //    container.name = @"att1";
+    //    container.fileName = @"filename";
+    //    container.mimeType = @"image/png";
+    //    container.data = UIImagePNGRepresentation([self screenshot]);
+    
+    [self pushActivityIndicator];
+    
+    [[NetworkManager sharedManager] createIssue:self.issue completionBlock:^(Issue *responseObject, NSError *error) {
+        
+        [self popActivityIndicator];
+        
+        if (error) {
+            [self showError:error];
+        } else {
+            
+            self.issue.idValue = responseObject.idValue;
+            self.issue.key = responseObject.key;
+            self.issue.selfLink = responseObject.selfLink;
+    
+            [self showFinalVCWithIssue:self.issue];
+        }
+    }];
+}
+
 
 #pragma mark - Internal
 
@@ -430,12 +460,28 @@
     [self addChildViewController:self.selectItemVC];
     self.selectItemVC.view.frame = self.rightSideBaseView.bounds;
     [self.rightSideBaseView addSubview:self.selectItemVC.view];
+    self.selectItemVC.view.hidden = YES;
     
     [self.view layoutSubviews];
 }
 
--(void)showMenu
+-(void)configurateTextContainerVC
 {
+    self.textContainerVC = [JCTextContainerViewController new];
+    self.textContainerVC.delegate = self;
+    
+    [self addChildViewController:self.textContainerVC];
+    self.textContainerVC.view.frame = self.rightSideBaseView.bounds;
+    [self.rightSideBaseView addSubview:self.textContainerVC.view];
+    self.textContainerVC.view.hidden = YES;
+    
+    [self.view layoutSubviews];
+}
+
+-(void)showMenuWithController:(UIViewController*)vc
+{
+    vc.view.hidden = NO;
+    
     self.theScrollView.userInteractionEnabled = NO;
     
     [UIView animateWithDuration:jcAnimationDuration animations:^{
@@ -463,35 +509,34 @@
     } completion:^(BOOL finished) {
         
         self.theScrollView.userInteractionEnabled = YES;
+        
+        self.selectItemVC.view.hidden = YES;
+        self.textContainerVC.view.hidden = YES;
     
     }];
     
     [self.view endEditing:YES];
 }
 
-#pragma mark - JCSelectItemViewControllerDelgate
+#pragma mark - RightSideControllerDelegate
 
--(void)selectItemViewControllerSelectValue:(id)value forKeyPath:(NSString*)keypath
+-(void)rightSideControllerDidSelectValue:(id)value forKeyPath:(NSString*)keypath
 {
-    NSLog(@"%s %@ %@", __PRETTY_FUNCTION__, value, keypath);
-    
 #warning CHecking???
     [self.issue setValue:value forKeyPath:keypath];
     [self updateUIContent];
     [self hideMenu];
 }
 
--(void)selectItemViewControllerDeleteValueForKeyPath:(NSString*)keypath
+-(void)rightSideControllerRemoveValueForKeyPath:(NSString*)keypath
 {
-    NSLog(@"%s %@", __PRETTY_FUNCTION__, keypath);
-    
 #warning CHecking???
     [self.issue setValue:nil forKeyPath:keypath];
     [self hideMenu];
     [self updateUIContent];
 }
 
--(void)selectItemViewControllerShouldBeHidden;
+-(void)rightSideControllerShouldBeHidden;
 {
     [self hideMenu];
 }

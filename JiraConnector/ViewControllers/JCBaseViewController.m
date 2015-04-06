@@ -32,17 +32,8 @@
     
     self.errorsArray = [NSMutableArray new];
     
-    [self configurateNavigationBar];
     [self configurateErrorLabel];
     [self configurateActivityIndicator];
-}
-
--(void)configurateNavigationBar
-{
-    return;
-    self.navigationController.navigationBar.barTintColor = JIRA_BLUE_COLOR;
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 -(void)configurateErrorLabel

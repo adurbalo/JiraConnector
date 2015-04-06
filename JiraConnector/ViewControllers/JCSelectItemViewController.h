@@ -7,27 +7,13 @@
 //
 
 #import "JCBaseViewController.h"
+#import "Protocols.h"
 
-@protocol JCSelectItemViewControllerDelgate <NSObject>
+@interface JCSelectItemViewController : JCBaseViewController <JCRightSideControllerProtocol>
 
--(void)selectItemViewControllerSelectValue:(id)value forKeyPath:(NSString*)keypath;
--(void)selectItemViewControllerDeleteValueForKeyPath:(NSString*)keypath;
--(void)selectItemViewControllerShouldBeHidden;
-
-@end
-
-@interface JCSelectItemViewController : JCBaseViewController
-
-@property(nonatomic, weak) id<JCSelectItemViewControllerDelgate> delegate;
-
-@property(nonatomic, strong) id currentItem;
 @property(nonatomic, strong) NSArray *items;
 @property(nonatomic, strong) NSString *itemTitleKeyPath;
 @property(nonatomic, strong) NSString *itemImageUrlKeyPath;
-@property(nonatomic, strong) NSString *targetValueKeyPath;
 @property(nonatomic) BOOL isArray;
-
--(void)reset;
--(void)updateContent;
 
 @end

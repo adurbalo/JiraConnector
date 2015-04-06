@@ -26,8 +26,8 @@
     self.title = @"Login";
     
 #warning HARDCORE
-    self.loginTextField.text = @"pro_adurbalo";
-    self.passwordTextField.text = @"jiraconnect";
+    self.loginTextField.text = @"admin";
+    self.passwordTextField.text = @"200589";
 }
 
 #pragma mark - IBActions

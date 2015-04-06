@@ -34,8 +34,11 @@
 		1A3E8C031ACDCB98001EC83E /* JCSelectItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E8C011ACDCB98001EC83E /* JCSelectItemViewController.xib */; };
 		1A3E8C061ACDEC52001EC83E /* JCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E8C051ACDEC52001EC83E /* JCButton.m */; };
 		1A88E3221AB8A998008E7B76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3211AB8A998008E7B76 /* User.m */; };
-		1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */; };
 		1AA4E5421AC5DBC400F48CAD /* JCContentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA4E5411AC5DBC400F48CAD /* JCContentContainer.m */; };
+		1AD0281E1AD32A9B00C43FF7 /* JCTextContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD0281D1AD32A9B00C43FF7 /* JCTextContainerViewController.m */; };
+		1AD028221AD32BB100C43FF7 /* JCTextContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AD028211AD32BB100C43FF7 /* JCTextContainerViewController.xib */; };
+		1AD028261AD344B400C43FF7 /* JCFinalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD028251AD344B400C43FF7 /* JCFinalViewController.m */; };
+		1AD028281AD344C500C43FF7 /* JCFinalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AD028271AD344C500C43FF7 /* JCFinalViewController.xib */; };
 		1AE227831ACB4B3C00BF72B5 /* JCProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE227811ACB4B3C00BF72B5 /* JCProjectsViewController.m */; };
 		1AE227841ACB4B3C00BF72B5 /* JCProjectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AE227821ACB4B3C00BF72B5 /* JCProjectsViewController.xib */; };
 		1AE227871ACB4FB700BF72B5 /* JCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE227861ACB4FB700BF72B5 /* JCBaseViewController.m */; };
@@ -106,10 +109,15 @@
 		1A88E31F1AB79347008E7B76 /* Models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Models.h; path = Model/Models.h; sourceTree = "<group>"; };
 		1A88E3201AB8A998008E7B76 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
 		1A88E3211AB8A998008E7B76 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
-		1A88E3281AB8B3CB008E7B76 /* JCDropDownTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDropDownTextField.h; sourceTree = "<group>"; };
-		1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDropDownTextField.m; sourceTree = "<group>"; };
 		1AA4E5401AC5DBC400F48CAD /* JCContentContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JCContentContainer.h; path = Model/JCContentContainer.h; sourceTree = "<group>"; };
 		1AA4E5411AC5DBC400F48CAD /* JCContentContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCContentContainer.m; path = Model/JCContentContainer.m; sourceTree = "<group>"; };
+		1AD0281C1AD32A9B00C43FF7 /* JCTextContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTextContainerViewController.h; sourceTree = "<group>"; };
+		1AD0281D1AD32A9B00C43FF7 /* JCTextContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTextContainerViewController.m; sourceTree = "<group>"; };
+		1AD028211AD32BB100C43FF7 /* JCTextContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCTextContainerViewController.xib; sourceTree = "<group>"; };
+		1AD028231AD330F100C43FF7 /* Protocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Protocols.h; sourceTree = "<group>"; };
+		1AD028241AD344B400C43FF7 /* JCFinalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCFinalViewController.h; sourceTree = "<group>"; };
+		1AD028251AD344B400C43FF7 /* JCFinalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCFinalViewController.m; sourceTree = "<group>"; };
+		1AD028271AD344C500C43FF7 /* JCFinalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCFinalViewController.xib; sourceTree = "<group>"; };
 		1AE227801ACB4B3C00BF72B5 /* JCProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCProjectsViewController.h; sourceTree = "<group>"; };
 		1AE227811ACB4B3C00BF72B5 /* JCProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCProjectsViewController.m; sourceTree = "<group>"; };
 		1AE227821ACB4B3C00BF72B5 /* JCProjectsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCProjectsViewController.xib; sourceTree = "<group>"; };
@@ -238,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				1A3E8C071ACDF1DD001EC83E /* Constants.h */,
+				1AD028231AD330F100C43FF7 /* Protocols.h */,
 				1A3E8BFC1ACDC78F001EC83E /* JCNavigationController.h */,
 				1A3E8BFD1ACDC78F001EC83E /* JCNavigationController.m */,
 				1AE227851ACB4FB700BF72B5 /* JCBaseViewController.h */,
@@ -254,6 +263,12 @@
 				1A3E8BFF1ACDCB98001EC83E /* JCSelectItemViewController.h */,
 				1A3E8C001ACDCB98001EC83E /* JCSelectItemViewController.m */,
 				1A3E8C011ACDCB98001EC83E /* JCSelectItemViewController.xib */,
+				1AD0281C1AD32A9B00C43FF7 /* JCTextContainerViewController.h */,
+				1AD0281D1AD32A9B00C43FF7 /* JCTextContainerViewController.m */,
+				1AD028211AD32BB100C43FF7 /* JCTextContainerViewController.xib */,
+				1AD028241AD344B400C43FF7 /* JCFinalViewController.h */,
+				1AD028251AD344B400C43FF7 /* JCFinalViewController.m */,
+				1AD028271AD344C500C43FF7 /* JCFinalViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -273,8 +288,6 @@
 			children = (
 				1A2794D81AC0B33D0032633C /* JCTextField.h */,
 				1A2794D91AC0B33D0032633C /* JCTextField.m */,
-				1A88E3281AB8B3CB008E7B76 /* JCDropDownTextField.h */,
-				1A88E3291AB8B3CB008E7B76 /* JCDropDownTextField.m */,
 				1A3E8C041ACDEC52001EC83E /* JCButton.h */,
 				1A3E8C051ACDEC52001EC83E /* JCButton.m */,
 			);
@@ -383,10 +396,12 @@
 			files = (
 				1A260FF11AA4F2B900FEBFDE /* Main.storyboard in Resources */,
 				1A260FF61AA4F2B900FEBFDE /* LaunchScreen.xib in Resources */,
+				1AD028221AD32BB100C43FF7 /* JCTextContainerViewController.xib in Resources */,
 				1A26101E1AA8EBDA00FEBFDE /* JCCreateIssueViewController.xib in Resources */,
 				1AE227841ACB4B3C00BF72B5 /* JCProjectsViewController.xib in Resources */,
 				1A260FF31AA4F2B900FEBFDE /* Images.xcassets in Resources */,
 				1A3E8C031ACDCB98001EC83E /* JCSelectItemViewController.xib in Resources */,
+				1AD028281AD344C500C43FF7 /* JCFinalViewController.xib in Resources */,
 				1A2610131AA6496000FEBFDE /* JCLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,7 +456,6 @@
 				1A88E3221AB8A998008E7B76 /* User.m in Sources */,
 				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
 				1A3E8C021ACDCB98001EC83E /* JCSelectItemViewController.m in Sources */,
-				1A88E32B1AB8B3CB008E7B76 /* JCDropDownTextField.m in Sources */,
 				1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */,
 				1A3E8BFE1ACDC78F001EC83E /* JCNavigationController.m in Sources */,
 				1A3E8C061ACDEC52001EC83E /* JCButton.m in Sources */,
@@ -456,11 +470,13 @@
 				1AE227831ACB4B3C00BF72B5 /* JCProjectsViewController.m in Sources */,
 				1A07CD071AAF9C8F0051A98F /* BaseModel.m in Sources */,
 				1AA4E5421AC5DBC400F48CAD /* JCContentContainer.m in Sources */,
+				1AD028261AD344B400C43FF7 /* JCFinalViewController.m in Sources */,
 				1A2732CC1AC21DC90077238B /* Fields.m in Sources */,
 				1A26101D1AA8EBDA00FEBFDE /* JCCreateIssueViewController.m in Sources */,
 				1A2610191AA64BF100FEBFDE /* NetworkManager.m in Sources */,
 				1A2732C91AC21A9B0077238B /* Issue.m in Sources */,
 				1A07CD101AAFC0D10051A98F /* Project.m in Sources */,
+				1AD0281E1AD32A9B00C43FF7 /* JCTextContainerViewController.m in Sources */,
 				1A2610111AA6493B00FEBFDE /* JCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

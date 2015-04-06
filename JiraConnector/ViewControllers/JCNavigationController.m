@@ -15,10 +15,17 @@
 
 @implementation JCNavigationController
 
-- (void)viewDidLoad
+-(instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
-    [super viewDidLoad];
- 
+    self = [super initWithRootViewController:rootViewController];
+    if (self) {
+        [self initialization];
+    }
+    return self;
+}
+
+- (void)initialization
+{
     [[UINavigationBar appearanceWhenContainedIn:[self class], nil] setBarTintColor:JIRA_DEFAULT_COLOR];
     [[UINavigationBar appearanceWhenContainedIn:[self class], nil] setTintColor:JC_NAVIGATION_BAR_ELEMENTS_COLOR];
     [[UINavigationBar appearanceWhenContainedIn:[self class], nil] setTitleTextAttributes:@{ NSForegroundColorAttributeName : JC_NAVIGATION_BAR_ELEMENTS_COLOR }];

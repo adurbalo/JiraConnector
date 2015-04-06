@@ -13,8 +13,9 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *theSearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *theTableView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *separatorViw;
+@property (weak, nonatomic) IBOutlet UIButton *leftButton;
+@property (weak, nonatomic) IBOutlet UIButton *rightButton;
 
 @property (nonatomic, strong) NSArray *filteredItems;
 @property (nonatomic, strong) NSMutableArray *currentItemsArray;
@@ -23,24 +24,20 @@
 
 @implementation JCSelectItemViewController
 
+//RightSideControllerProtocol
+@synthesize delegate = _delegate;
+@synthesize currentItem = _currentItem;
+@synthesize targetValueKeyPath = _targetValueKeyPath;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.titleLabel.backgroundColor = JIRA_DEFAULT_COLOR;
-    self.separatorViw.backgroundColor = JIRA_DEFAULT_COLOR;
     
     self.currentItemsArray = [NSMutableArray new];
     
     UISwipeGestureRecognizer *swipeToRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
     swipeToRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeToRight];
-}
-
--(void)setTitle:(NSString *)title
-{
-    [super setTitle:title];
-    self.titleLabel.text = title;
 }
 
 -(void)setItems:(NSArray *)items
@@ -51,12 +48,12 @@
 
 -(void)hide
 {
-    if ([self.delegate respondsToSelector:@selector(selectItemViewControllerShouldBeHidden)]) {
-        [self.delegate selectItemViewControllerShouldBeHidden];
+    if ([self.delegate respondsToSelector:@selector(rightSideControllerShouldBeHidden)]) {
+        [self.delegate rightSideControllerShouldBeHidden];
     }
 }
 
-#pragma mark - Public
+#pragma mark - RightSideControllerProtocol
 
 -(void)reset
 {
@@ -78,6 +75,18 @@
     }
     
     [self.theTableView reloadData];
+    
+    if (self.title.length > 0) {
+        self.theSearchBar.placeholder = [NSString stringWithFormat:@"Filter or %@...", self.title];
+    }
+    
+    if (self.isArray) {
+        [self.rightButton setTitle:@"Done" forState:UIControlStateNormal];
+        self.rightButton.enabled = YES;
+    } else {
+        [self.rightButton setTitle:@"Remove" forState:UIControlStateNormal];
+        self.rightButton.enabled = (self.currentItem != nil);
+    }
 }
 
 #pragma mark - Table Configuration
@@ -99,6 +108,7 @@
     
     cell.textLabel.text = indexPath.description;
     cell.textLabel.text = [itemObject valueForKeyPath:self.itemTitleKeyPath];
+    cell.imageView.image = nil;
     
     if (self.isArray) {
         cell.accessoryType = [self.currentItemsArray containsObject:itemObject]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
@@ -135,28 +145,28 @@
         [tableView reloadData];
         
     } else {
-        if ([self.delegate respondsToSelector:@selector(selectItemViewControllerSelectValue:forKeyPath:)]) {
-            [self.delegate selectItemViewControllerSelectValue:self.filteredItems[indexPath.row] forKeyPath:self.targetValueKeyPath];
+        if ([self.delegate respondsToSelector:@selector(rightSideControllerDidSelectValue:forKeyPath:)]) {
+            [self.delegate rightSideControllerDidSelectValue:self.filteredItems[indexPath.row] forKeyPath:self.targetValueKeyPath];
         }
     }
 }
 
 #pragma mark - IBActions
 
-- (IBAction)hideButtonPressed:(id)sender
+- (IBAction)leftButtonPressed:(id)sender
 {
-    [self hide];
+     [self hide];
 }
 
 - (IBAction)rightButtonPressed:(id)sender
 {
     if (self.isArray) {
-        if ([self.delegate respondsToSelector:@selector(selectItemViewControllerSelectValue:forKeyPath:)]) {
-            [self.delegate selectItemViewControllerSelectValue:self.currentItemsArray forKeyPath:self.targetValueKeyPath];
+        if ([self.delegate respondsToSelector:@selector(rightSideControllerDidSelectValue:forKeyPath:)]) {
+            [self.delegate rightSideControllerDidSelectValue:[self.currentItemsArray mutableCopy] forKeyPath:self.targetValueKeyPath];
         }
     } else {
-        if ([self.delegate respondsToSelector:@selector(selectItemViewControllerDeleteValueForKeyPath:)]) {
-            [self.delegate selectItemViewControllerDeleteValueForKeyPath:self.targetValueKeyPath];
+        if ([self.delegate respondsToSelector:@selector(rightSideControllerRemoveValueForKeyPath:)]) {
+            [self.delegate rightSideControllerRemoveValueForKeyPath:self.targetValueKeyPath];
         }
     }
 }

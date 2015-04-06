@@ -48,7 +48,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 #if TARGET_IPHONE_SIMULATOR
     serverUrlString = @"http://localhost:8080";
 #else
-    serverUrlString = @"https://menswearhouse.atlassian.net";//@"http://192.168.10.13:8080";
+    serverUrlString = @"http://192.168.10.13:8080";
 #endif
     
     NSURL *baseURL = [NSURL URLWithString:serverUrlString];

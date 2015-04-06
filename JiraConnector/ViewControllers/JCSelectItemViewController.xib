@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JCSelectItemViewController">
             <connections>
+                <outlet property="leftButton" destination="WYe-Ek-rIP" id="gY0-ge-Tw2"/>
+                <outlet property="rightButton" destination="H3T-ZK-7oe" id="BaG-Pn-EgG"/>
                 <outlet property="separatorViw" destination="uBB-4c-eE5" id="CZo-cN-tQ7"/>
                 <outlet property="theSearchBar" destination="Bm8-jx-aHf" id="5Y4-h4-Iyn"/>
                 <outlet property="theTableView" destination="eNC-jw-Uch" id="86n-0H-t5o"/>
-                <outlet property="titleLabel" destination="xZS-jS-KXP" id="Qr7-PH-DsO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,15 +20,45 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Issue Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZS-jS-KXP">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <searchBar contentMode="redraw" placeholder="Filter..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bm8-jx-aHf">
-                    <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TKU-9l-nxv">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYe-Ek-rIP">
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="nMc-zN-H4U"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3T-ZK-7oe">
+                            <rect key="frame" x="160" y="0.0" width="160" height="30"/>
+                            <state key="normal" title="Remove">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="rightButtonPressed:" destination="-1" eventType="touchUpInside" id="tmH-wc-q2p"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.23137254901960785" green="0.45098039215686275" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="H3T-ZK-7oe" secondAttribute="trailing" id="7hv-vp-mtH"/>
+                        <constraint firstItem="WYe-Ek-rIP" firstAttribute="centerY" secondItem="H3T-ZK-7oe" secondAttribute="centerY" id="M2A-fx-dpe"/>
+                        <constraint firstItem="H3T-ZK-7oe" firstAttribute="leading" secondItem="WYe-Ek-rIP" secondAttribute="trailing" id="T5i-ie-uqx"/>
+                        <constraint firstItem="WYe-Ek-rIP" firstAttribute="height" secondItem="H3T-ZK-7oe" secondAttribute="height" id="XuX-eS-iro"/>
+                        <constraint firstItem="WYe-Ek-rIP" firstAttribute="top" secondItem="TKU-9l-nxv" secondAttribute="top" id="Xwl-4n-3GN"/>
+                        <constraint firstAttribute="bottom" secondItem="WYe-Ek-rIP" secondAttribute="bottom" id="di8-jd-lOk"/>
+                        <constraint firstItem="WYe-Ek-rIP" firstAttribute="leading" secondItem="TKU-9l-nxv" secondAttribute="leading" id="doc-h4-eQE"/>
+                        <constraint firstItem="WYe-Ek-rIP" firstAttribute="width" secondItem="H3T-ZK-7oe" secondAttribute="width" id="qNX-vk-RdK"/>
+                    </constraints>
+                </view>
+                <searchBar contentMode="redraw" placeholder="Filter..." translatesAutoresizingMaskIntoConstraints="NO" id="Bm8-jx-aHf">
+                    <rect key="frame" x="0.0" y="30" width="320" height="44"/>
+                    <color key="barTintColor" red="0.23137254900000001" green="0.45098039220000002" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                     <scopeButtonTitles>
                         <string>Title</string>
@@ -37,7 +69,7 @@
                     </connections>
                 </searchBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eNC-jw-Uch">
-                    <rect key="frame" x="0.0" y="66" width="320" height="458"/>
+                    <rect key="frame" x="0.0" y="74" width="320" height="494"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <view key="tableFooterView" contentMode="scaleToFill" id="geE-C8-NIB">
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -48,25 +80,9 @@
                         <outlet property="delegate" destination="-1" id="8mZ-ij-y8A"/>
                     </connections>
                 </tableView>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0u-Mz-z43">
-                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                    <items>
-                        <barButtonItem title="Hide" id="8HG-ju-Cye">
-                            <connections>
-                                <action selector="hideButtonPressed:" destination="-1" id="n3w-L2-YBz"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="x2a-bM-IFh"/>
-                        <barButtonItem title="Delete" id="TMR-MD-1do">
-                            <connections>
-                                <action selector="rightButtonPressed:" destination="-1" id="ni0-vf-CHn"/>
-                            </connections>
-                        </barButtonItem>
-                    </items>
-                </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBB-4c-eE5">
                     <rect key="frame" x="0.0" y="0.0" width="1" height="568"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.23137254900000001" green="0.45098039220000002" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="PD8-V6-yBW"/>
                     </constraints>
@@ -74,25 +90,22 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="xZS-jS-KXP" secondAttribute="trailing" id="5bI-iF-RoF"/>
-                <constraint firstAttribute="bottom" secondItem="k0u-Mz-z43" secondAttribute="bottom" id="9Gf-w5-Jny"/>
-                <constraint firstItem="k0u-Mz-z43" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CQN-dg-Zyb"/>
-                <constraint firstItem="xZS-jS-KXP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JtK-2i-4NJ"/>
+                <constraint firstAttribute="bottom" secondItem="eNC-jw-Uch" secondAttribute="bottom" id="4F1-hD-tvI"/>
+                <constraint firstAttribute="trailing" secondItem="TKU-9l-nxv" secondAttribute="trailing" id="D3f-HM-tVS"/>
+                <constraint firstItem="Bm8-jx-aHf" firstAttribute="top" secondItem="TKU-9l-nxv" secondAttribute="bottom" id="DhN-a7-zC0"/>
+                <constraint firstItem="TKU-9l-nxv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HeY-Dn-GIa"/>
                 <constraint firstAttribute="bottom" secondItem="uBB-4c-eE5" secondAttribute="bottom" id="Mcx-s5-f4J"/>
                 <constraint firstItem="uBB-4c-eE5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OBi-zt-LQF"/>
+                <constraint firstItem="TKU-9l-nxv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Z39-aC-zuC"/>
                 <constraint firstAttribute="trailing" secondItem="eNC-jw-Uch" secondAttribute="trailing" id="byk-ra-FZH"/>
-                <constraint firstAttribute="trailing" secondItem="k0u-Mz-z43" secondAttribute="trailing" id="cnf-8g-cRg"/>
-                <constraint firstItem="k0u-Mz-z43" firstAttribute="top" secondItem="eNC-jw-Uch" secondAttribute="bottom" id="d9v-ZI-22V"/>
                 <constraint firstItem="eNC-jw-Uch" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fq1-xh-Fr5"/>
-                <constraint firstItem="Bm8-jx-aHf" firstAttribute="top" secondItem="xZS-jS-KXP" secondAttribute="bottom" id="gwM-kD-qWS"/>
-                <constraint firstItem="xZS-jS-KXP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kon-KX-eNx"/>
                 <constraint firstItem="uBB-4c-eE5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="n5i-Qd-Khx"/>
                 <constraint firstItem="eNC-jw-Uch" firstAttribute="top" secondItem="Bm8-jx-aHf" secondAttribute="bottom" id="o3g-b9-hHT"/>
                 <constraint firstItem="Bm8-jx-aHf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rwW-fV-YmQ"/>
                 <constraint firstAttribute="trailing" secondItem="Bm8-jx-aHf" secondAttribute="trailing" id="yUR-Yu-7lf"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="329" y="127"/>
+            <point key="canvasLocation" x="363" y="-2"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
