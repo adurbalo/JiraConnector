@@ -483,11 +483,12 @@
     vc.view.hidden = NO;
     
     self.theScrollView.userInteractionEnabled = NO;
+    [self.navigationItem setHidesBackButton:YES animated:YES];
     
     [UIView animateWithDuration:jcAnimationDuration animations:^{
     
-        self.rightSideBaseViewLeftConstraint.constant = CGRectGetWidth(self.view.frame)*0.1;
         self.rightSideBaseViewWidthConstraint.constant = CGRectGetWidth(self.view.frame)*0.9;
+        self.rightSideBaseViewLeftConstraint.constant = - CGRectGetWidth(self.view.frame)*0.9;
         
         self.theScrollView.alpha = 0.5f;
         
@@ -498,10 +499,12 @@
 
 -(void)hideMenu
 {
+    [self.navigationItem setHidesBackButton:NO animated:YES];
+    
     [UIView animateWithDuration:jcAnimationDuration animations:^{
     
-        self.rightSideBaseViewLeftConstraint.constant = CGRectGetWidth(self.view.frame);
-        
+        self.rightSideBaseViewLeftConstraint.constant = 0.f;
+    
         self.theScrollView.alpha = 1.f;
         
         [self.view layoutSubviews];

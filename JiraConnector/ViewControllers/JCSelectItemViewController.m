@@ -64,6 +64,8 @@
     self.targetValueKeyPath = nil;
     self.isArray = NO;
     
+    self.theSearchBar.text = nil;
+    
     [self.currentItemsArray removeAllObjects];
 }
 

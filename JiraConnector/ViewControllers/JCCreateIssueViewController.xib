@@ -16,7 +16,7 @@
                 <outlet property="issueTypeButton" destination="rcC-Ll-vOy" id="Fp0-4U-Vf9"/>
                 <outlet property="priorityButton" destination="VCY-fd-bab" id="3Wz-4t-NA5"/>
                 <outlet property="rightSideBaseView" destination="aa1-G6-ZdK" id="TDM-j9-6Qt"/>
-                <outlet property="rightSideBaseViewLeftConstraint" destination="WNX-14-1rK" id="40H-Fv-umo"/>
+                <outlet property="rightSideBaseViewLeftConstraint" destination="uib-IL-JFN" id="GpR-qi-sA2"/>
                 <outlet property="rightSideBaseViewWidthConstraint" destination="SuM-Lw-eke" id="Sfv-L5-eC5"/>
                 <outlet property="summaryButton" destination="Ckh-s1-Ej8" id="xC2-vU-eqe"/>
                 <outlet property="theScrollView" destination="vMk-6J-Gl3" id="KD0-aB-yku"/>
@@ -279,9 +279,10 @@
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aa1-G6-ZdK">
-                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="320" y="0.0" width="320" height="674"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" id="SuM-Lw-eke"/>
+                        <constraint firstAttribute="width" constant="320" id="SuM-Lw-eke"/>
                     </constraints>
                 </view>
             </subviews>
@@ -291,8 +292,8 @@
                 <constraint firstAttribute="trailing" secondItem="vMk-6J-Gl3" secondAttribute="trailing" id="She-Aq-NT7"/>
                 <constraint firstItem="aa1-G6-ZdK" firstAttribute="top" secondItem="b2B-7j-aCD" secondAttribute="top" id="Vb7-jf-c4E"/>
                 <constraint firstItem="vMk-6J-Gl3" firstAttribute="leading" secondItem="b2B-7j-aCD" secondAttribute="leading" id="VqT-NO-huR"/>
-                <constraint firstItem="aa1-G6-ZdK" firstAttribute="leading" secondItem="b2B-7j-aCD" secondAttribute="leading" constant="320" id="WNX-14-1rK"/>
                 <constraint firstAttribute="bottom" secondItem="aa1-G6-ZdK" secondAttribute="bottom" id="etQ-xn-5q1"/>
+                <constraint firstItem="aa1-G6-ZdK" firstAttribute="leading" secondItem="vMk-6J-Gl3" secondAttribute="trailing" id="uib-IL-JFN"/>
                 <constraint firstItem="vMk-6J-Gl3" firstAttribute="top" secondItem="b2B-7j-aCD" secondAttribute="top" id="vMO-bR-gho"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

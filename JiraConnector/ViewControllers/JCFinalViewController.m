@@ -34,6 +34,8 @@
         [attributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:range];
         self.statusLabel.attributedText = attributedStr;
     }
+    
+    [self.view setNeedsLayout];
 }
 
 #pragma mark - IBActions
