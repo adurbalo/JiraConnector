@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
+#import <AVFoundation/AVAudioSession.h>
 #import "JiraConnector.h"
 #import "JCNavigationController.h"
 #import "JCLoginViewController.h"
@@ -30,6 +31,7 @@
 @end
 
 #define ANIMATION_DURATION 0.15
+#define VOLUME_BUTTON_PRESSED_NOTIFICATION @"AVSystemController_SystemVolumeDidChangeNotification"
 
 @implementation JiraConnector
 
@@ -45,14 +47,11 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
         self.jiraConnectorWindow = [[UIWindow alloc] init];
         self.jiraConnectorWindow.frame = [[UIScreen mainScreen] bounds];
         self.jiraConnectorWindow.windowLevel = UIWindowLevelAlert+1;
-        
-        JCNavigationController *rootVC = [JCNavigationController new];
-        rootVC.navigationBarHidden = YES;
-
-        self.jiraConnectorWindow.rootViewController = rootVC;
+        self.jiraConnectorWindow.rootViewController = [[UIViewController alloc] init];
         
         JCLoginViewController *loginVC = [JCLoginViewController new];
         self.navigationController = [[JCNavigationController alloc] initWithRootViewController:loginVC];
+        self.navigationController.view.autoresizingMask = UIViewAutoresizingNone;
     }
     
     return self;
@@ -82,6 +81,29 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
     } else {
         [self.motionManager stopDeviceMotionUpdates];
     }
+}
+
+-(void)setEnableDetectVolumeChanging:(BOOL)enableDetectVolumeChanging
+{
+//TODO: volume buttons pressed    
+    if (enableDetectVolumeChanging) {
+        
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:)
+                                                     name:VOLUME_BUTTON_PRESSED_NOTIFICATION
+                                                   object:nil];
+    } else {
+
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:VOLUME_BUTTON_PRESSED_NOTIFICATION
+                                                      object:nil];
+    }
+}
+
+-(void)volumeChanged:(NSNotification*)notification
+{
+    [self show];
 }
 
 #pragma mark - Public

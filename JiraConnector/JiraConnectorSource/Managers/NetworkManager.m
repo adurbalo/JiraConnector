@@ -116,7 +116,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
         error = [[NSError alloc] initWithDomain:@"JiraConnector" code:-1 userInfo:@{NSLocalizedDescriptionKey : responseString}];
     }
     
-    NSLog(@" <<<<<<<<<<< Failure Response: \n%@\n%@", error, operation.request);
+    //NSLog(@" <<<<<<<<<<< Failure Response: \n%@\n%@", error, operation.request);
     
     if (responseBlock) {
         responseBlock(nil, error);
@@ -156,7 +156,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 {
     void(^successBlock)(AFHTTPRequestOperation*, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-        NSLog(@"\n\n <<<<<<<<<<< Success Response: \n%@\n%@\n\n", operation.response, responseString);
+        //NSLog(@"\n\n <<<<<<<<<<< Success Response: \n%@\n%@\n\n", operation.response, responseString);
         [self handleResponse:responseObject outputObjectClass:(Class)outputObjectClass forURLRequest:operation.request callBlock:responseBlock];
     };
     void(^failureBlock)(AFHTTPRequestOperation*, NSError*) = ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -201,7 +201,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     
     [_manager.operationQueue addOperation:operation];
     
-    NSLog(@"\n\n >>>>>>>>>>>>>> Request: \n%@ %@\n\n", operation.request, [[NSString alloc] initWithData:operation.request.HTTPBody encoding:NSUTF8StringEncoding]);
+    //NSLog(@"\n\n >>>>>>>>>>>>>> Request: \n%@ %@\n\n", operation.request, [[NSString alloc] initWithData:operation.request.HTTPBody encoding:NSUTF8StringEncoding]);
     
     return operation;
 }

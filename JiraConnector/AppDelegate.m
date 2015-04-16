@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "JCLoginViewController.h"
-#import "JCNavigationController.h"
 
 @interface AppDelegate ()
 

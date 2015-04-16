@@ -18,7 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[JiraConnector sharedManager] configurateWithBaseURL:@"https://menswearhouse.atlassian.net/" andPredefinedProjectKey:@"TUXMOBILE"];
+    [[JiraConnector sharedManager] configurateWithBaseURL:@"http://localhost:8080/" andPredefinedProjectKey:@"TEST"];
+    [[JiraConnector sharedManager] setEnableDetectMotion:YES];
 }
 
 #pragma mark -

@@ -77,23 +77,6 @@
     self.environmentButton.titleText = self.issue.fields.environment;
 }
 
--(void)loadCreatedIssueByKey:(NSString*)issueKey
-{
-    
-    [self popActivityIndicator];
-    
-    [[NetworkManager sharedManager] issueByKey:issueKey completionBlock:^(Issue *responseObject, NSError *error) {
-        
-        [self popActivityIndicator];
-        
-        if (error) {
-            [self showError:error];
-        } else {
-            NSLog(@"issue: %@", responseObject);
-        }
-    }];
-}
-
 -(void)showFinalVCWithIssue:(Issue*)issue
 {
     JCFinalViewController *finalVC = [JCFinalViewController new];
