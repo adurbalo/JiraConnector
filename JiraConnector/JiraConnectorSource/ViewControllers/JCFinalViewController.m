@@ -21,8 +21,8 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Final Step";
     [self configurateStatusLabel];
-    
     [self.navigationItem setHidesBackButton:YES];
 }
 
@@ -46,22 +46,22 @@
 
 - (IBAction)openInBrowserButtonPressed:(id)sender
 {
-    NSString *baseUrl = [self.issue.selfLink.absoluteString stringByReplacingOccurrencesOfString:[self.issue.selfLink path] withString:@""];
-    NSURL *browserLink = [NSURL URLWithString:[baseUrl stringByAppendingPathComponent:[NSString stringWithFormat:@"browse/%@", self.issue.key]]];
-    [[UIApplication sharedApplication] openURL:browserLink];
-    
-    [[JiraConnector sharedManager] hide];
+    [[JiraConnector sharedManager] hideWithCompletionBlock:^{
+        NSString *baseUrl = [self.issue.selfLink.absoluteString stringByReplacingOccurrencesOfString:[self.issue.selfLink path] withString:@""];
+        NSURL *browserLink = [NSURL URLWithString:[baseUrl stringByAppendingPathComponent:[NSString stringWithFormat:@"browse/%@", self.issue.key]]];
+        [[UIApplication sharedApplication] openURL:browserLink];
+    }];
 }
 
 - (IBAction)doneButtonPressed:(id)sender
 {
-    [[JiraConnector sharedManager] hide];
+    [[JiraConnector sharedManager] hideWithCompletionBlock:nil];
 }
 
 - (IBAction)logoutButtonPressed:(id)sender
 {
     [[NetworkManager sharedManager] removeCredentials];
-    [[JiraConnector sharedManager] hide];
+    [[JiraConnector sharedManager] hideWithCompletionBlock:nil];
 }
 
 @end

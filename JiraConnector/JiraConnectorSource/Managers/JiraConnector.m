@@ -52,6 +52,8 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
         JCLoginViewController *loginVC = [JCLoginViewController new];
         self.navigationController = [[JCNavigationController alloc] initWithRootViewController:loginVC];
         self.navigationController.view.autoresizingMask = UIViewAutoresizingNone;
+        
+        self.motionSensivity = 10;
     }
     
     return self;
@@ -70,12 +72,17 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
     _enableDetectMotion = enableDetectMotion;
     
     if (_enableDetectMotion) {
+        
+        __weak __typeof(self)weakSelf = self;
+        
         self.motionManager.deviceMotionUpdateInterval = 0.1f;
+        
         [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue]
                                                 withHandler:^(CMDeviceMotion *data, NSError *error) {
                                                     
-                                                    if ( data.rotationRate.y < -8.f) {
-                                                        [self show];
+                                                    if ( (ABS(data.rotationRate.x) > weakSelf.motionSensivity) || (ABS(data.rotationRate.y) > weakSelf.motionSensivity) || (ABS(data.rotationRate.z) > weakSelf.motionSensivity) ) {
+                                                        
+                                                        [[JiraConnector sharedManager] showWithCompletionBlock:nil];
                                                     }
                                                 }];
     } else {
@@ -103,12 +110,12 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
 
 -(void)volumeChanged:(NSNotification*)notification
 {
-    [self show];
+    [self showWithCompletionBlock:nil];
 }
 
 #pragma mark - Public
 
--(void)show
+-(void)showWithCompletionBlock:(void(^)())completionBlock
 {
     if (self.active) {
         return;
@@ -137,10 +144,14 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
         self.navigationController.view.frame = frame;
         self.jiraConnectorWindow.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+    } completion:^(BOOL finished) {
+        if (completionBlock) {
+            completionBlock();
+        }
     }];
 }
 
--(void)hide
+-(void)hideWithCompletionBlock:(void(^)())completionBlock
 {
     CGRect frame = self.navigationController.view.frame;
     
@@ -159,6 +170,10 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
         [self.jiraConnectorWindow setHidden:YES];
         
         self.active = NO;
+        
+        if (completionBlock) {
+            completionBlock();
+        }
     }];
 }
 

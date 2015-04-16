@@ -40,7 +40,7 @@
 
 -(void)cancelButtonPressed:(UIBarButtonItem*)item
 {
-    [[JiraConnector sharedManager] hide];
+    [[JiraConnector sharedManager] hideWithCompletionBlock:nil];
 }
 
 #pragma mark - IBActions

@@ -15,10 +15,11 @@ CWL_DECLARE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
 
 @property(nonatomic, readonly) NSString *predefinedProjectKey;
 @property(nonatomic) BOOL enableDetectMotion;
+@property(nonatomic) double motionSensivity;
 
 -(void)configurateWithBaseURL:(NSString*)baseUrl andPredefinedProjectKey:(NSString*)projectKey;
 
--(void)show;
--(void)hide;
+-(void)showWithCompletionBlock:(void(^)())completionBlock;
+-(void)hideWithCompletionBlock:(void(^)())completionBlock;
 
 @end
