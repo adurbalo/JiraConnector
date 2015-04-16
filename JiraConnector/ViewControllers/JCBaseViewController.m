@@ -56,11 +56,11 @@
     self.activityIndicatorBaseView.alpha = 0.f;
     [self.view addSubview:self.activityIndicatorBaseView];
     
-    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    activityIndicatorView.center = self.activityIndicatorBaseView.center;
-    [activityIndicatorView startAnimating];
-    [self.activityIndicatorBaseView addSubview:activityIndicatorView];
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.activityIndicatorView.center = self.activityIndicatorBaseView.center;
+    [self.activityIndicatorView startAnimating];
+    [self.activityIndicatorBaseView addSubview:self.activityIndicatorView];
 }
 
 -(void)showError:(NSError *)error
@@ -129,6 +129,8 @@
 -(void)setActivityIndicatorCounter:(NSInteger)activityIndicatorCounter
 {
     _activityIndicatorCounter = activityIndicatorCounter;
+    
+    self.activityIndicatorView.center = self.activityIndicatorView.superview.center;
     
     [UIView animateWithDuration:0.15 animations:^{
         self.activityIndicatorBaseView.alpha = (_activityIndicatorCounter > 0)?1.f:0.f;

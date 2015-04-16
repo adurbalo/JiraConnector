@@ -19,7 +19,9 @@ CWL_DECLARE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 
 @property(nonatomic, strong) NSString *jiraServerBaseUrlString;
 
--(BOOL)isUserAuthorized;
+-(NSString*)login;
+-(NSString*)pass;
+-(void)removeCredentials;
 
 -(NSOperation*)loginToJiraWithLogin:(NSString*)login andPassword:(NSString*)password completionBlock:(void (^)(id responseObject, NSError* error))completionBlock;
 

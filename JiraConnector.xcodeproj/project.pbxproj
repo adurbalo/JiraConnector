@@ -42,6 +42,7 @@
 		1AE227831ACB4B3C00BF72B5 /* JCProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE227811ACB4B3C00BF72B5 /* JCProjectsViewController.m */; };
 		1AE227841ACB4B3C00BF72B5 /* JCProjectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AE227821ACB4B3C00BF72B5 /* JCProjectsViewController.xib */; };
 		1AE227871ACB4FB700BF72B5 /* JCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE227861ACB4FB700BF72B5 /* JCBaseViewController.m */; };
+		61DE0EAF1ADFDD90009D18C1 /* JiraConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DE0EAE1ADFDD90009D18C1 /* JiraConnector.m */; };
 		B163058410470B8EA72CFB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43298A5880ACC97D75A8C049 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,8 @@
 		1AE227851ACB4FB700BF72B5 /* JCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBaseViewController.h; sourceTree = "<group>"; };
 		1AE227861ACB4FB700BF72B5 /* JCBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBaseViewController.m; sourceTree = "<group>"; };
 		43298A5880ACC97D75A8C049 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		61DE0EAD1ADFDD90009D18C1 /* JiraConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiraConnector.h; sourceTree = "<group>"; };
+		61DE0EAE1ADFDD90009D18C1 /* JiraConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiraConnector.m; sourceTree = "<group>"; };
 		B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -279,6 +282,8 @@
 				1A2610161AA64BDE00FEBFDE /* CWLSynthesizeSingleton.h */,
 				1A2610171AA64BF100FEBFDE /* NetworkManager.h */,
 				1A2610181AA64BF100FEBFDE /* NetworkManager.m */,
+				61DE0EAD1ADFDD90009D18C1 /* JiraConnector.h */,
+				61DE0EAE1ADFDD90009D18C1 /* JiraConnector.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 				1A88E3221AB8A998008E7B76 /* User.m in Sources */,
 				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
 				1A3E8C021ACDCB98001EC83E /* JCSelectItemViewController.m in Sources */,
+				61DE0EAF1ADFDD90009D18C1 /* JiraConnector.m in Sources */,
 				1A07CD131AAFC4A80051A98F /* AvatarUrls.m in Sources */,
 				1A3E8BFE1ACDC78F001EC83E /* JCNavigationController.m in Sources */,
 				1A3E8C061ACDEC52001EC83E /* JCButton.m in Sources */,

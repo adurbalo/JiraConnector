@@ -9,6 +9,7 @@
 #import "JCLoginViewController.h"
 #import "NetworkManager.h"
 #import "JCProjectsViewController.h"
+#import "JiraConnector.h"
 
 @interface JCLoginViewController ()
 
@@ -25,9 +26,21 @@
     [super viewDidLoad];
     self.title = @"Login";
     
-#warning HARDCORE
-    self.loginTextField.text = @"admin";
-    self.passwordTextField.text = @"200589";
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.loginTextField.text = [[NetworkManager sharedManager] login];
+    self.passwordTextField.text = [[NetworkManager sharedManager] pass];
+}
+
+-(void)cancelButtonPressed:(UIBarButtonItem*)item
+{
+    [[JiraConnector sharedManager] hide];
 }
 
 #pragma mark - IBActions

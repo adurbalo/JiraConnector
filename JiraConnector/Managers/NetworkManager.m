@@ -45,11 +45,11 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     NSString *serverUrlString = self.jiraServerBaseUrlString;
 #warning HARDCODE HERE!!!
     
-#if TARGET_IPHONE_SIMULATOR
-    serverUrlString = @"http://localhost:8080";
-#else
-    serverUrlString = @"http://192.168.10.13:8080";
-#endif
+//#if TARGET_IPHONE_SIMULATOR
+//    serverUrlString = @"http://localhost:8080";
+//#else
+//    serverUrlString = @"http://192.168.10.13:8080";
+//#endif
     
     NSURL *baseURL = [NSURL URLWithString:serverUrlString];
     
@@ -60,16 +60,24 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 
 - (void)configurateAuthorizationHeader
 {
-    NSString *login = [[NSUserDefaults standardUserDefaults] objectForKey:udLoginKey];
-    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:udPasswordKey];
-    [_manager.requestSerializer setAuthorizationHeaderFieldWithUsername:login password:password];
+    [_manager.requestSerializer setAuthorizationHeaderFieldWithUsername:[self login] password:[self pass]];
 }
 
--(BOOL)isUserAuthorized
+-(NSString *)login
 {
-    NSString *login = [[NSUserDefaults standardUserDefaults] objectForKey:udLoginKey];
-    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:udPasswordKey];
-    return (login.length > 0) && (password.length > 0);
+    return [[NSUserDefaults standardUserDefaults] objectForKey:udLoginKey];
+}
+
+-(NSString *)pass
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:udPasswordKey];
+}
+
+-(void)removeCredentials
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:udLoginKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:udPasswordKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)setJiraServerBaseUrlString:(NSString *)jiraServerBaseUrlString

@@ -17,13 +17,8 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  
-    JCNavigationController *navController = [[JCNavigationController alloc] initWithRootViewController:[JCLoginViewController new]];
-    self.window.rootViewController = navController;
-//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[JCLoginViewController new]];
-    [self.window makeKeyAndVisible];
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     return YES;
 }
 

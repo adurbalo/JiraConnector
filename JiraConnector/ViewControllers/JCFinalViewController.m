@@ -7,6 +7,8 @@
 //
 
 #import "JCFinalViewController.h"
+#import "JiraConnector.h"
+#import "NetworkManager.h"
 
 @interface JCFinalViewController ()
 
@@ -20,6 +22,8 @@
 {
     [super viewDidLoad];
     [self configurateStatusLabel];
+    
+    [self.navigationItem setHidesBackButton:YES];
 }
 
 -(void)configurateStatusLabel
@@ -45,16 +49,19 @@
     NSString *baseUrl = [self.issue.selfLink.absoluteString stringByReplacingOccurrencesOfString:[self.issue.selfLink path] withString:@""];
     NSURL *browserLink = [NSURL URLWithString:[baseUrl stringByAppendingPathComponent:[NSString stringWithFormat:@"browse/%@", self.issue.key]]];
     [[UIApplication sharedApplication] openURL:browserLink];
+    
+    [[JiraConnector sharedManager] hide];
 }
 
 - (IBAction)doneButtonPressed:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[JiraConnector sharedManager] hide];
 }
 
 - (IBAction)logoutButtonPressed:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[NetworkManager sharedManager] removeCredentials];
+    [[JiraConnector sharedManager] hide];
 }
 
 @end

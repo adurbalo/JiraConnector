@@ -10,12 +10,14 @@
 #import "NetworkManager.h"
 #import "JCCreateIssueViewController.h"
 #import "UIKit+AFNetworking.h"
+#import "JiraConnector.h"
 
 @interface JCProjectsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *theTableView;
 @property (nonatomic, strong) NSArray *allProjects;
 @property (nonatomic, strong) NSArray *filtereProjects;
+@property (nonatomic, strong) Project *predefinedProject;
 
 @end
 
@@ -42,6 +44,11 @@
             [self showError:error];
         } else {
             self.allProjects = responseArray;
+            
+            NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(Project *evaluatedObject, NSDictionary *bindings) {
+                return [evaluatedObject.key isEqualToString:[[JiraConnector sharedManager] predefinedProjectKey]];
+            }];
+            self.predefinedProject = [[self.allProjects filteredArrayUsingPredicate:predicate] firstObject];
             [self.theTableView reloadData];
         }
     }];
@@ -55,8 +62,26 @@
 
 #pragma mark - Table Configuration
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return @"Predefined";
+    }
+    
+    return @"Other";
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return self.predefinedProject?1:0;
+    }
+    
     return self.filtereProjects.count;
 }
 
@@ -67,8 +92,15 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
+
+    Project *project = nil;
     
-    Project *project = self.filtereProjects[indexPath.row];
+    if (indexPath.section == 0) {
+        project = self.predefinedProject;
+    } else {
+        project = self.filtereProjects[indexPath.row];
+    }
+    
     cell.textLabel.text = project.name;
     cell.detailTextLabel.text = project.key;
    
@@ -88,7 +120,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Project *project = self.filtereProjects[indexPath.row];
+    Project *project = nil;
+    
+    if (indexPath.section == 0) {
+        project = self.predefinedProject;
+    } else {
+        project = self.filtereProjects[indexPath.row];
+    }
     
     JCCreateIssueViewController *createIssueVC = [JCCreateIssueViewController new];
     createIssueVC.project = project;
