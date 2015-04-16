@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'JiraConnector'
-  s.version  = '0.12'
+  s.version  = '0.11'
   s.license  = 'MIT'
   s.summary  = 'JiraConnector for iOS'
   s.homepage = 'https://github.com/adurbalo/JiraConnector'
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '7.0'
 
-  s.source_files = 'JiraConnector/JiraConnectorSource/*'
+  s.source_files = 'JiraConnectorSource/*'
   
   s.dependency 'AFNetworking' 
   s.dependency 'Mantle'
