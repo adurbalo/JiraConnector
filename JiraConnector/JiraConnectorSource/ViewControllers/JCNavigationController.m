@@ -26,6 +26,7 @@
 
 - (void)initialization
 {
+    [[UINavigationBar appearanceWhenContainedIn:[self class], nil] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearanceWhenContainedIn:[self class], nil] setBarTintColor:JIRA_DEFAULT_COLOR];
     [[UINavigationBar appearanceWhenContainedIn:[self class], nil] setTintColor:JC_NAVIGATION_BAR_ELEMENTS_COLOR];
     [[UINavigationBar appearanceWhenContainedIn:[self class], nil] setTitleTextAttributes:@{ NSForegroundColorAttributeName : JC_NAVIGATION_BAR_ELEMENTS_COLOR }];
