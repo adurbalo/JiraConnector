@@ -18,7 +18,7 @@
 #import "Issue.h"
 #import "Component.h"
 #import "Version.h"
-
-#import "JCContentContainer.h"
+#import "Attachment.h"
+#import "JiraAttachment.h"
 
 #endif

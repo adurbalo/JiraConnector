@@ -14,6 +14,9 @@
 		1A260FF31AA4F2B900FEBFDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A260FF21AA4F2B900FEBFDE /* Images.xcassets */; };
 		1A260FF61AA4F2B900FEBFDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A260FF41AA4F2B900FEBFDE /* LaunchScreen.xib */; };
 		1A2610021AA4F2B900FEBFDE /* JiraConnectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610011AA4F2B900FEBFDE /* JiraConnectorTests.m */; };
+		611A3F9A1AE14A8D00F8AF62 /* JiraAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 611A3F991AE14A8D00F8AF62 /* JiraAttachment.m */; };
+		611A3F9D1AE14E7700F8AF62 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 611A3F9C1AE14E7700F8AF62 /* Attachment.m */; };
+		611A3F9F1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png in Resources */ = {isa = PBXBuildFile; fileRef = 611A3F9E1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png */; };
 		6196E3D71AE013D200E74829 /* JiraConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E3D41AE013D200E74829 /* JiraConnector.m */; };
 		6196E3D81AE013D200E74829 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E3D61AE013D200E74829 /* NetworkManager.m */; };
 		6196E3F11AE013DF00E74829 /* JCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E3DB1AE013DF00E74829 /* JCBaseViewController.m */; };
@@ -36,7 +39,6 @@
 		6196E4191AE013EE00E74829 /* Fields.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E4061AE013EE00E74829 /* Fields.m */; };
 		6196E41A1AE013EE00E74829 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E4081AE013EE00E74829 /* Issue.m */; };
 		6196E41B1AE013EE00E74829 /* IssueType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E40A1AE013EE00E74829 /* IssueType.m */; };
-		6196E41C1AE013EE00E74829 /* JCContentContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E40C1AE013EE00E74829 /* JCContentContainer.m */; };
 		6196E41D1AE013EE00E74829 /* Priority.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E40F1AE013EE00E74829 /* Priority.m */; };
 		6196E41E1AE013EE00E74829 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E4111AE013EE00E74829 /* Project.m */; };
 		6196E41F1AE013EE00E74829 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E4131AE013EE00E74829 /* User.m */; };
@@ -71,6 +73,11 @@
 		1A2610001AA4F2B900FEBFDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A2610011AA4F2B900FEBFDE /* JiraConnectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiraConnectorTests.m; sourceTree = "<group>"; };
 		43298A5880ACC97D75A8C049 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		611A3F981AE14A8D00F8AF62 /* JiraAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiraAttachment.h; sourceTree = "<group>"; };
+		611A3F991AE14A8D00F8AF62 /* JiraAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiraAttachment.m; sourceTree = "<group>"; };
+		611A3F9B1AE14E7700F8AF62 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment.h; sourceTree = "<group>"; };
+		611A3F9C1AE14E7700F8AF62 /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment.m; sourceTree = "<group>"; };
+		611A3F9E1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2015-04-17 at 17.37.05.png"; sourceTree = "<group>"; };
 		6196E3D21AE013D200E74829 /* CWLSynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLSynthesizeSingleton.h; sourceTree = "<group>"; };
 		6196E3D31AE013D200E74829 /* JiraConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiraConnector.h; sourceTree = "<group>"; };
 		6196E3D41AE013D200E74829 /* JiraConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiraConnector.m; sourceTree = "<group>"; };
@@ -112,8 +119,6 @@
 		6196E4081AE013EE00E74829 /* Issue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Issue.m; sourceTree = "<group>"; };
 		6196E4091AE013EE00E74829 /* IssueType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueType.h; sourceTree = "<group>"; };
 		6196E40A1AE013EE00E74829 /* IssueType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueType.m; sourceTree = "<group>"; };
-		6196E40B1AE013EE00E74829 /* JCContentContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCContentContainer.h; sourceTree = "<group>"; };
-		6196E40C1AE013EE00E74829 /* JCContentContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCContentContainer.m; sourceTree = "<group>"; };
 		6196E40D1AE013EE00E74829 /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		6196E40E1AE013EE00E74829 /* Priority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Priority.h; sourceTree = "<group>"; };
 		6196E40F1AE013EE00E74829 /* Priority.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Priority.m; sourceTree = "<group>"; };
@@ -189,6 +194,7 @@
 		1A260FE51AA4F2B900FEBFDE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				611A3F9E1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png */,
 				1A260FE61AA4F2B900FEBFDE /* Info.plist */,
 				1A260FE71AA4F2B900FEBFDE /* main.m */,
 			);
@@ -257,8 +263,6 @@
 				6196E4081AE013EE00E74829 /* Issue.m */,
 				6196E4091AE013EE00E74829 /* IssueType.h */,
 				6196E40A1AE013EE00E74829 /* IssueType.m */,
-				6196E40B1AE013EE00E74829 /* JCContentContainer.h */,
-				6196E40C1AE013EE00E74829 /* JCContentContainer.m */,
 				6196E40D1AE013EE00E74829 /* Models.h */,
 				6196E40E1AE013EE00E74829 /* Priority.h */,
 				6196E40F1AE013EE00E74829 /* Priority.m */,
@@ -268,6 +272,10 @@
 				6196E4131AE013EE00E74829 /* User.m */,
 				6196E4141AE013EE00E74829 /* Version.h */,
 				6196E4151AE013EE00E74829 /* Version.m */,
+				611A3F9B1AE14E7700F8AF62 /* Attachment.h */,
+				611A3F9C1AE14E7700F8AF62 /* Attachment.m */,
+				611A3F981AE14A8D00F8AF62 /* JiraAttachment.h */,
+				611A3F991AE14A8D00F8AF62 /* JiraAttachment.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -409,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6196E3F51AE013DF00E74829 /* JCFinalViewController.xib in Resources */,
+				611A3F9F1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png in Resources */,
 				1A260FF11AA4F2B900FEBFDE /* Main.storyboard in Resources */,
 				6196E3FC1AE013DF00E74829 /* JCSelectItemViewController.xib in Resources */,
 				6196E3FA1AE013DF00E74829 /* JCProjectsViewController.xib in Resources */,
@@ -469,8 +478,8 @@
 			files = (
 				6196E3F41AE013DF00E74829 /* JCFinalViewController.m in Sources */,
 				6196E4191AE013EE00E74829 /* Fields.m in Sources */,
+				611A3F9A1AE14A8D00F8AF62 /* JiraAttachment.m in Sources */,
 				6196E4201AE013EE00E74829 /* Version.m in Sources */,
-				6196E41C1AE013EE00E74829 /* JCContentContainer.m in Sources */,
 				6196E4261AE013F900E74829 /* JCTextField.m in Sources */,
 				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
 				6196E4161AE013EE00E74829 /* AvatarUrls.m in Sources */,
@@ -490,6 +499,7 @@
 				6196E3FB1AE013DF00E74829 /* JCSelectItemViewController.m in Sources */,
 				6196E3F91AE013DF00E74829 /* JCProjectsViewController.m in Sources */,
 				6196E3F21AE013DF00E74829 /* JCCreateIssueViewController.m in Sources */,
+				611A3F9D1AE14E7700F8AF62 /* Attachment.m in Sources */,
 				6196E3D81AE013D200E74829 /* NetworkManager.m in Sources */,
 				6196E3F81AE013DF00E74829 /* JCNavigationController.m in Sources */,
 				6196E3D71AE013D200E74829 /* JiraConnector.m in Sources */,

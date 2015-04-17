@@ -43,16 +43,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 - (void)setupRequestOperationManager
 {
     NSString *serverUrlString = self.jiraServerBaseUrlString;
-#warning HARDCODE HERE!!!
-    
-//#if TARGET_IPHONE_SIMULATOR
-//    serverUrlString = @"http://localhost:8080";
-//#else
-//    serverUrlString = @"http://192.168.10.13:8080";
-//#endif
-    
     NSURL *baseURL = [NSURL URLWithString:serverUrlString];
-    
     _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
     _manager.requestSerializer = [AFJSONRequestSerializer serializer];
     _manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -155,7 +146,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 
 {
     void(^successBlock)(AFHTTPRequestOperation*, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        //NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
         //NSLog(@"\n\n <<<<<<<<<<< Success Response: \n%@\n%@\n\n", operation.response, responseString);
         [self handleResponse:responseObject outputObjectClass:(Class)outputObjectClass forURLRequest:operation.request callBlock:responseBlock];
     };
@@ -316,6 +307,76 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                   HTTPHeaderParameters:nil
                      outputObjectClass:[Component class]
                          responseBlock:completionBlock];
+}
+
+//Attachaments
+
+
+/*
+ AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+ 
+ MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:controller.view animated:YES];
+ hud.removeFromSuperViewOnHide = YES;
+ hud.labelText = @"Creating issue...";
+ 
+ [manager POST:[self urlStringForCreateIssue] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+ 
+ [formData appendPartWithFormData:[issue issueData] name:@"issue"];
+ 
+ for (NSInteger index = 0; index < issue.issueAttachments.count; index++) {
+ MWJiraIssueAttachment *attachment = issue.issueAttachments[index];
+ [formData appendPartWithFileData:attachment.attachmentData name:[NSString stringWithFormat:@"attachment%d", index] fileName:attachment.fileName mimeType:attachment.mimeType];
+ }
+ 
+ } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+ 
+ [hud hide:YES];
+ 
+ if ([responseObject respondsToSelector:@selector(objectForKey:)]) {
+ NSString *issueKey = [responseObject objectForKey:@"key"];
+ NSString *issueSummary = [responseObject objectForKey:@"summary"];
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Issue Created"] message:[NSString stringWithFormat:@"%@ %@", issueKey, issueSummary] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+ [alert show];
+ }
+ [self hideJIVC];
+ 
+ } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+ DDLogError(@"%@", error);
+ hud.activityIndicatorColor = [UIColor redColor];
+ hud.labelColor = [UIColor redColor];
+ hud.labelText = [error localizedDescription];
+ [hud hide:YES afterDelay:5];
+ }];
+
+*/
+
+-(NSOperation *)addAttachments:(NSArray *)attachments toIssueWithKey:(NSString *)issueKey completionBlock:(ResponseWithArrayBlock)completionBlock
+{
+    [self configurateAuthorizationHeader];
+    
+    [_manager.requestSerializer setValue:@"nocheck" forHTTPHeaderField:@"X-Atlassian-Token"];
+    
+    return [_manager POST:[NSString stringWithFormat:@"/rest/api/2/issue/%@/attachments", issueKey] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        for (JiraAttachment *ja in attachments) {
+            [formData appendPartWithFileData:ja.attachmentData name:@"file" fileName:ja.fileName mimeType:ja.mimeType];
+        }
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        _manager.requestSerializer remove
+        
+        NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"\n\n <<<<<<<<<<< Success Response: \n%@\n%@\n\n", operation.response, responseString);
+        [self handleResponse:responseObject outputObjectClass:[Attachment class] forURLRequest:operation.request callBlock:completionBlock];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"\n\n <<<<<<<<<<< Success Response: \n%@\n%@\n\n", operation.response, responseString);
+        
+        [self handleError:error forRequestOperation:operation callBlock:completionBlock];
+    }];
 }
 
 @end

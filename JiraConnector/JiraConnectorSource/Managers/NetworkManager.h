@@ -40,5 +40,7 @@ CWL_DECLARE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 -(NSOperation *)versionsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock;
 /*[Component]*/
 -(NSOperation *)componentsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock;
+/*[Attachment]*/
+-(NSOperation *)addAttachments:(NSArray*)attachments toIssueWithKey:(NSString *)issueKey completionBlock:(ResponseWithArrayBlock)completionBlock;
 
 @end
