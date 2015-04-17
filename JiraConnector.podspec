@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'JiraConnector'
-  s.version  = '0.2'
+  s.version  = '1.0.0'
   s.license  = 'MIT'
   s.summary  = 'JiraConnector for iOS'
   s.homepage = 'https://github.com/adurbalo/JiraConnector'
