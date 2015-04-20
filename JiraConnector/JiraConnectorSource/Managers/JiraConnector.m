@@ -45,7 +45,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
         
         self.jiraConnectorWindow = [[UIWindow alloc] init];
         self.jiraConnectorWindow.frame = [[UIScreen mainScreen] bounds];
-        self.jiraConnectorWindow.windowLevel = UIWindowLevelAlert+1;
+        self.jiraConnectorWindow.windowLevel = UIWindowLevelNormal + UIWindowLevelAlert + UIWindowLevelStatusBar;
         self.jiraConnectorWindow.rootViewController = [[UIViewController alloc] init];
         
         JCLoginViewController *loginVC = [JCLoginViewController new];
@@ -106,8 +106,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
     
     self.active = YES;
     
-    [self configurateAttachments];
-    
     CGRect rootWindowVCRect = self.jiraConnectorWindow.rootViewController.view.bounds;
     
     CGFloat offset = 20.f;
@@ -128,12 +126,17 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
         self.navigationController.view.frame = frame;
-        self.jiraConnectorWindow.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+        self.jiraConnectorWindow.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     } completion:^(BOOL finished) {
+        
         if (completionBlock) {
             completionBlock();
         }
+        
+        [self configurateAttachments];
     }];
+    
+    
 }
 
 -(void)hideWithCompletionBlock:(void(^)())completionBlock
@@ -166,28 +169,21 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
 
 -(UIImage*)screenCaptureImage
 {
-    CGSize imageSize = CGSizeZero;
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if (UIInterfaceOrientationIsPortrait(orientation)) imageSize = [UIScreen mainScreen].bounds.size;
-    else imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    CGSize imageSize = [UIScreen mainScreen].bounds.size;
     
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
+        
+        if (self.jiraConnectorWindow == window) {
+            continue;
+        }
+        
         CGContextSaveGState(context);
         CGContextTranslateCTM(context, window.center.x, window.center.y);
         CGContextConcatCTM(context, window.transform);
         CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
-        if (orientation == UIInterfaceOrientationLandscapeLeft) {
-            CGContextRotateCTM(context, M_PI_2);
-            CGContextTranslateCTM(context, 0, -imageSize.width);
-        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-            CGContextRotateCTM(context, -M_PI_2);
-            CGContextTranslateCTM(context, -imageSize.height, 0);
-        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-            CGContextRotateCTM(context, M_PI);
-            CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
-        }
+
         if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
             [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
         } else {
@@ -197,6 +193,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
     }
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+  
     return image;
 }
 
