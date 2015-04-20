@@ -21,13 +21,11 @@
     
     [[JiraConnector sharedManager] configurateWithBaseURL:@"http://localhost:8080" andPredefinedProjectKey:@"MT"];
     [[JiraConnector sharedManager] setEnableDetectMotion:YES];
-//    [[JiraConnector sharedManager] setEnableScreenCapturer:NO];
+    [[JiraConnector sharedManager] setEnableScreenCapturer:YES];
     [[JiraConnector sharedManager] setCustomAttachmentsBlock:^ NSArray* (){
         
-        return nil;
-        
         JiraAttachment *jiraAttachment = [JiraAttachment new];
-        jiraAttachment.fileName = @"Symbols.log";
+        jiraAttachment.fileName = @"callStackSymbols.txt";
         jiraAttachment.mimeType = kAttachmentMimeTypePlaneTxt;
         jiraAttachment.attachmentData = [[[NSThread callStackSymbols] componentsJoinedByString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding];
         
