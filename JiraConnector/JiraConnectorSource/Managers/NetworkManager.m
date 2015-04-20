@@ -106,9 +106,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     if (responseString) {
         error = [[NSError alloc] initWithDomain:@"JiraConnector" code:-1 userInfo:@{NSLocalizedDescriptionKey : responseString}];
     }
-    
-    //NSLog(@" <<<<<<<<<<< Failure Response: \n%@\n%@", error, operation.request);
-    
     if (responseBlock) {
         responseBlock(nil, error);
     }
@@ -146,12 +143,10 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 
 {
     void(^successBlock)(AFHTTPRequestOperation*, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        //NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-        //NSLog(@"\n\n <<<<<<<<<<< Success Response: \n%@\n%@\n\n", operation.response, responseString);
         [self handleResponse:responseObject outputObjectClass:(Class)outputObjectClass forURLRequest:operation.request callBlock:responseBlock];
     };
     void(^failureBlock)(AFHTTPRequestOperation*, NSError*) = ^(AFHTTPRequestOperation *operation, NSError *error) {
-       [self handleError:error forRequestOperation:operation callBlock:responseBlock];
+        [self handleError:error forRequestOperation:operation callBlock:responseBlock];
     };
     
     NSString *requestMethodString = nil;
@@ -183,17 +178,12 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                                                                                       parameters:parameters
                                                                                            error:nil];
     
-    
     [HTTPHeaderParameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [request setValue:obj forHTTPHeaderField:key];
     }];
     
     AFHTTPRequestOperation *operation = [_manager HTTPRequestOperationWithRequest:request success:successBlock failure:failureBlock];
-    
     [_manager.operationQueue addOperation:operation];
-    
-    //NSLog(@"\n\n >>>>>>>>>>>>>> Request: \n%@ %@\n\n", operation.request, [[NSString alloc] initWithData:operation.request.HTTPBody encoding:NSUTF8StringEncoding]);
-    
     return operation;
 }
 
@@ -229,7 +219,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                     outputObjectClass:[Project class]
                          responseBlock:completionBlock];
 }
-
 
 #pragma mark - Issue Prepearing
 
@@ -309,52 +298,11 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                          responseBlock:completionBlock];
 }
 
-//Attachaments
-
-
-/*
- AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
- 
- MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:controller.view animated:YES];
- hud.removeFromSuperViewOnHide = YES;
- hud.labelText = @"Creating issue...";
- 
- [manager POST:[self urlStringForCreateIssue] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
- 
- [formData appendPartWithFormData:[issue issueData] name:@"issue"];
- 
- for (NSInteger index = 0; index < issue.issueAttachments.count; index++) {
- MWJiraIssueAttachment *attachment = issue.issueAttachments[index];
- [formData appendPartWithFileData:attachment.attachmentData name:[NSString stringWithFormat:@"attachment%d", index] fileName:attachment.fileName mimeType:attachment.mimeType];
- }
- 
- } success:^(AFHTTPRequestOperation *operation, id responseObject) {
- 
- [hud hide:YES];
- 
- if ([responseObject respondsToSelector:@selector(objectForKey:)]) {
- NSString *issueKey = [responseObject objectForKey:@"key"];
- NSString *issueSummary = [responseObject objectForKey:@"summary"];
- UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Issue Created"] message:[NSString stringWithFormat:@"%@ %@", issueKey, issueSummary] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
- [alert show];
- }
- [self hideJIVC];
- 
- } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
- DDLogError(@"%@", error);
- hud.activityIndicatorColor = [UIColor redColor];
- hud.labelColor = [UIColor redColor];
- hud.labelText = [error localizedDescription];
- [hud hide:YES afterDelay:5];
- }];
-
-*/
-
 -(NSOperation *)addAttachments:(NSArray *)attachments toIssueWithKey:(NSString *)issueKey completionBlock:(ResponseWithArrayBlock)completionBlock
 {
     [self configurateAuthorizationHeader];
-    
-    [_manager.requestSerializer setValue:@"nocheck" forHTTPHeaderField:@"X-Atlassian-Token"];
+    NSString *xAtlassianTokenKey = @"X-Atlassian-Token";
+    [_manager.requestSerializer setValue:@"nocheck" forHTTPHeaderField:xAtlassianTokenKey];
     
     return [_manager POST:[NSString stringWithFormat:@"/rest/api/2/issue/%@/attachments", issueKey] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
@@ -364,18 +312,14 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        _manager.requestSerializer remove
-        
-        NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-        NSLog(@"\n\n <<<<<<<<<<< Success Response: \n%@\n%@\n\n", operation.response, responseString);
+        [_manager.requestSerializer setValue:nil forHTTPHeaderField:xAtlassianTokenKey];
         [self handleResponse:responseObject outputObjectClass:[Attachment class] forURLRequest:operation.request callBlock:completionBlock];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-        NSLog(@"\n\n <<<<<<<<<<< Success Response: \n%@\n%@\n\n", operation.response, responseString);
-        
+
+        [_manager.requestSerializer setValue:nil forHTTPHeaderField:xAtlassianTokenKey];
         [self handleError:error forRequestOperation:operation callBlock:completionBlock];
+    
     }];
 }
 

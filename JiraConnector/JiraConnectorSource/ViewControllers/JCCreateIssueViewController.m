@@ -12,7 +12,9 @@
 #import "JCButton.h"
 #import "JCSelectItemViewController.h"
 #import "JCTextContainerViewController.h"
+#import "JCAttachmentsViewController.h"
 #import "JCFinalViewController.h"
+#import "JiraConnector.h"
 
 @interface JCCreateIssueViewController () <JCRightSideControllerDelegate>
 
@@ -28,11 +30,9 @@
 @property (weak, nonatomic) IBOutlet JCButton *componentButton;
 @property (weak, nonatomic) IBOutlet JCButton *environmentButton;
 
-
 @property (weak, nonatomic) IBOutlet UIView *rightSideBaseView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightSideBaseViewLeftConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightSideBaseViewWidthConstraint;
-
 
 @property (nonatomic, strong) JCSelectItemViewController *selectItemVC;
 @property (nonatomic, strong) JCTextContainerViewController *textContainerVC;
@@ -77,10 +77,26 @@
     self.environmentButton.titleText = self.issue.fields.environment;
 }
 
--(void)showFinalVCWithIssue:(Issue*)issue
+-(void)handleCreatedIssue
+{
+    if ([[[JiraConnector sharedManager] attachments] count] > 0) {
+        [self showAttachmentsVC];
+    } else {
+        [self showFinalVC];
+    }
+}
+
+-(void)showAttachmentsVC
+{
+    JCAttachmentsViewController *attachmentsVC = [JCAttachmentsViewController new];
+    attachmentsVC.issue = self.issue;
+    [self.navigationController pushViewController:attachmentsVC animated:YES];
+}
+
+-(void)showFinalVC
 {
     JCFinalViewController *finalVC = [JCFinalViewController new];
-    finalVC.issue = issue;
+    finalVC.issue = self.issue;
     [self.navigationController pushViewController:finalVC animated:YES];
 }
 
@@ -359,19 +375,10 @@
     self.textContainerVC.targetValueKeyPath = @keypath(Issue.new, fields.environment);
     [self.textContainerVC updateContent];
     [self showMenuWithController:self.textContainerVC];
-
 }
 
 - (IBAction)createIssue:(id)sender
 {
-    //    self.issue.fields.environment = self.environmentTextField.text;
-    
-    //    JCContentContainer *container = [JCContentContainer new];
-    //    container.name = @"att1";
-    //    container.fileName = @"filename";
-    //    container.mimeType = @"image/png";
-    //    container.data = UIImagePNGRepresentation([self screenshot]);
-    
     [self pushActivityIndicator];
     
     [[NetworkManager sharedManager] createIssue:self.issue completionBlock:^(Issue *responseObject, NSError *error) {
@@ -381,56 +388,12 @@
         if (error) {
             [self showError:error];
         } else {
-            
             self.issue.idValue = responseObject.idValue;
             self.issue.key = responseObject.key;
             self.issue.selfLink = responseObject.selfLink;
-    
-            [self showFinalVCWithIssue:self.issue];
+            [self handleCreatedIssue];
         }
     }];
-}
-
-
-#pragma mark - Internal
-
-- (UIImage*)screenshot
-{
-    BOOL withStatusBar = YES;
-    
-    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
-
-    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0);
-
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    // Iterate over every window from back to front
-    for (UIWindow *window in [[UIApplication sharedApplication] windows])
-    {
-        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
-        {
-            // -renderInContext: renders in the coordinate space of the layer,
-            // so we must first apply the layer's geometry to the graphics context
-            CGContextSaveGState(context);
-            // Center the context around the window's anchor point
-            CGContextTranslateCTM(context, [window center].x, [window center].y);
-            // Apply the window's transform about the anchor point
-            CGContextConcatCTM(context, [window transform]);
-            // Offset by the portion of the bounds left of and above the anchor point
-            CGContextTranslateCTM(context,
-                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
-                                  -[window bounds].size.height * [[window layer] anchorPoint].y);
-            // Render the layer hierarchy to the current context
-            [[window layer] renderInContext:context];
-            // Restore the context
-            CGContextRestoreGState(context);
-            if (!withStatusBar)
-                CGContextClearRect(context, CGRectMake(0, 0, window.bounds.size.width, 20));
-        }
-    }
-    // Retrieve the screenshot image
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
 }
 
 #pragma mark - Right Side Menu
@@ -474,9 +437,7 @@
         self.rightSideBaseViewLeftConstraint.constant = - CGRectGetWidth(self.view.frame)*0.9;
         
         self.theScrollView.alpha = 0.5f;
-        
         [self.view layoutSubviews];
-    
     }];
 }
 
@@ -487,18 +448,14 @@
     [UIView animateWithDuration:jcAnimationDuration animations:^{
     
         self.rightSideBaseViewLeftConstraint.constant = 0.f;
-    
         self.theScrollView.alpha = 1.f;
-        
         [self.view layoutSubviews];
         
     } completion:^(BOOL finished) {
         
         self.theScrollView.userInteractionEnabled = YES;
-        
         self.selectItemVC.view.hidden = YES;
         self.textContainerVC.view.hidden = YES;
-    
     }];
     
     [self.view endEditing:YES];
@@ -508,7 +465,6 @@
 
 -(void)rightSideControllerDidSelectValue:(id)value forKeyPath:(NSString*)keypath
 {
-#warning CHecking???
     [self.issue setValue:value forKeyPath:keypath];
     [self updateUIContent];
     [self hideMenu];
@@ -516,7 +472,6 @@
 
 -(void)rightSideControllerRemoveValueForKeyPath:(NSString*)keypath
 {
-#warning CHecking???
     [self.issue setValue:nil forKeyPath:keypath];
     [self hideMenu];
     [self updateUIContent];

@@ -26,12 +26,11 @@
 
 @property (nonatomic) BOOL active;
 
-
+@property (atomic, strong) NSMutableArray *currentAttachments;
 
 @end
 
 #define ANIMATION_DURATION 0.15
-#define VOLUME_BUTTON_PRESSED_NOTIFICATION @"AVSystemController_SystemVolumeDidChangeNotification"
 
 @implementation JiraConnector
 
@@ -53,7 +52,9 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
         self.navigationController = [[JCNavigationController alloc] initWithRootViewController:loginVC];
         self.navigationController.view.autoresizingMask = UIViewAutoresizingNone;
         
-        self.motionSensivity = 10;
+        self.motionSensitivity = 10;
+        
+        self.currentAttachments = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -80,7 +81,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
         [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue]
                                                 withHandler:^(CMDeviceMotion *data, NSError *error) {
                                                     
-                                                    if ( (ABS(data.rotationRate.x) > weakSelf.motionSensivity) || (ABS(data.rotationRate.y) > weakSelf.motionSensivity) || (ABS(data.rotationRate.z) > weakSelf.motionSensivity) ) {
+                                                    if ( (ABS(data.rotationRate.x) > weakSelf.motionSensitivity) || (ABS(data.rotationRate.y) > weakSelf.motionSensitivity) || (ABS(data.rotationRate.z) > weakSelf.motionSensitivity) ) {
                                                         
                                                         [[JiraConnector sharedManager] showWithCompletionBlock:nil];
                                                     }
@@ -90,27 +91,9 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
     }
 }
 
--(void)setEnableDetectVolumeChanging:(BOOL)enableDetectVolumeChanging
+-(NSArray *)attachments
 {
-//TODO: volume buttons pressed    
-    if (enableDetectVolumeChanging) {
-        
-        [[AVAudioSession sharedInstance] setActive:YES error:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:)
-                                                     name:VOLUME_BUTTON_PRESSED_NOTIFICATION
-                                                   object:nil];
-    } else {
-
-        [[AVAudioSession sharedInstance] setActive:NO error:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:VOLUME_BUTTON_PRESSED_NOTIFICATION
-                                                      object:nil];
-    }
-}
-
--(void)volumeChanged:(NSNotification*)notification
-{
-    [self showWithCompletionBlock:nil];
+    return self.currentAttachments;
 }
 
 #pragma mark - Public
@@ -122,6 +105,8 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
     }
     
     self.active = YES;
+    
+    [self configurateAttachments];
     
     CGRect rootWindowVCRect = self.jiraConnectorWindow.rootViewController.view.bounds;
     
@@ -175,6 +160,81 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
             completionBlock();
         }
     }];
+}
+
+#pragma mark --- Attachments
+
+-(UIImage*)screenCaptureImage
+{
+    CGSize imageSize = CGSizeZero;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation)) imageSize = [UIScreen mainScreen].bounds.size;
+    else imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, window.center.x, window.center.y);
+        CGContextConcatCTM(context, window.transform);
+        CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
+        if (orientation == UIInterfaceOrientationLandscapeLeft) {
+            CGContextRotateCTM(context, M_PI_2);
+            CGContextTranslateCTM(context, 0, -imageSize.width);
+        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+            CGContextRotateCTM(context, -M_PI_2);
+            CGContextTranslateCTM(context, -imageSize.height, 0);
+        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            CGContextRotateCTM(context, M_PI);
+            CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
+        }
+        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+            [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
+        } else {
+            [window.layer renderInContext:context];
+        }
+        CGContextRestoreGState(context);
+    }
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+-(NSString*)screenCaptureFileName
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd' at 'HH:mm:ss";
+    return [NSString stringWithFormat:@"Screen Shot %@.png", [dateFormatter stringFromDate:[NSDate date]]];
+}
+
+-(JiraAttachment*)screenCaptureAttachment
+{
+    JiraAttachment *attachment = [JiraAttachment new];
+    attachment.fileName = [self screenCaptureFileName];
+    attachment.mimeType = kAttachmentMimeTypeImagePng;
+    attachment.attachmentData = UIImagePNGRepresentation([self screenCaptureImage]);
+    return attachment;
+}
+
+-(void)configurateAttachments
+{
+    [self.currentAttachments removeAllObjects];
+    
+    if (self.enableScreenCapturer) {
+        [self.currentAttachments addObject:[self screenCaptureAttachment]];
+    }
+    
+    if (self.customAttachmentsBlock) {
+        NSArray *customAttachments = self.customAttachmentsBlock();
+        for (NSInteger index = 0; index < customAttachments.count; index++) {
+            JiraAttachment *attachment = customAttachments[index];
+            if ([attachment isKindOfClass:[JiraAttachment class]]) {
+                [self.currentAttachments addObject:attachment];
+            } else {
+                NSLog(@"Unexpected class in Custom Attachments. Expect [JiraAttachment class], but receive %@", attachment);
+            }
+        }
+    }
 }
 
 @end

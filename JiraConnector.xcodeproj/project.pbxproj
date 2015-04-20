@@ -16,7 +16,6 @@
 		1A2610021AA4F2B900FEBFDE /* JiraConnectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2610011AA4F2B900FEBFDE /* JiraConnectorTests.m */; };
 		611A3F9A1AE14A8D00F8AF62 /* JiraAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 611A3F991AE14A8D00F8AF62 /* JiraAttachment.m */; };
 		611A3F9D1AE14E7700F8AF62 /* Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 611A3F9C1AE14E7700F8AF62 /* Attachment.m */; };
-		611A3F9F1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png in Resources */ = {isa = PBXBuildFile; fileRef = 611A3F9E1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png */; };
 		6196E3D71AE013D200E74829 /* JiraConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E3D41AE013D200E74829 /* JiraConnector.m */; };
 		6196E3D81AE013D200E74829 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E3D61AE013D200E74829 /* NetworkManager.m */; };
 		6196E3F11AE013DF00E74829 /* JCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E3DB1AE013DF00E74829 /* JCBaseViewController.m */; };
@@ -45,6 +44,8 @@
 		6196E4201AE013EE00E74829 /* Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E4151AE013EE00E74829 /* Version.m */; };
 		6196E4251AE013F900E74829 /* JCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E4221AE013F900E74829 /* JCButton.m */; };
 		6196E4261AE013F900E74829 /* JCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6196E4241AE013F900E74829 /* JCTextField.m */; };
+		61DCE8891AE52245009AC044 /* JCAttachmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DCE8871AE52245009AC044 /* JCAttachmentsViewController.m */; };
+		61DCE88A1AE52245009AC044 /* JCAttachmentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61DCE8881AE52245009AC044 /* JCAttachmentsViewController.xib */; };
 		B163058410470B8EA72CFB19 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43298A5880ACC97D75A8C049 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +78,6 @@
 		611A3F991AE14A8D00F8AF62 /* JiraAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiraAttachment.m; sourceTree = "<group>"; };
 		611A3F9B1AE14E7700F8AF62 /* Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attachment.h; sourceTree = "<group>"; };
 		611A3F9C1AE14E7700F8AF62 /* Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attachment.m; sourceTree = "<group>"; };
-		611A3F9E1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2015-04-17 at 17.37.05.png"; sourceTree = "<group>"; };
 		6196E3D21AE013D200E74829 /* CWLSynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLSynthesizeSingleton.h; sourceTree = "<group>"; };
 		6196E3D31AE013D200E74829 /* JiraConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiraConnector.h; sourceTree = "<group>"; };
 		6196E3D41AE013D200E74829 /* JiraConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiraConnector.m; sourceTree = "<group>"; };
@@ -132,6 +132,9 @@
 		6196E4221AE013F900E74829 /* JCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCButton.m; sourceTree = "<group>"; };
 		6196E4231AE013F900E74829 /* JCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTextField.h; sourceTree = "<group>"; };
 		6196E4241AE013F900E74829 /* JCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTextField.m; sourceTree = "<group>"; };
+		61DCE8861AE52245009AC044 /* JCAttachmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCAttachmentsViewController.h; sourceTree = "<group>"; };
+		61DCE8871AE52245009AC044 /* JCAttachmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCAttachmentsViewController.m; sourceTree = "<group>"; };
+		61DCE8881AE52245009AC044 /* JCAttachmentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCAttachmentsViewController.xib; sourceTree = "<group>"; };
 		B8CFA4860989B0D4091B6DDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA96EE0615B8BB876A6CD957 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,7 +197,6 @@
 		1A260FE51AA4F2B900FEBFDE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				611A3F9E1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png */,
 				1A260FE61AA4F2B900FEBFDE /* Info.plist */,
 				1A260FE71AA4F2B900FEBFDE /* main.m */,
 			);
@@ -306,6 +308,9 @@
 				6196E3ED1AE013DF00E74829 /* JCTextContainerViewController.h */,
 				6196E3EE1AE013DF00E74829 /* JCTextContainerViewController.m */,
 				6196E3EF1AE013DF00E74829 /* JCTextContainerViewController.xib */,
+				61DCE8861AE52245009AC044 /* JCAttachmentsViewController.h */,
+				61DCE8871AE52245009AC044 /* JCAttachmentsViewController.m */,
+				61DCE8881AE52245009AC044 /* JCAttachmentsViewController.xib */,
 				6196E3F01AE013DF00E74829 /* Protocols.h */,
 			);
 			path = ViewControllers;
@@ -417,7 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6196E3F51AE013DF00E74829 /* JCFinalViewController.xib in Resources */,
-				611A3F9F1AE1523600F8AF62 /* Screen Shot 2015-04-17 at 17.37.05.png in Resources */,
+				61DCE88A1AE52245009AC044 /* JCAttachmentsViewController.xib in Resources */,
 				1A260FF11AA4F2B900FEBFDE /* Main.storyboard in Resources */,
 				6196E3FC1AE013DF00E74829 /* JCSelectItemViewController.xib in Resources */,
 				6196E3FA1AE013DF00E74829 /* JCProjectsViewController.xib in Resources */,
@@ -484,6 +489,7 @@
 				1A260FEE1AA4F2B900FEBFDE /* ViewController.m in Sources */,
 				6196E4161AE013EE00E74829 /* AvatarUrls.m in Sources */,
 				6196E4171AE013EE00E74829 /* BaseModel.m in Sources */,
+				61DCE8891AE52245009AC044 /* JCAttachmentsViewController.m in Sources */,
 				1A260FEB1AA4F2B900FEBFDE /* AppDelegate.m in Sources */,
 				6196E41D1AE013EE00E74829 /* Priority.m in Sources */,
 				6196E3F61AE013DF00E74829 /* JCLoginViewController.m in Sources */,

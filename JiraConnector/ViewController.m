@@ -19,8 +19,20 @@
 {
     [super viewDidLoad];
     
-    [[JiraConnector sharedManager] configurateWithBaseURL:@"https://menswearhouse.atlassian.net/" andPredefinedProjectKey:@"TUXMOBILE"];
+    [[JiraConnector sharedManager] configurateWithBaseURL:@"http://localhost:8080" andPredefinedProjectKey:@"MT"];
     [[JiraConnector sharedManager] setEnableDetectMotion:YES];
+//    [[JiraConnector sharedManager] setEnableScreenCapturer:NO];
+    [[JiraConnector sharedManager] setCustomAttachmentsBlock:^ NSArray* (){
+        
+        return nil;
+        
+        JiraAttachment *jiraAttachment = [JiraAttachment new];
+        jiraAttachment.fileName = @"Symbols.log";
+        jiraAttachment.mimeType = kAttachmentMimeTypePlaneTxt;
+        jiraAttachment.attachmentData = [[[NSThread callStackSymbols] componentsJoinedByString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        return @[jiraAttachment];
+    }];
 }
 
 #pragma mark -

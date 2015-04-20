@@ -11,8 +11,6 @@
 
 @interface Issue : BaseModel
 
-#warning - Attachment model required
-
 @property(nonatomic, strong) NSString *expand;
 @property(nonatomic, strong) NSString *idValue;
 @property(nonatomic, strong) NSURL *selfLink;

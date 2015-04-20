@@ -13,8 +13,19 @@ static NSString * const kAttachmentMimeTypePlaneTxt = @"plane/txt";
 
 @interface JiraAttachment : NSObject
 
+/**
+ Attachment file name, with file extension, for example ConsoleLogs.txt
+ */
 @property (nonatomic, strong) NSString *fileName;
+
+/**
+ Attachment mime type, use kAttachmentMimeTypeImagePng or kAttachmentMimeTypePlaneTxt constants, or specify some custom type if you need
+ */
 @property (nonatomic, strong) NSString *mimeType;
+
+/**
+ Attachment data
+ */
 @property (nonatomic, strong) NSData *attachmentData;
 
 @end

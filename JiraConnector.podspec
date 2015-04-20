@@ -1,8 +1,11 @@
 Pod::Spec.new do |s|
   s.name     = 'JiraConnector'
-  s.version  = '1.0.0'
+  s.version  = '1.0.1'
   s.license  = 'MIT'
   s.summary  = 'JiraConnector for iOS'
+  s.description = <<-DESC
+  					Integrate JiraConnector in your project and give ability to testers create JIRA issues from you app just by shaking device.
+  					DESC
   s.homepage = 'https://github.com/adurbalo/JiraConnector'
   s.authors  = 'Andrey Durbalo'
   s.source   = { :git => 'https://github.com/adurbalo/JiraConnector.git', :tag => s.version, :submodules => true }
