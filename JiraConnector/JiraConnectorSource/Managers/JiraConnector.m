@@ -165,38 +165,30 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
 
 #pragma mark --- Attachments
 
--(UIImage*)screenCaptureImageWithStatusBar:(BOOL)showStatusBar
+-(UIImage*)screenCaptureImage
 {
     UIImage *image = nil;
     
     UIGraphicsBeginImageContextWithOptions( [[UIScreen mainScreen] bounds].size, NO, 0);
     
-    if (showStatusBar) {
-    
-        UIView *screenshotView = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:NO];
-        [screenshotView drawViewHierarchyInRect:screenshotView.bounds afterScreenUpdates:YES];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
         
-    } else {
-        
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
-            
-            if (self.jiraConnectorWindow == window) {
-                continue;
-            }
-            
-            CGContextSaveGState(context);
-            CGContextTranslateCTM(context, window.center.x, window.center.y);
-            CGContextConcatCTM(context, window.transform);
-            CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
-            
-            if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-                [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
-            } else {
-                [window.layer renderInContext:context];
-            }
-            CGContextRestoreGState(context);
+        if (self.jiraConnectorWindow == window) {
+            continue;
         }
+        
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, window.center.x, window.center.y);
+        CGContextConcatCTM(context, window.transform);
+        CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
+        
+        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+            [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
+        } else {
+            [window.layer renderInContext:context];
+        }
+        CGContextRestoreGState(context);
     }
     
     image = UIGraphicsGetImageFromCurrentImageContext();
@@ -216,7 +208,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
     JiraAttachment *attachment = [JiraAttachment new];
     attachment.fileName = [self screenCaptureFileName];
     attachment.mimeType = kAttachmentMimeTypeImagePng;
-    attachment.attachmentData = UIImagePNGRepresentation([self screenCaptureImageWithStatusBar:YES]);
+    attachment.attachmentData = UIImagePNGRepresentation([self screenCaptureImage]);
     return attachment;
 }
 
