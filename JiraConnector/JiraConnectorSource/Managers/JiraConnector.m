@@ -132,9 +132,9 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
         if (completionBlock) {
             completionBlock();
         }
+        
+        [self configurateAttachments];
     }];
-    
-    [self configurateAttachments];
 }
 
 -(void)hideWithCompletionBlock:(void(^)())completionBlock
