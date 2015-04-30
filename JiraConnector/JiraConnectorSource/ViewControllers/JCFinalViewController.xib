@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JCFinalViewController">
@@ -17,8 +17,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T11-Jo-4Mw">
-                    <rect key="frame" x="35" y="199" width="250" height="40"/>
+                    <rect key="frame" x="35" y="264" width="250" height="40"/>
                     <color key="backgroundColor" red="0.23137254900000001" green="0.45098039220000002" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="2l8-hZ-UHs"/>
+                        <constraint firstAttribute="height" constant="40" id="Cnd-Wq-nJa"/>
+                    </constraints>
                     <state key="normal" title="Open in Browser">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -26,22 +30,8 @@
                         <action selector="openInBrowserButtonPressed:" destination="-1" eventType="touchUpInside" id="h5Z-R7-aVE"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I00-sg-RwP">
-                    <rect key="frame" x="35" y="264" width="250" height="40"/>
-                    <color key="backgroundColor" red="0.23137254900000001" green="0.45098039220000002" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="krM-Ej-Zth"/>
-                        <constraint firstAttribute="width" constant="250" id="qjt-Hn-zfa"/>
-                    </constraints>
-                    <state key="normal" title="Done">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="bpz-KK-xdz"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tR-Nf-AV2">
-                    <rect key="frame" x="35" y="329" width="250" height="40"/>
+                    <rect key="frame" x="35" y="324" width="250" height="40"/>
                     <color key="backgroundColor" red="0.23137254900000001" green="0.45098039220000002" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Log Out">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,7 +41,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issue has been successfully created." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeY-Ts-bqX">
-                    <rect key="frame" x="10" y="148" width="300" height="21"/>
+                    <rect key="frame" x="10" y="213" width="300" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -59,20 +49,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="I00-sg-RwP" secondAttribute="centerY" id="6aH-J7-kpm"/>
-                <constraint firstItem="I00-sg-RwP" firstAttribute="height" secondItem="0tR-Nf-AV2" secondAttribute="height" id="9e7-54-kg0"/>
                 <constraint firstItem="T11-Jo-4Mw" firstAttribute="top" secondItem="UeY-Ts-bqX" secondAttribute="bottom" constant="30" id="B0u-1P-a0U"/>
-                <constraint firstItem="I00-sg-RwP" firstAttribute="centerX" secondItem="T11-Jo-4Mw" secondAttribute="centerX" id="C1S-AW-nAa"/>
-                <constraint firstItem="I00-sg-RwP" firstAttribute="width" secondItem="T11-Jo-4Mw" secondAttribute="width" id="Nkg-Wo-tSs"/>
-                <constraint firstItem="I00-sg-RwP" firstAttribute="top" secondItem="T11-Jo-4Mw" secondAttribute="bottom" constant="25" id="VAR-fv-1pI"/>
-                <constraint firstItem="0tR-Nf-AV2" firstAttribute="top" secondItem="I00-sg-RwP" secondAttribute="bottom" constant="25" id="VyR-86-aop"/>
+                <constraint firstItem="T11-Jo-4Mw" firstAttribute="width" secondItem="0tR-Nf-AV2" secondAttribute="width" id="EkJ-VG-c05"/>
+                <constraint firstItem="0tR-Nf-AV2" firstAttribute="top" secondItem="T11-Jo-4Mw" secondAttribute="bottom" constant="20" id="PMg-Im-xRa"/>
+                <constraint firstItem="T11-Jo-4Mw" firstAttribute="height" secondItem="0tR-Nf-AV2" secondAttribute="height" id="PZ4-ms-uio"/>
+                <constraint firstAttribute="centerY" secondItem="T11-Jo-4Mw" secondAttribute="centerY" id="Qow-8l-Q6H"/>
                 <constraint firstAttribute="trailing" secondItem="UeY-Ts-bqX" secondAttribute="trailing" constant="10" id="Y74-0W-HQs"/>
                 <constraint firstItem="UeY-Ts-bqX" firstAttribute="centerX" secondItem="T11-Jo-4Mw" secondAttribute="centerX" id="ada-r9-SrM"/>
                 <constraint firstItem="UeY-Ts-bqX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="b7L-CY-uNS"/>
-                <constraint firstAttribute="centerX" secondItem="I00-sg-RwP" secondAttribute="centerX" id="ktz-kA-drw"/>
-                <constraint firstItem="I00-sg-RwP" firstAttribute="height" secondItem="T11-Jo-4Mw" secondAttribute="height" id="nEU-T1-nIv"/>
-                <constraint firstItem="I00-sg-RwP" firstAttribute="width" secondItem="0tR-Nf-AV2" secondAttribute="width" id="omT-xb-08D"/>
-                <constraint firstItem="I00-sg-RwP" firstAttribute="centerX" secondItem="0tR-Nf-AV2" secondAttribute="centerX" id="zpf-Jf-xOT"/>
+                <constraint firstItem="T11-Jo-4Mw" firstAttribute="leading" secondItem="0tR-Nf-AV2" secondAttribute="leading" id="cfa-kl-V22"/>
+                <constraint firstAttribute="centerX" secondItem="T11-Jo-4Mw" secondAttribute="centerX" id="kEN-Ye-NbY"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="388" y="189"/>

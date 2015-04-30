@@ -7,6 +7,7 @@
 //
 
 #import "JCBaseViewController.h"
+#import "JiraConnector.h"
 
 @interface JCBaseViewController ()
 
@@ -32,8 +33,15 @@
     
     self.errorsArray = [NSMutableArray new];
     
+    [self configurateLeftBarButtonItems];
     [self configurateErrorLabel];
     [self configurateActivityIndicator];
+}
+
+-(void)configurateLeftBarButtonItems
+{
+    UIBarButtonItem *dismiss = [[UIBarButtonItem alloc] initWithTitle:@"Dismiss" style:UIBarButtonItemStylePlain target:self action:@selector(dismissJiraConnector)];
+    self.navigationItem.rightBarButtonItem = dismiss;
 }
 
 -(void)configurateErrorLabel
@@ -122,6 +130,11 @@
         }];
         
     }];
+}
+
+-(void)dismissJiraConnector
+{
+    [[JiraConnector sharedManager] hideWithCompletionBlock:nil];
 }
 
 #pragma mark - Activity indicator

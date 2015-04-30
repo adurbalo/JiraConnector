@@ -128,8 +128,7 @@
         project = self.filtereProjects[indexPath.row];
     }
     
-    JCCreateIssueViewController *createIssueVC = [JCCreateIssueViewController new];
-    createIssueVC.project = project;
+    JCCreateIssueViewController *createIssueVC = [[JCCreateIssueViewController alloc] initWithProject:project];
     [self.navigationController pushViewController:createIssueVC animated:YES];
 }
 

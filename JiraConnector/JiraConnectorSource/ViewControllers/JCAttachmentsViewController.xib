@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JCAttachmentsViewController">
@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lc9-M6-Kfx">
-                                <rect key="frame" x="20" y="10" width="280" height="40"/>
+                                <rect key="frame" x="170" y="10" width="130" height="40"/>
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.45098039220000002" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Attach">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,14 +36,30 @@
                                     <action selector="addAttachmentsButtonPressed:" destination="-1" eventType="touchUpInside" id="FfA-xC-YNi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9t-wt-64c">
+                                <rect key="frame" x="20" y="10" width="130" height="40"/>
+                                <color key="backgroundColor" red="0.23137254900000001" green="0.45098039220000002" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipButtonPressed:" destination="-1" eventType="touchUpInside" id="abb-7m-npl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="lc9-M6-Kfx" secondAttribute="trailing" constant="20" id="7hb-pg-ewo"/>
-                            <constraint firstItem="lc9-M6-Kfx" firstAttribute="leading" secondItem="1Fr-r3-b9U" secondAttribute="leading" constant="20" id="CQ7-iZ-ERc"/>
-                            <constraint firstAttribute="centerY" secondItem="lc9-M6-Kfx" secondAttribute="centerY" id="XM1-2O-THF"/>
-                            <constraint firstAttribute="centerX" secondItem="lc9-M6-Kfx" secondAttribute="centerX" id="l3q-fp-h75"/>
-                            <constraint firstItem="lc9-M6-Kfx" firstAttribute="top" secondItem="1Fr-r3-b9U" secondAttribute="top" constant="10" id="lHs-ZK-CVG"/>
+                            <constraint firstAttribute="centerY" secondItem="Z9t-wt-64c" secondAttribute="centerY" id="DO4-WE-mqS"/>
+                            <constraint firstItem="Z9t-wt-64c" firstAttribute="top" secondItem="1Fr-r3-b9U" secondAttribute="top" constant="10" id="Dyk-W6-efj"/>
+                            <constraint firstItem="Z9t-wt-64c" firstAttribute="leading" secondItem="1Fr-r3-b9U" secondAttribute="leading" constant="20" id="PeT-3e-5ud"/>
+                            <constraint firstItem="Z9t-wt-64c" firstAttribute="width" secondItem="lc9-M6-Kfx" secondAttribute="width" id="QcY-QP-9PS"/>
+                            <constraint firstItem="Z9t-wt-64c" firstAttribute="height" secondItem="lc9-M6-Kfx" secondAttribute="height" id="nW5-jk-cvV"/>
+                            <constraint firstItem="lc9-M6-Kfx" firstAttribute="leading" secondItem="Z9t-wt-64c" secondAttribute="trailing" constant="20" id="oRX-SQ-7yf"/>
+                            <constraint firstItem="Z9t-wt-64c" firstAttribute="centerY" secondItem="lc9-M6-Kfx" secondAttribute="centerY" id="oaJ-Tn-1YG"/>
+                            <constraint firstAttribute="trailing" secondItem="lc9-M6-Kfx" secondAttribute="trailing" constant="20" id="qNo-gZ-pOV"/>
                         </constraints>
                     </view>
                     <connections>

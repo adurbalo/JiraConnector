@@ -24,7 +24,6 @@
 {
     [super viewDidLoad];
     self.title = @"Attachments";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Skip" style:UIBarButtonItemStylePlain target:self action:@selector(showFinalVC)];
     [self.navigationItem setHidesBackButton:YES];
     [self configurateCurrentSelectedAttachments];
 }
@@ -97,6 +96,11 @@
             [self showFinalVC];
         }
     }];
+}
+
+- (IBAction)skipButtonPressed:(id)sender
+{
+    [self showFinalVC];
 }
 
 @end

@@ -53,11 +53,6 @@
     }];
 }
 
-- (IBAction)doneButtonPressed:(id)sender
-{
-    [[JiraConnector sharedManager] hideWithCompletionBlock:nil];
-}
-
 - (IBAction)logoutButtonPressed:(id)sender
 {
     [[NetworkManager sharedManager] removeCredentials];

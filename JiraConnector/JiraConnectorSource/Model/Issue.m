@@ -7,6 +7,7 @@
 //
 
 #import "Issue.h"
+#import <UIKit/UIKit.h>
 
 @implementation Issue
 
@@ -36,6 +37,15 @@
         self.fields = [Fields new];
     }
     return self;
+}
+
+-(void)generateEnvironment
+{
+    NSMutableString *enviromentString = [[NSMutableString alloc] init];
+    UIDevice *device = [UIDevice currentDevice];
+    [enviromentString appendFormat:@"%@ - %@\n", device.model, device.name];
+    [enviromentString appendFormat:@"%@ %@", device.systemName, device.systemVersion];
+    self.fields.environment = enviromentString;
 }
 
 @end

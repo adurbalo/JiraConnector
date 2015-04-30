@@ -25,9 +25,6 @@
 {
     [super viewDidLoad];
     self.title = @"Login";
-    
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];
-    self.navigationItem.leftBarButtonItem = cancelButton;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -36,11 +33,6 @@
     
     self.loginTextField.text = [[NetworkManager sharedManager] login];
     self.passwordTextField.text = [[NetworkManager sharedManager] pass];
-}
-
--(void)cancelButtonPressed:(UIBarButtonItem*)item
-{
-    [[JiraConnector sharedManager] hideWithCompletionBlock:nil];
 }
 
 #pragma mark - IBActions

@@ -15,8 +15,11 @@
 #import "JCAttachmentsViewController.h"
 #import "JCFinalViewController.h"
 #import "JiraConnector.h"
+#import "Project.h"
 
 @interface JCCreateIssueViewController () <JCRightSideControllerDelegate>
+
+@property(nonatomic, strong) Project *project;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *theScrollView;
 
@@ -48,6 +51,19 @@
 
 @implementation JCCreateIssueViewController
 
+#pragma mark - Init
+
+-(instancetype)initWithProject:(Project *)project
+{
+    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
+    if (self) {
+        self.project = project;
+    }
+    return self;
+}
+
+#pragma mark - UIView livecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,6 +73,7 @@
     
     self.issue = [[Issue alloc] init];
     self.issue.fields.project = self.project;
+    [self.issue generateEnvironment];
     
     [self configurateSelectItemVC];
     [self configurateTextContainerVC];

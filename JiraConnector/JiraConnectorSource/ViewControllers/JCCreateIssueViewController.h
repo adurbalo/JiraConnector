@@ -7,10 +7,11 @@
 //
 
 #import "JCBaseViewController.h"
-#import "Project.h"
+
+@class Project;
 
 @interface JCCreateIssueViewController : JCBaseViewController
 
-@property(nonatomic, strong) Project *project;
+-(instancetype)initWithProject:(Project*)project;
 
 @end

@@ -17,4 +17,6 @@
 @property(nonatomic, strong) NSString *key;
 @property(nonatomic, strong) Fields *fields;
 
+-(void)generateEnvironment;
+
 @end
