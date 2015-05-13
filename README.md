@@ -1,7 +1,7 @@
 ##JiraConnector for iOS
 
 ### Demo 
-* [Video](https://www.dropbox.com/s/cr60nrgflf00b9k/JiraConnectorDemo.mov?dl=0)
+<img src="http://gifyu.com/images/out3.gif" border="0">
 
 ### Installation with [CocoaPods](http://cocoapods.org)
 ```ruby
