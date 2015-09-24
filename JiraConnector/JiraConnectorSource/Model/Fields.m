@@ -27,42 +27,42 @@
 }
 
 + (NSValueTransformer *)issueTypeJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:IssueType.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:IssueType.class];
 }
 
 + (NSValueTransformer *)projectJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Project.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:Project.class];
 }
 
 + (NSValueTransformer *)priorityJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Priority.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:Priority.class];
 }
 
 + (NSValueTransformer *)assigneeJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:User.class];
 }
 
 + (NSValueTransformer *)creatorJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:User.class];
 }
 
 + (NSValueTransformer *)reporterJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:User.class];
 }
 
 + (NSValueTransformer *)fixVersionsJSONTransformer
 {
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Version.class];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:Version.class];
 }
 
 + (NSValueTransformer *)affectsVersionsJSONTransformer
 {
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Version.class];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:Version.class];
 }
 
 + (NSValueTransformer *)componentsJSONTransformer
 {
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Component.class];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:Component.class];
 }
 
 @end

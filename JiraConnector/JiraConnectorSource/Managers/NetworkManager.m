@@ -272,7 +272,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 {
     return [self makeRequestWithMethod:RequestMethodPOST
                                URLPath:@"/rest/api/2/issue"
-                       inputParameters:[MTLJSONAdapter JSONDictionaryFromModel:issue]
+                       inputParameters:[MTLJSONAdapter JSONDictionaryFromModel:issue error:nil]
                   HTTPHeaderParameters:nil
                      outputObjectClass:[Issue class]
                          responseBlock:completionBlock];
