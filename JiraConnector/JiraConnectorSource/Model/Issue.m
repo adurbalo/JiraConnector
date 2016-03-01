@@ -25,7 +25,7 @@
 }
 
 + (NSValueTransformer *)fieldsJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Fields.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:Fields.class];
 }
 
 #pragma mark - Init

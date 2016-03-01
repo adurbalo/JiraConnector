@@ -13,6 +13,7 @@
 #import "JCNavigationController.h"
 #import "JCLoginViewController.h"
 #import "NetworkManager.h"
+#import "EXTKeyPathCoding.h"
 
 @interface JiraConnector ()
 
@@ -21,8 +22,6 @@
 @property (nonatomic, strong) UIWindow *jiraConnectorWindow;
 @property (nonatomic, strong) NSString *baseUrl;
 @property (nonatomic, strong) NSString *predefinedProjectKey;
-
-@property (nonatomic, strong) JCNavigationController *navigationController;
 
 @property (nonatomic) BOOL active;
 
@@ -40,24 +39,31 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
 {
     self = [super init];
     if (self) {
-        
-        self.motionManager = [[CMMotionManager alloc] init];
-        
-        self.jiraConnectorWindow = [[UIWindow alloc] init];
-        self.jiraConnectorWindow.frame = [[UIScreen mainScreen] bounds];
-        self.jiraConnectorWindow.windowLevel = UIWindowLevelNormal + UIWindowLevelAlert + UIWindowLevelStatusBar;
-        self.jiraConnectorWindow.rootViewController = [[UIViewController alloc] init];
-        
+        [self baseConfiguration];
         JCLoginViewController *loginVC = [JCLoginViewController new];
         self.navigationController = [[JCNavigationController alloc] initWithRootViewController:loginVC];
         self.navigationController.view.autoresizingMask = UIViewAutoresizingNone;
-        
-        self.motionSensitivity = 10;
-        
-        self.currentAttachments = [[NSMutableArray alloc] init];
     }
     
     return self;
+}
+
+-(void)baseConfiguration
+{
+    self.motionManager = [[CMMotionManager alloc] init];
+    
+    self.jiraConnectorWindow = [[UIWindow alloc] init];
+    self.jiraConnectorWindow.frame = [[UIScreen mainScreen] bounds];
+    self.jiraConnectorWindow.windowLevel = UIWindowLevelNormal + UIWindowLevelAlert + UIWindowLevelStatusBar;
+    self.jiraConnectorWindow.backgroundColor = [UIColor clearColor];
+    self.jiraConnectorWindow.rootViewController = [[UIViewController alloc] init];
+    self.jiraConnectorWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
+    
+    self.motionSensitivity = 10;
+    
+    self.currentAttachments = [[NSMutableArray alloc] init];
+    
+    [[AVAudioSession sharedInstance] addObserver:self forKeyPath:@keypath( ((AVAudioSession*)nil), outputVolume) options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void)configurateWithBaseURL:(NSString *)baseUrl andPredefinedProjectKey:(NSString *)projectKey
@@ -88,6 +94,17 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
                                                 }];
     } else {
         [self.motionManager stopDeviceMotionUpdates];
+    }
+}
+
+-(void)setEnableVolumeButtonsHandler:(BOOL)enableVolumeButtonsHandler
+{
+    _enableVolumeButtonsHandler = enableVolumeButtonsHandler;
+    
+    NSError *error = error;
+    [[AVAudioSession sharedInstance] setActive:_enableVolumeButtonsHandler error:&error];
+    if (error) {
+        NSLog(@"%s %@", __PRETTY_FUNCTION__, error);
     }
 }
 
@@ -230,6 +247,15 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
                 NSLog(@"Unexpected class in Custom Attachments. Expect [JiraAttachment class], but receive %@", attachment);
             }
         }
+    }
+}
+
+#pragma mark - KVO
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@keypath( ((AVAudioSession*)nil), outputVolume)] && self.enableVolumeButtonsHandler) {
+        [self showWithCompletionBlock:nil];
     }
 }
 

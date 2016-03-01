@@ -31,19 +31,19 @@
 }
 
 + (NSValueTransformer *)leadJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:User.class];
 }
 
 + (NSValueTransformer *)assigneeJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:User.class];
 }
 
 + (NSValueTransformer *)realAssigneeJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:User.class];
 }
 
 + (NSValueTransformer *)reporterJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:User.class];
 }
 
 + (NSValueTransformer *)isAssigneeTypeValidJSONTransformer {

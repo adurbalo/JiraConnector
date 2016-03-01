@@ -17,6 +17,11 @@ typedef NSArray* (^AddCustomAttachmentsBlock)();
 CWL_DECLARE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
 
 /**
+ Add your own flow for ticket creation
+ */
+@property (nonatomic, strong) UINavigationController *navigationController;
+
+/**
  Predefined Project Key
  */
 @property(nonatomic, readonly) NSString *predefinedProjectKey;
@@ -31,6 +36,11 @@ CWL_DECLARE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
  Ability call create issue dialog using device motion
  */
 @property(nonatomic) BOOL enableDetectMotion;
+
+/**
+ Ability call create issue dialog by tap on volume buttons
+ */
+@property(nonatomic) BOOL enableVolumeButtonsHandler;
 
 /**
  Sensitivity of handling device motion. Default value - 10

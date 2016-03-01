@@ -29,7 +29,7 @@
 }
 
 + (NSValueTransformer *)avatarUrlsJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:AvatarUrls.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:AvatarUrls.class];
 }
 
 + (NSValueTransformer *)activeJSONTransformer {

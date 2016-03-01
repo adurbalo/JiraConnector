@@ -36,7 +36,7 @@
 }
 
 + (NSValueTransformer *)authorJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:User.class];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:User.class];
 }
 
 @end
