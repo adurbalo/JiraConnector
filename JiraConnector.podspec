@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'  
   s.source_files = "JiraConnector/JiraConnectorSource/**/*.{h,m}"
   s.resource = "JiraConnector/JiraConnectorSource/**/*.{xib}"
-  s.dependency 'AFNetworking' 
+  s.dependency 'AFNetworking','2.6.0' 
   s.dependency 'Mantle'
 end
