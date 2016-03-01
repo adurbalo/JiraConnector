@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
     
-    [[JiraConnector sharedManager] configurateWithBaseURL:@"http://localhost:8080" andPredefinedProjectKey:@"MT"];
+    [[JiraConnector sharedManager] configurateWithBaseURL:@"https://menswearhouse.atlassian.net" andPredefinedProjectKey:@"TUXMOBILE"];
     [[JiraConnector sharedManager] setEnableDetectMotion:YES];
     [[JiraConnector sharedManager] setEnableScreenCapturer:YES];
     [[JiraConnector sharedManager] setCustomAttachmentsBlock:^ NSArray* (){

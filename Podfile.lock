@@ -55,18 +55,18 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
-  - Mantle (2.0.5):
-    - Mantle/extobjc (= 2.0.5)
-  - Mantle/extobjc (2.0.5)
+  - Mantle (2.0.6):
+    - Mantle/extobjc (= 2.0.6)
+  - Mantle/extobjc (2.0.6)
 
 DEPENDENCIES:
-  - AFNetworking
+  - AFNetworking (= 2.6.0)
   - libextobjc
   - Mantle
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  Mantle: 1912395033f601de5adc8ee91e48f46e4c7051ad
+  Mantle: 299966b00759634931699f69cb6a30b9239b944d
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
