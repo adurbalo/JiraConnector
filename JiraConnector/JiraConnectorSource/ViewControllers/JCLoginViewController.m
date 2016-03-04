@@ -43,7 +43,7 @@
     
     [[NetworkManager sharedManager] loginToJiraWithLogin:self.loginTextField.text
                                              andPassword:self.passwordTextField.text
-                                         completionBlock:^(id responseObject, NSError *error) {
+                                         completionBlock:^(Authorization *responseObject, NSError *error) {
                                              
                                              [self popActivityIndicator];
                                              
@@ -57,7 +57,7 @@
 }
 
 -(void)showProjects
-{
+{    
     JCProjectsViewController *projectVC = [JCProjectsViewController new];
     [self.navigationController pushViewController:projectVC animated:YES];
 }

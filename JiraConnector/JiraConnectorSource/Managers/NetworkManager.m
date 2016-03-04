@@ -7,7 +7,7 @@
 //
 
 #import "NetworkManager.h"
-#import "AFNetworking.h"
+#import "APIConstants.h"
 
 typedef NS_ENUM(NSInteger, RequestMethod) {
     RequestMethodGET,
@@ -18,10 +18,32 @@ typedef NS_ENUM(NSInteger, RequestMethod) {
 
 @interface NetworkManager ()
 {
-    AFHTTPRequestOperationManager *_manager;
+    NSURLSession *_session;
     dispatch_queue_t _mappingQueue;
 }
 @end
+
+static inline NSString* HTTPMethod(RequestMethod method)
+{
+    NSString *requestMethodString = nil;
+    switch (method) {
+        case RequestMethodGET:
+            requestMethodString = @"GET";
+            break;
+        case RequestMethodPOST:
+            requestMethodString = @"POST";
+            break;
+        case RequestMethodPUT:
+            requestMethodString = @"PUT";
+            break;
+        case RequestMethodDELETE:
+            requestMethodString = @"DELETE";
+            break;
+        default:
+            break;
+    }
+    return requestMethodString;
+}
 
 #define udLoginKey @"udJCLoginKey"
 #define udPasswordKey @"udJCPasswordKey"
@@ -35,23 +57,20 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     self = [super init];
     if (self) {
         _mappingQueue = dispatch_queue_create("NetworkManager.mappingQueue", DISPATCH_QUEUE_CONCURRENT);
-        [self setupRequestOperationManager];
+        [self setupSession];
     }
     return self;
 }
 
-- (void)setupRequestOperationManager
+- (void)setupSession
 {
-    NSString *serverUrlString = self.jiraServerBaseUrlString;
-    NSURL *baseURL = [NSURL URLWithString:serverUrlString];
-    _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
-    _manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    _manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    _session = [NSURLSession sessionWithConfiguration:config];
 }
 
-- (void)configurateAuthorizationHeader
+-(NSString*)baseServerURLString
 {
-    [_manager.requestSerializer setAuthorizationHeaderFieldWithUsername:[self login] password:[self pass]];
+    return self.jiraServerBaseUrlString;
 }
 
 -(NSString *)login
@@ -74,44 +93,12 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 -(void)setJiraServerBaseUrlString:(NSString *)jiraServerBaseUrlString
 {
     _jiraServerBaseUrlString = jiraServerBaseUrlString;
-    [self setupRequestOperationManager];
+    [self setupSession];
 }
 
 #pragma mark - Private methods
 
-- (void)handleResponse:(id)responseObject outputObjectClass:(Class)outputObjectClass forURLRequest:(NSURLRequest *)request callBlock:(void(^)(id response, NSError *error))responseBlock
-{
-    if ( responseBlock ){
-        dispatch_async(_mappingQueue, ^{
-            
-            id resultObject = nil;
-            NSError *error = nil;
-            
-            if ([responseObject isKindOfClass:[NSArray class]]) {
-                resultObject = [MTLJSONAdapter modelsOfClass:outputObjectClass fromJSONArray:responseObject error:&error];
-            } else {
-                resultObject = [MTLJSONAdapter modelOfClass:outputObjectClass fromJSONDictionary:responseObject error:&error];
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                responseBlock(resultObject, error);
-            });
-        });
-    }
-}
-
-- (void)handleError:(NSError*)error forRequestOperation:(AFHTTPRequestOperation *)operation callBlock:(ResponseWithObjectBlock)responseBlock
-{
-    NSString *responseString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-    if (responseString) {
-        error = [[NSError alloc] initWithDomain:@"JiraConnector" code:-1 userInfo:@{NSLocalizedDescriptionKey : responseString}];
-    }
-    if (responseBlock) {
-        responseBlock(nil, error);
-    }
-}
-
-- (AFHTTPRequestOperation*)makeRequestWithMethod:(RequestMethod)method
+- (NSURLSessionDataTask *)makeRequestWithMethod:(RequestMethod)method
                                          URLPath:(NSString *)urlPath
                                  inputParameters:(NSDictionary*)parameters
                             HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
@@ -121,7 +108,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     return [self makeRequestWithMethod:method URLPath:urlPath inputParameters:parameters useCredential:YES HTTPHeaderParameters:HTTPHeaderParameters outputObjectClass:outputObjectClass responseBlock:responseBlock];
 }
 
-- (AFHTTPRequestOperation*)makeRequestWithMethod:(RequestMethod)method
+- (NSURLSessionDataTask *)makeRequestWithMethod:(RequestMethod)method
                                          URLPath:(NSString *)urlPath
                                  inputParameters:(NSDictionary*)parameters
                                    useCredential:(BOOL)useCredential
@@ -129,120 +116,183 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
                                outputObjectClass:(Class)outputObjectClass
                                    responseBlock:(void (^)(id, NSError *))responseBlock
 {
-    return [self makeRequestWithMethod:method URLPath:urlPath inputParameters:parameters useCredential:useCredential HTTPHeaderParameters:HTTPHeaderParameters outputObjectClass:outputObjectClass contentContainer:nil responseBlock:responseBlock];
-}
-
-- (AFHTTPRequestOperation*)makeRequestWithMethod:(RequestMethod)method
-                                         URLPath:(NSString *)urlPath
-                                 inputParameters:(NSDictionary*)parameters
-                                   useCredential:(BOOL)useCredential
-                            HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
-                               outputObjectClass:(Class)outputObjectClass
-                                contentContainer:(NSArray*)content
-                                   responseBlock:(void (^)(id, NSError *))responseBlock
-
-{
-    void(^successBlock)(AFHTTPRequestOperation*, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self handleResponse:responseObject outputObjectClass:(Class)outputObjectClass forURLRequest:operation.request callBlock:responseBlock];
-    };
-    void(^failureBlock)(AFHTTPRequestOperation*, NSError*) = ^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self handleError:error forRequestOperation:operation callBlock:responseBlock];
-    };
     
-    NSString *requestMethodString = nil;
-    switch (method) {
-        case RequestMethodGET:
-            requestMethodString = @"GET";
-            break;
-        case RequestMethodPOST:
-            requestMethodString = @"POST";
-            break;
-        case RequestMethodPUT:
-            requestMethodString = @"PUT";
-            break;
-        case RequestMethodDELETE:
-            requestMethodString = @"DELETE";
-            break;
-        default:
-            break;
-    }
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    request.URL = [self URLwithPath:urlPath];
+    request.HTTPMethod = HTTPMethod(method);
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
     if (useCredential) {
-        [self configurateAuthorizationHeader];
+        [self addCredentionalToURLRequest:request];
     }
-//os_authType=basic
-    [_manager.requestSerializer setValue:@"basic" forHTTPHeaderField:@"os_authType"];
     
-    NSMutableURLRequest *request = [_manager.requestSerializer requestWithMethod:requestMethodString
-                                                                                       URLString:[[NSURL URLWithString:urlPath relativeToURL:_manager.baseURL] absoluteString]
-                                                                                      parameters:parameters
-                                                                                           error:nil];
+    [self addParameters:parameters ToURLRequest:request];
     
-    [HTTPHeaderParameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [request setValue:obj forHTTPHeaderField:key];
+    NSURLSessionDataTask *task = [_session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self handlerResponse:response data:data error:error objClass:outputObjectClass withCompletionBlock:responseBlock];
     }];
-    
-    AFHTTPRequestOperation *operation = [_manager HTTPRequestOperationWithRequest:request success:successBlock failure:failureBlock];
-    [_manager.operationQueue addOperation:operation];
-    return operation;
+    [task resume];
+    return task;
 }
 
-#pragma mark ---
-
-
--(NSOperation*)loginToJiraWithLogin:(NSString*)login andPassword:(NSString*)password completionBlock:(void (^)(id responseObject, NSError* error))completionBlock
+-(void)handlerResponse:(NSURLResponse *)response data:(NSData *)data error:(NSError *)error objClass:(Class)objClass withCompletionBlock:(void (^)(id, NSError *))completionBlock
 {
-    [_manager.requestSerializer setAuthorizationHeaderFieldWithUsername:login password:password];
-    
-    return [_manager GET:@"/rest/auth/1/session" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if (error) {
         
-        [[NSUserDefaults standardUserDefaults] setObject:login forKey:udLoginKey];
-        [[NSUserDefaults standardUserDefaults] setObject:password forKey:udPasswordKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completionBlock) {
+                completionBlock(nil, error);
+            }
+        });
         
-        if (completionBlock) {
-            completionBlock(responseObject, nil);
+    } else {
+        
+        NSError *jsonError = nil;
+        id responseObject = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:kNilOptions
+                                                              error:&jsonError];
+        if (jsonError) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completionBlock) {
+                    completionBlock(nil, jsonError);
+                }
+            });
+        } else {
+            dispatch_async(_mappingQueue, ^{
+                
+                id resultObject = nil;
+                NSError *error = nil;
+                
+                if ([responseObject isKindOfClass:[NSArray class]]) {
+                    resultObject = [MTLJSONAdapter modelsOfClass:objClass fromJSONArray:responseObject error:&error];
+                } else if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSArray *errorMessages = [responseObject objectForKey:@"errorMessages"];
+                    if ( [errorMessages isKindOfClass:[NSArray class]] && (errorMessages.count > 0) ) {
+                        error = [[NSError alloc] initWithDomain:@"JiraConnector" code:-1 userInfo:@{NSLocalizedDescriptionKey : errorMessages.description?:@""}];
+                    } else {
+                        resultObject = [MTLJSONAdapter modelOfClass:objClass fromJSONDictionary:responseObject error:&error];
+                    }
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (completionBlock) {
+                        completionBlock(resultObject, error);
+                    }
+                });
+            });
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (completionBlock) {
-            completionBlock(nil, error);
-        }
-    }];
+    }
 }
 
--(NSOperation*)receiveProjectsCompletionBlock:(ResponseWithArrayBlock)completionBlock
+#pragma mark - Internal
+
+
+-(NSURL*)URLwithPath:(NSString*)path
+{
+    return [NSURL URLWithString:path relativeToURL:[NSURL URLWithString:self.jiraServerBaseUrlString]];
+}
+
+-(void)addCredentionalToURLRequest:(NSMutableURLRequest*)request
+{
+    [self addCredentionalToURLRequest:request username:[self login] andPassword:[self pass]];
+}
+
+-(void)addCredentionalToURLRequest:(NSMutableURLRequest*)request username:(NSString *)username andPassword:(NSString *)password
+{
+    //os_authType=basic
+    //    [_manager.requestSerializer setValue:@"basic" forHTTPHeaderField:@"os_authType"];
+    
+    NSString *basicAuthCredentials = [NSString stringWithFormat:@"%@:%@", username, password];
+    NSData *data = [basicAuthCredentials dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64String = [data base64EncodedStringWithOptions:kNilOptions];
+    [request addValue:[NSString stringWithFormat:@"Basic %@", base64String] forHTTPHeaderField:@"Authorization"];
+}
+
+-(void)addParameters:(NSDictionary*)parameters ToURLRequest:(NSMutableURLRequest*)request
+{
+    if (!parameters) {
+        return;
+    }
+    
+    NSArray *HTTPMethodsEncodingParametersInURI = @[HTTPMethod(RequestMethodGET), HTTPMethod(RequestMethodDELETE)];
+    
+    if ( [HTTPMethodsEncodingParametersInURI containsObject:request.HTTPMethod] ) {
+       
+        NSMutableString *queryString = [NSMutableString new];
+        [parameters enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+            if (queryString.length == 0) {
+                [queryString appendString:@"?"];
+            } else {
+                [queryString appendString:@"&"];
+            }
+            [queryString appendFormat:@"%@=%@", key, obj];
+        }];
+        
+        request.URL = [NSURL URLWithString:queryString relativeToURL:request.URL];
+       
+    } else {
+     
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:parameters
+                                                       options:kNilOptions error:&error];
+        if (error) {
+            NSLog(@"Serialization parameters error: %@", error);
+        } else {
+            request.HTTPBody = data;
+        }
+    }
+}
+
+#pragma mark - Request
+
+-(NSURLSessionDataTask*)loginToJiraWithLogin:(NSString*)login andPassword:(NSString*)password completionBlock:(void (^)(id responseObject, NSError* error))completionBlock
+{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    request.URL = [self URLwithPath:kJCAuthPath];
+    request.HTTPMethod = HTTPMethod(RequestMethodGET);
+    [self addCredentionalToURLRequest:request username:login andPassword:password];
+    
+    NSURLSessionDataTask *task = [_session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self handlerResponse:response data:data error:error objClass:[Authorization class] withCompletionBlock:completionBlock];
+    }];
+    [task resume];
+    return task;
+}
+
+-(NSURLSessionDataTask*)receiveProjectsCompletionBlock:(ResponseWithArrayBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET
-                               URLPath:@"/rest/api/2/project"
+                               URLPath:kJCGetProjectPath
                        inputParameters:nil
                   HTTPHeaderParameters:nil
                     outputObjectClass:[Project class]
                          responseBlock:completionBlock];
 }
 
-#pragma mark - Issue Prepearing
-
--(NSOperation*)issueTypesCompletionBlock:(ResponseWithArrayBlock)completionBlock
+-(NSURLSessionDataTask*)issueTypesCompletionBlock:(ResponseWithArrayBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET
-                               URLPath:@"/rest/api/2/issuetype"
+                               URLPath:kJCGetIssueTypePath
                        inputParameters:nil
                   HTTPHeaderParameters:nil
                     outputObjectClass:[IssueType class]
                          responseBlock:completionBlock];
 }
 
--(NSOperation*)issuePrioritiesCompletionBlock:(ResponseWithArrayBlock)completionBlock
+-(NSURLSessionDataTask*)issuePrioritiesCompletionBlock:(ResponseWithArrayBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET
-                               URLPath:@"/rest/api/2/priority"
+                               URLPath:kJCGetPriorityPath
                        inputParameters:nil
                   HTTPHeaderParameters:nil
                     outputObjectClass:[Priority class]
                          responseBlock:completionBlock];
 }
 
--(NSOperation *)issueAssignableSearchForProject:(NSString*)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock
+-(NSURLSessionDataTask *)issueAssignableSearchForProject:(NSString*)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock
 {
     NSMutableDictionary *params = [NSMutableDictionary new];
     if (projectKey) {
@@ -251,76 +301,99 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
     }
     
     return [self makeRequestWithMethod:RequestMethodGET
-                               URLPath:@"/rest/api/2/user/assignable/search"
+                               URLPath:kJCGetAssignablePath
                        inputParameters:params
                   HTTPHeaderParameters:nil
                      outputObjectClass:[User class]
                          responseBlock:completionBlock];
 }
 
--(NSOperation*)issueByKey:(NSString*)issueKey completionBlock:(ResponseWithObjectBlock)completionBlock
+-(NSURLSessionDataTask*)issueByKey:(NSString*)issueKey completionBlock:(ResponseWithObjectBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET
-                               URLPath:[NSString stringWithFormat:@"/rest/api/2/issue/%@", issueKey]
+                               URLPath:[NSString stringWithFormat:kJCGetIssueByKeyPath, issueKey]
                        inputParameters:nil
                   HTTPHeaderParameters:nil
                      outputObjectClass:[Issue class]
                          responseBlock:completionBlock];
 }
 
--(NSOperation*)createIssue:(Issue*)issue completionBlock:(ResponseWithObjectBlock)completionBlock
+-(NSURLSessionDataTask*)createIssue:(Issue*)issue completionBlock:(ResponseWithObjectBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodPOST
-                               URLPath:@"/rest/api/2/issue"
+                               URLPath:kJCPostIssuePath
                        inputParameters:[MTLJSONAdapter JSONDictionaryFromModel:issue error:nil]
                   HTTPHeaderParameters:nil
                      outputObjectClass:[Issue class]
                          responseBlock:completionBlock];
 }
 
--(NSOperation *)versionsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock
+-(NSURLSessionDataTask *)versionsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET
-                               URLPath:[NSString stringWithFormat:@"/rest/api/2/project/%@/versions?expand", projectKey]
+                               URLPath:[NSString stringWithFormat:kJCGetVersionsForProjectPath, projectKey]
                        inputParameters:nil
                   HTTPHeaderParameters:nil
                      outputObjectClass:[Version class]
                          responseBlock:completionBlock];
 }
 
--(NSOperation *)componentsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock
+-(NSURLSessionDataTask *)componentsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET
-                               URLPath:[NSString stringWithFormat:@"/rest/api/2/project/%@/components", projectKey]
+                               URLPath:[NSString stringWithFormat:kJCGetComponentsPath, projectKey]
                        inputParameters:nil
                   HTTPHeaderParameters:nil
                      outputObjectClass:[Component class]
                          responseBlock:completionBlock];
 }
 
--(NSOperation *)addAttachments:(NSArray *)attachments toIssueWithKey:(NSString *)issueKey completionBlock:(ResponseWithArrayBlock)completionBlock
+-(NSURLSessionDataTask *)addAttachments:(NSArray<JiraAttachment *>*)attachments toIssueWithKey:(NSString *)issueKey completionBlock:(ResponseWithArrayBlock)completionBlock
 {
-    [self configurateAuthorizationHeader];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    request.URL = [self URLwithPath:[NSString stringWithFormat:kJCPostAttachmentsIssueByKeyPath, issueKey]];
+    [request setHTTPMethod:HTTPMethod(RequestMethodPOST)];
+    
+    NSString *boundary = [self boundaryString];
+    [request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [self addCredentionalToURLRequest:request];
     NSString *xAtlassianTokenKey = @"X-Atlassian-Token";
-    [_manager.requestSerializer setValue:@"nocheck" forHTTPHeaderField:xAtlassianTokenKey];
+    [request setValue:@"nocheck" forHTTPHeaderField:xAtlassianTokenKey];
     
-    return [_manager POST:[NSString stringWithFormat:@"/rest/api/2/issue/%@/attachments", issueKey] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-        for (JiraAttachment *ja in attachments) {
-            [formData appendPartWithFileData:ja.attachmentData name:@"file" fileName:ja.fileName mimeType:ja.mimeType];
-        }
-        
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        [_manager.requestSerializer setValue:nil forHTTPHeaderField:xAtlassianTokenKey];
-        [self handleResponse:responseObject outputObjectClass:[Attachment class] forURLRequest:operation.request callBlock:completionBlock];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    NSMutableData *data = [[NSMutableData alloc] init];
+    [data appendData:[self createBodyWithBoundary:boundary forAttachments:attachments]];
 
-        [_manager.requestSerializer setValue:nil forHTTPHeaderField:xAtlassianTokenKey];
-        [self handleError:error forRequestOperation:operation callBlock:completionBlock];
-    
+    NSURLSessionDataTask *task = [_session uploadTaskWithRequest:request fromData:data completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        [self handlerResponse:response data:data error:error objClass:[Attachment class] withCompletionBlock:completionBlock];
     }];
+    
+    [task resume];
+    return task;
+}
+
+- (NSString *)boundaryString
+{
+    NSString *uuidStr = [[NSUUID UUID] UUIDString];
+    return [NSString stringWithFormat:@"Boundary-%@", uuidStr];
+}
+
+- (NSData *)createBodyWithBoundary:(NSString *)boundary
+                    forAttachments:(NSArray<JiraAttachment*> *)attachment
+{
+    NSMutableData *httpBody = [NSMutableData data];
+    
+    for (JiraAttachment *ja in attachment) {
+        
+        [httpBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [httpBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", @"file", ja.fileName] dataUsingEncoding:NSUTF8StringEncoding]];
+        [httpBody appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", ja.mimeType] dataUsingEncoding:NSUTF8StringEncoding]];
+        [httpBody appendData:ja.attachmentData];
+        [httpBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    [httpBody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    return httpBody;
 }
 
 @end

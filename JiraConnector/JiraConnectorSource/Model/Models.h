@@ -20,5 +20,6 @@
 #import "Version.h"
 #import "Attachment.h"
 #import "JiraAttachment.h"
+#import "Authorization.h"
 
 #endif

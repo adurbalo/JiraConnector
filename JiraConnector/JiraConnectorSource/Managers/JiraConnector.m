@@ -43,9 +43,19 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(JiraConnector, sharedManager)
         JCLoginViewController *loginVC = [JCLoginViewController new];
         self.navigationController = [[JCNavigationController alloc] initWithRootViewController:loginVC];
         self.navigationController.view.autoresizingMask = UIViewAutoresizingNone;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didBecomeActiveNotification:)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
     }
     
     return self;
+}
+
+-(void)didBecomeActiveNotification:(NSNotification *)notification
+{
+    self.enableVolumeButtonsHandler = _enableVolumeButtonsHandler;
 }
 
 -(void)baseConfiguration

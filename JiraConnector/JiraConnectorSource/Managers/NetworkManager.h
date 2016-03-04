@@ -23,24 +23,24 @@ CWL_DECLARE_SINGLETON_FOR_CLASS_WITH_ACCESSOR(NetworkManager, sharedManager)
 -(NSString*)pass;
 -(void)removeCredentials;
 
--(NSOperation*)loginToJiraWithLogin:(NSString*)login andPassword:(NSString*)password completionBlock:(void (^)(id responseObject, NSError* error))completionBlock;
+-(NSURLSessionDataTask*)loginToJiraWithLogin:(NSString*)login andPassword:(NSString*)password completionBlock:(void (^)(id responseObject, NSError* error))completionBlock;
 
 /*[Project]*/
--(NSOperation*)receiveProjectsCompletionBlock:(ResponseWithArrayBlock)completionBlock;
+-(NSURLSessionDataTask*)receiveProjectsCompletionBlock:(ResponseWithArrayBlock)completionBlock;
 /*[IssueType]*/
--(NSOperation*)issueTypesCompletionBlock:(ResponseWithArrayBlock)completionBlock;
+-(NSURLSessionDataTask*)issueTypesCompletionBlock:(ResponseWithArrayBlock)completionBlock;
 /*[Priority]*/
--(NSOperation*)issuePrioritiesCompletionBlock:(ResponseWithArrayBlock)completionBlock;
+-(NSURLSessionDataTask*)issuePrioritiesCompletionBlock:(ResponseWithArrayBlock)completionBlock;
 /*[User]*/
--(NSOperation*)issueAssignableSearchForProject:(NSString*)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock;
+-(NSURLSessionDataTask*)issueAssignableSearchForProject:(NSString*)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock;
 /*Issue*/
--(NSOperation*)issueByKey:(NSString*)issueKey completionBlock:(ResponseWithObjectBlock)completionBlock;
--(NSOperation*)createIssue:(Issue*)issue completionBlock:(ResponseWithObjectBlock)completionBlock;
+-(NSURLSessionDataTask*)issueByKey:(NSString*)issueKey completionBlock:(ResponseWithObjectBlock)completionBlock;
+-(NSURLSessionDataTask*)createIssue:(Issue*)issue completionBlock:(ResponseWithObjectBlock)completionBlock;
 /*[Version]*/
--(NSOperation *)versionsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock;
+-(NSURLSessionDataTask *)versionsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock;
 /*[Component]*/
--(NSOperation *)componentsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock;
+-(NSURLSessionDataTask *)componentsForProject:(NSString *)projectKey completionBlock:(ResponseWithArrayBlock)completionBlock;
 /*[Attachment]*/
--(NSOperation *)addAttachments:(NSArray*)attachments toIssueWithKey:(NSString *)issueKey completionBlock:(ResponseWithArrayBlock)completionBlock;
+-(NSURLSessionDataTask *)addAttachments:(NSArray<JiraAttachment *>*)attachments toIssueWithKey:(NSString *)issueKey completionBlock:(ResponseWithArrayBlock)completionBlock;
 
 @end
