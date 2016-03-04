@@ -57,7 +57,7 @@
 }
 
 -(void)showProjects
-{    
+{
     JCProjectsViewController *projectVC = [JCProjectsViewController new];
     [self.navigationController pushViewController:projectVC animated:YES];
 }
