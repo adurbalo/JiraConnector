@@ -9,7 +9,6 @@
 #import "JCProjectsViewController.h"
 #import "NetworkManager.h"
 #import "JCCreateIssueViewController.h"
-#import "UIKit+AFNetworking.h"
 #import "JiraConnector.h"
 
 @interface JCProjectsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
@@ -103,16 +102,6 @@
     
     cell.textLabel.text = project.name;
     cell.detailTextLabel.text = project.key;
-   
-    NSURLRequest *request = [NSURLRequest requestWithURL:project.avatarUrls.x48];
-    __weak UITableViewCell *weakCell = cell;
-    [cell.imageView setImageWithURLRequest:request
-                          placeholderImage:nil
-                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                       weakCell.imageView.image = image;
-                                       [weakCell setNeedsLayout];
-                                   } failure:nil];
-    
     return cell;
 }
 

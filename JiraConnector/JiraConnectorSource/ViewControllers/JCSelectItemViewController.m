@@ -7,7 +7,6 @@
 //
 
 #import "JCSelectItemViewController.h"
-#import "UIKit+AFNetworking.h"
 
 @interface JCSelectItemViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -116,17 +115,6 @@
         cell.accessoryType = [self.currentItemsArray containsObject:itemObject]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
     } else {
         cell.accessoryType = (self.currentItem == itemObject)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
-    }
-    
-    if (self.itemImageUrlKeyPath) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:[itemObject valueForKeyPath:self.itemImageUrlKeyPath]];
-        __weak UITableViewCell *weakCell = cell;
-        [cell.imageView setImageWithURLRequest:request
-                              placeholderImage:nil
-                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                           weakCell.imageView.image = image;
-                                           [weakCell setNeedsLayout];
-                                       } failure:nil];
     }
     return cell;
 }
